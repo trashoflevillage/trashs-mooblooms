@@ -1,0 +1,44 @@
+{
+	"schemaVersion": 1,
+	"id": "trashs-mooblooms",
+	"version": "${version}",
+	"name": "Trash's Mooblooms",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/trashs_mooblooms/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"io.github.trashoflevillage.mooblooms.TrashsMooblooms"
+		],
+		"client": [
+			"io.github.trashoflevillage.mooblooms.TrashsMoobloomsClient"
+		],
+		"fabric-datagen": [
+			"io.github.trashoflevillage.mooblooms.TrashsMoobloomsDataGenerator"
+		]
+	},
+	"mixins": [
+      "trashs_mooblooms.mixins.json",
+		{
+			"config": "trashs-mooblooms.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.5",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

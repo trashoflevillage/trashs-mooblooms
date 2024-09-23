@@ -16,17 +16,22 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.Nullable;
 
 public class MoobloomEntity extends CowEntity {
     private static final TrackedData<String> TYPE;
+    private static final float SPAWN_CHANCE = 0.1f;
 
     public MoobloomEntity(EntityType<? extends CowEntity> entityType, World world) {
         super(entityType, world);
@@ -40,6 +45,10 @@ public class MoobloomEntity extends CowEntity {
         }
 
         return moobloomEntity;
+    }
+
+    public static boolean canSpawn(EntityType<MooshroomEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
+        return random.nextFloat() < SPAWN_CHANCE && world.getBlockState(pos.down()).isIn(BlockTags.ANIMALS_SPAWNABLE_ON) && isLightLevelValidForNaturalSpawn(world, pos);
     }
 
     private MoobloomVariant chooseBabyType(MoobloomEntity moobloom) {

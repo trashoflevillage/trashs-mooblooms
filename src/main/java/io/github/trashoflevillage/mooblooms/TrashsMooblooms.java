@@ -1,6 +1,7 @@
 package io.github.trashoflevillage.mooblooms;
 
 import io.github.trashoflevillage.mooblooms.entity.ModEntities;
+import io.github.trashoflevillage.mooblooms.entity.ModEntitySpawn;
 import io.github.trashoflevillage.mooblooms.entity.custom.MoobloomEntity;
 import io.github.trashoflevillage.mooblooms.items.ModItems;
 import net.fabricmc.api.ModInitializer;
@@ -24,6 +25,7 @@ public class TrashsMooblooms implements ModInitializer {
 		// Proceed with mild caution.
 
 		ModItems.registerModItems();
+		ModEntitySpawn.addEntitySpawns();
 
 		FabricDefaultAttributeRegistry.register(ModEntities.MOOBLOOM, MoobloomEntity.createCowAttributes());
 	}

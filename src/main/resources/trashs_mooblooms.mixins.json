@@ -3,7 +3,7 @@
 	"package": "io.github.trashoflevillage.mooblooms.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin"
+		"PlayerEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

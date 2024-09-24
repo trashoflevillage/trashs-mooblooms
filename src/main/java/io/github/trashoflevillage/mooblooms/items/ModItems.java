@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 
 public class ModItems {
     public static final Item MOOBLOOM_SPAWN_EGG = registerItem("moobloom_spawn_egg",
-            new SpawnEggItem(ModEntities.MOOBLOOM, 0xFFE100, 0xFFFF9F, new Item.Settings()));
+            new SpawnEggItem(ModEntities.MOOBLOOM, 0xFFE100, 0x33AB00, new Item.Settings()));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(TrashsMooblooms.MOD_ID, name), item);

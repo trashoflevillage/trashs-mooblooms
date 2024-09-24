@@ -12,6 +12,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -44,6 +46,8 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
 	@Inject(method = "interact", at = @At("HEAD"))
 	private void interact(Entity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+		if (!(entity instanceof PassiveEntity) || ((PassiveEntity) entity).isBaby()) return;
+
 		if (entity.getType() == EntityType.MOOSHROOM && getStackInHand(hand).itemMatches(Items.BOWL.getRegistryEntry())) {
 			getPlayerData().lastMooshroomStewMilk = getEntityWorld().getTime();
 		}

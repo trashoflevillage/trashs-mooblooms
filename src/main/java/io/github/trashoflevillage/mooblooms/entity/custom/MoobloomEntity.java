@@ -84,6 +84,7 @@ public class MoobloomEntity extends CowEntity {
 
 
     private boolean tryConvertToSussyStew(PlayerEntity player, Hand hand) {
+        if (this.isBaby()) return false;
         ItemStack itemStack = player.getStackInHand(hand);
         if (itemStack.itemMatches(Items.MUSHROOM_STEW.getRegistryEntry())) {
             SuspiciousStewIngredient s = SuspiciousStewIngredient.of(Item.fromBlock(getVariant().flower.getBlock()));
@@ -97,6 +98,7 @@ public class MoobloomEntity extends CowEntity {
     }
 
     private boolean tryToDyeItem(PlayerEntity player, Hand hand) {
+        if (this.isBaby()) return false;
         HashMap<TagKey<Item>, HashMap<String, Item>> dyedItems = getDyeableItemHashmap();
         ItemStack itemStack = player.getStackInHand(hand);
 
@@ -252,6 +254,101 @@ public class MoobloomEntity extends CowEntity {
         entry.put("purple", Items.PURPLE_CONCRETE);
         entry.put("magenta", Items.MAGENTA_CONCRETE);
         entry.put("pink", Items.PINK_CONCRETE);
+
+        dyedItems.put(ConventionalItemTags.GLASS_BLOCKS, new HashMap<>());
+        entry = dyedItems.get(ConventionalItemTags.GLASS_BLOCKS);
+        entry.put("white", Items.WHITE_STAINED_GLASS);
+        entry.put("light_gray", Items.LIGHT_GRAY_STAINED_GLASS);
+        entry.put("gray", Items.GRAY_STAINED_GLASS);
+        entry.put("black", Items.BLACK_STAINED_GLASS);
+        entry.put("brown", Items.BROWN_STAINED_GLASS);
+        entry.put("red", Items.RED_STAINED_GLASS);
+        entry.put("orange", Items.ORANGE_STAINED_GLASS);
+        entry.put("yellow", Items.YELLOW_STAINED_GLASS);
+        entry.put("lime", Items.LIME_STAINED_GLASS);
+        entry.put("green", Items.GREEN_STAINED_GLASS);
+        entry.put("cyan", Items.CYAN_STAINED_GLASS);
+        entry.put("light_blue", Items.LIGHT_BLUE_STAINED_GLASS);
+        entry.put("blue", Items.BLUE_STAINED_GLASS);
+        entry.put("purple", Items.PURPLE_STAINED_GLASS);
+        entry.put("magenta", Items.MAGENTA_STAINED_GLASS);
+        entry.put("pink", Items.PINK_STAINED_GLASS);
+
+        dyedItems.put(ConventionalItemTags.GLASS_PANES, new HashMap<>());
+        entry = dyedItems.get(ConventionalItemTags.GLASS_PANES);
+        entry.put("white", Items.WHITE_STAINED_GLASS_PANE);
+        entry.put("light_gray", Items.LIGHT_GRAY_STAINED_GLASS_PANE);
+        entry.put("gray", Items.GRAY_STAINED_GLASS_PANE);
+        entry.put("black", Items.BLACK_STAINED_GLASS_PANE);
+        entry.put("brown", Items.BROWN_STAINED_GLASS_PANE);
+        entry.put("red", Items.RED_STAINED_GLASS_PANE);
+        entry.put("orange", Items.ORANGE_STAINED_GLASS_PANE);
+        entry.put("yellow", Items.YELLOW_STAINED_GLASS_PANE);
+        entry.put("lime", Items.LIME_STAINED_GLASS_PANE);
+        entry.put("green", Items.GREEN_STAINED_GLASS_PANE);
+        entry.put("cyan", Items.CYAN_STAINED_GLASS_PANE);
+        entry.put("light_blue", Items.LIGHT_BLUE_STAINED_GLASS_PANE);
+        entry.put("blue", Items.BLUE_STAINED_GLASS_PANE);
+        entry.put("purple", Items.PURPLE_STAINED_GLASS_PANE);
+        entry.put("magenta", Items.MAGENTA_STAINED_GLASS_PANE);
+        entry.put("pink", Items.PINK_STAINED_GLASS_PANE);
+
+        dyedItems.put(ConventionalItemTags.SHULKER_BOXES, new HashMap<>());
+        entry = dyedItems.get(ConventionalItemTags.SHULKER_BOXES);
+        entry.put("white", Items.WHITE_SHULKER_BOX);
+        entry.put("light_gray", Items.LIGHT_GRAY_SHULKER_BOX);
+        entry.put("gray", Items.GRAY_SHULKER_BOX);
+        entry.put("black", Items.BLACK_SHULKER_BOX);
+        entry.put("brown", Items.BROWN_SHULKER_BOX);
+        entry.put("red", Items.RED_SHULKER_BOX);
+        entry.put("orange", Items.ORANGE_SHULKER_BOX);
+        entry.put("yellow", Items.YELLOW_SHULKER_BOX);
+        entry.put("lime", Items.LIME_SHULKER_BOX);
+        entry.put("green", Items.GREEN_SHULKER_BOX);
+        entry.put("cyan", Items.CYAN_SHULKER_BOX);
+        entry.put("light_blue", Items.LIGHT_BLUE_SHULKER_BOX);
+        entry.put("blue", Items.BLUE_SHULKER_BOX);
+        entry.put("purple", Items.PURPLE_SHULKER_BOX);
+        entry.put("magenta", Items.MAGENTA_SHULKER_BOX);
+        entry.put("pink", Items.PINK_SHULKER_BOX);
+
+        dyedItems.put(ConventionalItemTags.GLAZED_TERRACOTTAS, new HashMap<>());
+        entry = dyedItems.get(ConventionalItemTags.GLAZED_TERRACOTTAS);
+        entry.put("white", Items.WHITE_GLAZED_TERRACOTTA);
+        entry.put("light_gray", Items.LIGHT_GRAY_GLAZED_TERRACOTTA);
+        entry.put("gray", Items.GRAY_GLAZED_TERRACOTTA);
+        entry.put("black", Items.BLACK_GLAZED_TERRACOTTA);
+        entry.put("brown", Items.BROWN_GLAZED_TERRACOTTA);
+        entry.put("red", Items.RED_GLAZED_TERRACOTTA);
+        entry.put("orange", Items.ORANGE_GLAZED_TERRACOTTA);
+        entry.put("yellow", Items.YELLOW_GLAZED_TERRACOTTA);
+        entry.put("lime", Items.LIME_GLAZED_TERRACOTTA);
+        entry.put("green", Items.GREEN_GLAZED_TERRACOTTA);
+        entry.put("cyan", Items.CYAN_GLAZED_TERRACOTTA);
+        entry.put("light_blue", Items.LIGHT_BLUE_GLAZED_TERRACOTTA);
+        entry.put("blue", Items.BLUE_GLAZED_TERRACOTTA);
+        entry.put("purple", Items.PURPLE_GLAZED_TERRACOTTA);
+        entry.put("magenta", Items.MAGENTA_GLAZED_TERRACOTTA);
+        entry.put("pink", Items.PINK_GLAZED_TERRACOTTA);
+
+        dyedItems.put(ItemTags.CANDLES, new HashMap<>());
+        entry = dyedItems.get(ItemTags.CANDLES);
+        entry.put("white", Items.WHITE_CANDLE);
+        entry.put("light_gray", Items.LIGHT_GRAY_CANDLE);
+        entry.put("gray", Items.GRAY_CANDLE);
+        entry.put("black", Items.BLACK_CANDLE);
+        entry.put("brown", Items.BROWN_CANDLE);
+        entry.put("red", Items.RED_CANDLE);
+        entry.put("orange", Items.ORANGE_CANDLE);
+        entry.put("yellow", Items.YELLOW_CANDLE);
+        entry.put("lime", Items.LIME_CANDLE);
+        entry.put("green", Items.GREEN_CANDLE);
+        entry.put("cyan", Items.CYAN_CANDLE);
+        entry.put("light_blue", Items.LIGHT_BLUE_CANDLE);
+        entry.put("blue", Items.BLUE_CANDLE);
+        entry.put("purple", Items.PURPLE_CANDLE);
+        entry.put("magenta", Items.MAGENTA_CANDLE);
+        entry.put("pink", Items.PINK_CANDLE);
 
         return dyedItems;
     }

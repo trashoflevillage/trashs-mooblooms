@@ -13,7 +13,12 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModBlocks {
-    public static final Block BUTTERCUP = registerBlock("buttercup", new FlowerBlock(StatusEffects.POISON, 10, AbstractBlock.Settings.copy(Blocks.DANDELION)));
+    public static final Block BUTTERCUP =
+            registerBlock("buttercup", new FlowerBlock(StatusEffects.POISON, 10, AbstractBlock.Settings.copy(Blocks.DANDELION)));
+    public static final Block HIBISCUS =
+            registerBlock("hibiscus", new FlowerBlock(StatusEffects.REGENERATION, 5, AbstractBlock.Settings.copy(Blocks.DANDELION)));
+    public static final Block GLADIOLI =
+            registerBlock("gladioli", new FlowerBlock(StatusEffects.NIGHT_VISION, 12, AbstractBlock.Settings.copy(Blocks.DANDELION)));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

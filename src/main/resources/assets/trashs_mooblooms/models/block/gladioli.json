@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "trashs_mooblooms:block/gladioli"
+  }
+}

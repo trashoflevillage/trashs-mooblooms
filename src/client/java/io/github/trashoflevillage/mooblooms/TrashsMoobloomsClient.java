@@ -16,6 +16,8 @@ public class TrashsMoobloomsClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BUTTERCUP, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.HIBISCUS, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GLADIOLI, RenderLayer.getCutout());
 
 		EntityRendererRegistry.register(ModEntities.MOOBLOOM, MoobloomRenderer::new);
 		EntityModelLayerRegistry.registerModelLayer(ModModelLayers.MOOBLOOM, CowEntityModel::getTexturedModelData);

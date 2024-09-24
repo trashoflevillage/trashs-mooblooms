@@ -28,6 +28,8 @@ public class ModItems {
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(content -> {
             content.add(ModBlocks.BUTTERCUP);
+            content.add(ModBlocks.HIBISCUS);
+            content.add(ModBlocks.GLADIOLI);
         });
     }
 }

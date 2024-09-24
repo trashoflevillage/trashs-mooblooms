@@ -411,8 +411,9 @@ public class MoobloomEntity extends CowEntity {
     public enum MoobloomVariant implements StringIdentifiable {
         YELLOW("yellow", ModBlocks.BUTTERCUP.getDefaultState()),
         RED("red", Blocks.POPPY.getDefaultState()),
-        PINK("pink", Blocks.PINK_TULIP.getDefaultState()),
-        BLUE("blue", Blocks.CORNFLOWER.getDefaultState());
+        PINK("pink", ModBlocks.HIBISCUS.getDefaultState()),
+        BLUE("blue", Blocks.CORNFLOWER.getDefaultState()),
+        GREEN("green", ModBlocks.GLADIOLI.getDefaultState());
 
         public static final StringIdentifiable.EnumCodec<MoobloomEntity.MoobloomVariant> CODEC = StringIdentifiable.createCodec(MoobloomEntity.MoobloomVariant::values);
         final String name;

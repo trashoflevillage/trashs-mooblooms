@@ -7,5 +7,9 @@
 
   "advancements.husbandry.suspicious_brewery.description": "Milk a Mooshroom for Mushroom Stew, and then convert it to Suspicious Stew using a Moobloom.",
 
-  "block.trashs_mooblooms.buttercup": "Buttercup"
+  "block.trashs_mooblooms.buttercup": "Buttercup",
+
+  "block.trashs_mooblooms.hibiscus": "Tropical Hibiscus",
+
+  "block.trashs_mooblooms.gladioli": "Gladioli"
 }

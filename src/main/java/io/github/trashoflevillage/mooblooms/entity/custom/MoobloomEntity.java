@@ -1,5 +1,6 @@
 package io.github.trashoflevillage.mooblooms.entity.custom;
 
+import io.github.trashoflevillage.mooblooms.blocks.ModBlocks;
 import io.github.trashoflevillage.mooblooms.entity.ModEntities;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.block.BlockState;
@@ -408,7 +409,7 @@ public class MoobloomEntity extends CowEntity {
     }
 
     public enum MoobloomVariant implements StringIdentifiable {
-        YELLOW("yellow", Blocks.DANDELION.getDefaultState()),
+        YELLOW("yellow", ModBlocks.BUTTERCUP.getDefaultState()),
         RED("red", Blocks.POPPY.getDefaultState()),
         PINK("pink", Blocks.PINK_TULIP.getDefaultState()),
         BLUE("blue", Blocks.CORNFLOWER.getDefaultState());
@@ -417,9 +418,9 @@ public class MoobloomEntity extends CowEntity {
         final String name;
         final BlockState flower;
 
-        private MoobloomVariant(final String name, final BlockState mushroom) {
+        private MoobloomVariant(final String name, final BlockState flower) {
             this.name = name;
-            this.flower = mushroom;
+            this.flower = flower;
         }
 
         public BlockState getFlowerState() {

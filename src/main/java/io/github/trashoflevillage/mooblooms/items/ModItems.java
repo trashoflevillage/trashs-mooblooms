@@ -1,6 +1,7 @@
 package io.github.trashoflevillage.mooblooms.items;
 
 import io.github.trashoflevillage.mooblooms.TrashsMooblooms;
+import io.github.trashoflevillage.mooblooms.blocks.ModBlocks;
 import io.github.trashoflevillage.mooblooms.entity.ModEntities;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
@@ -12,7 +13,7 @@ import net.minecraft.util.Identifier;
 
 public class ModItems {
     public static final Item MOOBLOOM_SPAWN_EGG = registerItem("moobloom_spawn_egg",
-            new SpawnEggItem(ModEntities.MOOBLOOM, 0xFFE100, 0x33AB00, new Item.Settings()));
+            new SpawnEggItem(ModEntities.MOOBLOOM, 0xFDD500, 0xFBF8DE, new Item.Settings()));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(TrashsMooblooms.MOD_ID, name), item);
@@ -23,6 +24,10 @@ public class ModItems {
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(content -> {
             content.add(ModItems.MOOBLOOM_SPAWN_EGG);
+        });
+
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(content -> {
+            content.add(ModBlocks.BUTTERCUP);
         });
     }
 }

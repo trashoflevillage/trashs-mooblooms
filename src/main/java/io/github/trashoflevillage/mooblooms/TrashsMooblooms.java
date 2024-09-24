@@ -1,5 +1,6 @@
 package io.github.trashoflevillage.mooblooms;
 
+import io.github.trashoflevillage.mooblooms.blocks.ModBlocks;
 import io.github.trashoflevillage.mooblooms.entity.ModEntities;
 import io.github.trashoflevillage.mooblooms.entity.ModEntitySpawn;
 import io.github.trashoflevillage.mooblooms.entity.custom.MoobloomEntity;
@@ -24,6 +25,7 @@ public class TrashsMooblooms implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
+		ModBlocks.registerModBlocks();
 		ModItems.registerModItems();
 		ModEntitySpawn.addEntitySpawns();
 

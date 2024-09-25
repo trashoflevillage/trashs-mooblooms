@@ -12,6 +12,7 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.entity.passive.MooshroomEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -37,12 +38,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 public class MoobloomEntity extends CowEntity implements Shearable {
     private static final TrackedData<Boolean> IS_SHEARED;
     private static final TrackedData<Integer> REGROW_TIMER;
     private static final TrackedData<String> TYPE;
     private static final float SPAWN_CHANCE = 0.1f;
+    private UUID lightningUUID;
 
     public MoobloomEntity(EntityType<? extends CowEntity> entityType, World world) {
         super(entityType, world);
@@ -492,6 +495,16 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     @Override
     public boolean isShearable() {
         return !this.isSheared() && this.isAlive() && !this.isBaby();
+    }
+
+    @Override
+    public void onStruckByLightning(ServerWorld world, LightningEntity lightning) {
+        UUID uUID = lightning.getUuid();
+        if (!uUID.equals(this.lightningUUID)) {
+            this.setVariant(MoobloomVariant.WHITE);
+            this.lightningUUID = uUID;
+            this.playSound(SoundEvents.ENTITY_MOOSHROOM_CONVERT, 2.0F, 1.0F);
+        }
     }
 
     public enum MoobloomVariant implements StringIdentifiable {

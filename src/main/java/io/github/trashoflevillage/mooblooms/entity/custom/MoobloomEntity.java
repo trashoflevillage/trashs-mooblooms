@@ -374,7 +374,7 @@ public class MoobloomEntity extends CowEntity {
 
         ArrayList<String> colors = new ArrayList<>();
         switch(biome) {
-            default: colors.add("yellow"); colors.add("red"); break;
+            default: colors.add("yellow"); colors.add("red"); colors.add("blue"); break;
         }
         return colors.get(world.random.nextInt(colors.size()));
     }
@@ -411,8 +411,8 @@ public class MoobloomEntity extends CowEntity {
     public enum MoobloomVariant implements StringIdentifiable {
         YELLOW("yellow", ModBlocks.BUTTERCUP.getDefaultState()),
         RED("red", Blocks.POPPY.getDefaultState()),
-        PINK("pink", ModBlocks.HIBISCUS.getDefaultState()),
         BLUE("blue", Blocks.CORNFLOWER.getDefaultState()),
+        PINK("pink", ModBlocks.HIBISCUS.getDefaultState()),
         GREEN("green", ModBlocks.GLADIOLI.getDefaultState());
 
         public static final StringIdentifiable.EnumCodec<MoobloomEntity.MoobloomVariant> CODEC = StringIdentifiable.createCodec(MoobloomEntity.MoobloomVariant::values);

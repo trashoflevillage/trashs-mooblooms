@@ -8,15 +8,19 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.SuspiciousStewIngredient;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.*;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.MooshroomEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
@@ -481,6 +485,10 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     public void tick() {
         super.tick();
         flowerRegrowthTick();
+
+        if (this.getVariant() == MoobloomVariant.BLACK &&
+                this.hasStatusEffect(StatusEffects.WITHER))
+            this.removeStatusEffect(StatusEffects.WITHER);
     }
 
     private void flowerRegrowthTick() {
@@ -504,6 +512,33 @@ public class MoobloomEntity extends CowEntity implements Shearable {
             this.setVariant(MoobloomVariant.WHITE);
             this.lightningUUID = uUID;
             this.playSound(SoundEvents.ENTITY_MOOSHROOM_CONVERT, 2.0F, 1.0F);
+        }
+    }
+
+    @Override
+    public void onDeath(DamageSource damageSource) {
+        super.onDeath(damageSource);
+        if (this.hasStatusEffect(StatusEffects.WITHER)) {
+            MoobloomEntity child = ModEntities.MOOBLOOM.create(this.getWorld());
+            if (child != null) {
+                ((ServerWorld)this.getWorld()).spawnParticles(ParticleTypes.WITCH, this.getX(), this.getBodyY(0.5), this.getZ(), 1, 0.0, 0.0, 0.0, 0.0);
+                this.discard();
+                child.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
+                child.bodyYaw = this.bodyYaw;
+                child.setVariant(MoobloomVariant.BLACK);
+                child.setBaby(true);
+                if (this.hasCustomName()) {
+                    child.setCustomName(this.getCustomName());
+                    child.setCustomNameVisible(this.isCustomNameVisible());
+                }
+
+                if (this.isPersistent()) {
+                    child.setPersistent();
+                }
+
+                this.getWorld().spawnEntity(child);
+                child.getWorld().playSoundFromEntity((PlayerEntity)null, this, SoundEvents.ENTITY_MOOSHROOM_CONVERT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+            }
         }
     }
 

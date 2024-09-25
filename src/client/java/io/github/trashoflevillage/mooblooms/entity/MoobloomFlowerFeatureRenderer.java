@@ -24,7 +24,7 @@ public class MoobloomFlowerFeatureRenderer<T extends MoobloomEntity> extends Fea
     }
 
     public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T moobloomEntity, float f, float g, float h, float j, float k, float l) {
-        if (!moobloomEntity.isBaby()) {
+        if (!moobloomEntity.isBaby() && !moobloomEntity.isSheared()) {
             MinecraftClient minecraftClient = MinecraftClient.getInstance();
             boolean bl = minecraftClient.hasOutline(moobloomEntity) && moobloomEntity.isInvisible();
             if (!moobloomEntity.isInvisible() || bl) {

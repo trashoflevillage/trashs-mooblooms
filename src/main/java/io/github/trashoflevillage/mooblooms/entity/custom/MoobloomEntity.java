@@ -7,25 +7,21 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SuspiciousStewIngredient;
 import net.minecraft.component.DataComponentTypes;
-import net.minecraft.entity.EntityData;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.passive.CowEntity;
-import net.minecraft.entity.passive.MooshroomEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -35,15 +31,16 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
-public class MoobloomEntity extends CowEntity {
+public class MoobloomEntity extends CowEntity implements Shearable {
+    private static final TrackedData<Boolean> IS_SHEARED;
+    private static final TrackedData<Integer> REGROW_TIMER;
     private static final TrackedData<String> TYPE;
     private static final float SPAWN_CHANCE = 0.1f;
 
@@ -101,10 +98,21 @@ public class MoobloomEntity extends CowEntity {
     @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ActionResult result = ActionResult.FAIL;
+        ItemStack itemStack = player.getStackInHand(hand);
+
         if (tryConvertToSussyStew(player, hand) ||
             tryToDyeItem(player, hand) ||
             super.interactMob(player, hand) == ActionResult.SUCCESS)
                 result = ActionResult.SUCCESS;
+        else if (itemStack.isOf(Items.SHEARS) && this.isShearable()) {
+            this.sheared(SoundCategory.PLAYERS);
+            this.emitGameEvent(GameEvent.SHEAR, player);
+            if (!this.getWorld().isClient) {
+                itemStack.damage(1, player, getSlotForHand(hand));
+            }
+
+            return ActionResult.success(this.getWorld().isClient);
+        }
         return result;
     }
 
@@ -404,33 +412,86 @@ public class MoobloomEntity extends CowEntity {
         return colors.get(world.random.nextInt(colors.size()));
     }
 
-    private boolean biomeEquals(RegistryEntry<Biome> biome, RegistryKey<Biome> biome2) {
-        return biome.value().equals(getWorld().getRegistryManager().get(RegistryKeys.BIOME).get(biome2));
-
-    }
-
-    private boolean biomeHasTag(RegistryEntry<Biome> biome, TagKey<Biome> tag) {
-        return biome.isIn(tag);
-    }
-
     @Override
     protected void initDataTracker(DataTracker.Builder builder) {
         super.initDataTracker(builder);
         builder.add(TYPE, MoobloomVariant.YELLOW.name);
+        builder.add(IS_SHEARED, false);
+        builder.add(REGROW_TIMER, 0);
     }
 
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
         nbt.putString("Type", this.getVariant().asString());
+        nbt.putBoolean("IsSheared", this.isSheared());
+        nbt.putInt("RegrowTimer", this.getRegrowTimer());
     }
 
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
-        this.setVariant(MoobloomEntity.MoobloomVariant.fromName(nbt.getString("Type")));
+        this.setVariant(MoobloomVariant.fromName(nbt.getString("Type")));
+        this.setSheared(nbt.getBoolean("IsSheared"));
+        this.setRegrowTimer(nbt.getInt("RegrowTimer"));
+    }
+
+    public boolean isSheared() {
+        return this.dataTracker.get(IS_SHEARED);
+    }
+
+    public void setSheared(boolean val) {
+        this.dataTracker.set(IS_SHEARED, val);
+    }
+
+    public int getRegrowTimer() {
+       return this.dataTracker.get(REGROW_TIMER);
+    }
+
+    public void setRegrowTimer(int val) {
+        this.dataTracker.set(REGROW_TIMER, val);
     }
 
     static {
         TYPE = DataTracker.registerData(MoobloomEntity.class, TrackedDataHandlerRegistry.STRING);
+        IS_SHEARED = DataTracker.registerData(MoobloomEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+        REGROW_TIMER = DataTracker.registerData(MoobloomEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    }
+
+    @Override
+    public void sheared(SoundCategory shearedSoundCategory) {
+        this.getWorld().playSoundFromEntity((PlayerEntity)null, this, SoundEvents.ENTITY_MOOSHROOM_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
+        if (!this.getWorld().isClient()) {
+            for(int i = 0; i < 5; ++i) {
+                this.getWorld().spawnEntity(
+                        new ItemEntity(
+                                this.getWorld(),
+                                this.getX(),
+                                this.getBodyY(1.0),
+                                this.getZ(),
+                                new ItemStack(this.getVariant().flower.getBlock())));
+            }
+            this.setSheared(true);
+            this.setRegrowTimer(24000);
+        }
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        flowerRegrowthTick();
+    }
+
+    private void flowerRegrowthTick() {
+        int regrowTimer = this.getRegrowTimer();
+        if (regrowTimer > 0) {
+            regrowTimer--;
+            if (regrowTimer == 0) setSheared(false);
+        }
+        this.setRegrowTimer(regrowTimer);
+    }
+
+    @Override
+    public boolean isShearable() {
+        return !this.isSheared() && this.isAlive() && !this.isBaby();
     }
 
     public enum MoobloomVariant implements StringIdentifiable {
@@ -451,7 +512,7 @@ public class MoobloomEntity extends CowEntity {
         MAGENTA("magenta", Blocks.ALLIUM.getDefaultState()),
         PINK("pink", ModBlocks.HIBISCUS.getDefaultState());
 
-        public static final StringIdentifiable.EnumCodec<MoobloomEntity.MoobloomVariant> CODEC = StringIdentifiable.createCodec(MoobloomEntity.MoobloomVariant::values);
+        public static final EnumCodec<MoobloomVariant> CODEC = StringIdentifiable.createCodec(MoobloomVariant::values);
         final String name;
         final BlockState flower;
 
@@ -468,8 +529,8 @@ public class MoobloomEntity extends CowEntity {
             return this.name;
         }
 
-        static MoobloomEntity.MoobloomVariant fromName(String name) {
-            return (MoobloomEntity.MoobloomVariant)CODEC.byId(name, YELLOW);
+        static MoobloomVariant fromName(String name) {
+            return (MoobloomVariant)CODEC.byId(name, YELLOW);
         }
     }
 }

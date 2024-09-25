@@ -66,11 +66,36 @@ public class MoobloomEntity extends CowEntity {
     }
 
     private MoobloomVariant chooseBabyType(MoobloomEntity moobloom) {
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.BLUE, MoobloomVariant.YELLOW))
+            return MoobloomVariant.GREEN;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.RED, MoobloomVariant.BLUE))
+            return MoobloomVariant.PURPLE;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.RED, MoobloomVariant.YELLOW))
+            return MoobloomVariant.ORANGE;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.BLUE, MoobloomVariant.GREEN))
+            return MoobloomVariant.CYAN;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.BLUE, MoobloomVariant.WHITE))
+            return MoobloomVariant.LIGHT_BLUE;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.RED, MoobloomVariant.WHITE))
+            return MoobloomVariant.PINK;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.PURPLE, MoobloomVariant.PINK))
+            return MoobloomVariant.MAGENTA;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.BLACK, MoobloomVariant.WHITE))
+            return MoobloomVariant.LIGHT_GRAY;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.GRAY, MoobloomVariant.WHITE))
+            return MoobloomVariant.LIGHT_GRAY;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.BLACK, MoobloomVariant.LIGHT_GRAY))
+            return MoobloomVariant.GRAY;
+
         MoobloomVariant[] types = new MoobloomVariant[] {
                 this.getVariant(),
                 moobloom.getVariant()
         };
         return types[this.getWorld().random.nextInt(types.length)];
+    }
+
+    private boolean areMoobloomsEqualToColorPair(MoobloomEntity a, MoobloomEntity b, MoobloomVariant c, MoobloomVariant d) {
+        return (a.getVariant() == c && b.getVariant() == d) || (b.getVariant() == c && a.getVariant() == d);
     }
 
     @Override
@@ -409,11 +434,22 @@ public class MoobloomEntity extends CowEntity {
     }
 
     public enum MoobloomVariant implements StringIdentifiable {
-        YELLOW("yellow", ModBlocks.BUTTERCUP.getDefaultState()),
+        WHITE("white", Blocks.WHITE_TULIP.getDefaultState()),
+        LIGHT_GRAY("light_gray", Blocks.AZURE_BLUET.getDefaultState()),
+        GRAY("gray", Blocks.GRAY_BANNER.getDefaultState()),
+        BLACK("black", Blocks.WITHER_ROSE.getDefaultState()),
+        BROWN("brown", Blocks.BROWN_BANNER.getDefaultState()),
         RED("red", Blocks.POPPY.getDefaultState()),
+        ORANGE("orange", Blocks.ORANGE_TULIP.getDefaultState()),
+        YELLOW("yellow", ModBlocks.BUTTERCUP.getDefaultState()),
+        LIME("lime", Blocks.LIME_BANNER.getDefaultState()),
+        GREEN("green", ModBlocks.GLADIOLI.getDefaultState()),
+        CYAN("cyan", Blocks.CYAN_BANNER.getDefaultState()),
+        LIGHT_BLUE("light_blue", Blocks.BLUE_ORCHID.getDefaultState()),
         BLUE("blue", Blocks.CORNFLOWER.getDefaultState()),
-        PINK("pink", ModBlocks.HIBISCUS.getDefaultState()),
-        GREEN("green", ModBlocks.GLADIOLI.getDefaultState());
+        PURPLE("purple", Blocks.PURPLE_BANNER.getDefaultState()),
+        MAGENTA("magenta", Blocks.ALLIUM.getDefaultState()),
+        PINK("pink", ModBlocks.HIBISCUS.getDefaultState());
 
         public static final StringIdentifiable.EnumCodec<MoobloomEntity.MoobloomVariant> CODEC = StringIdentifiable.createCodec(MoobloomEntity.MoobloomVariant::values);
         final String name;

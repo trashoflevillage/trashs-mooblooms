@@ -90,6 +90,12 @@ public class MoobloomEntity extends CowEntity implements Shearable {
             return MoobloomVariant.LIGHT_GRAY;
         if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.BLACK, MoobloomVariant.LIGHT_GRAY))
             return MoobloomVariant.GRAY;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.ORANGE, MoobloomVariant.BLACK))
+            return MoobloomVariant.BROWN;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.GREEN, MoobloomVariant.WHITE))
+            return MoobloomVariant.LIME;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.LIME, MoobloomVariant.BLACK))
+            return MoobloomVariant.GREEN;
 
         MoobloomVariant[] types = new MoobloomVariant[] {
                 this.getVariant(),

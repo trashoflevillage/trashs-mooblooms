@@ -4,8 +4,10 @@
   "item.trashs_mooblooms.moobloom_spawn_egg": "Moobloom Spawn Egg",
 
   "advancements.husbandry.suspicious_brewery": "Suspicious Brewery",
+  "advancements.husbandry.suspicious_brewery.description": "Milk a Mooshroom for Mushroom Stew, and then convert it to Suspicious Stew using a Moobloom",
 
-  "advancements.husbandry.suspicious_brewery.description": "Milk a Mooshroom for Mushroom Stew, and then convert it to Suspicious Stew using a Moobloom.",
+  "advancements.husbandry.withered_moobloom_slaughter":  "Sickening Slaughter",
+  "advancements.husbandry.withered_moobloom_slaughter.description":  "Kill a Moobloom inflicted with the Wither effect",
 
   "block.trashs_mooblooms.buttercup": "Buttercup",
 

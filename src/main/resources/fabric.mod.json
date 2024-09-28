@@ -3,16 +3,19 @@
 	"id": "trashs-mooblooms",
 	"version": "${version}",
 	"name": "Trash's Mooblooms",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "My take on Mooblooms, the flower cow from Minecraft Earth!",
 	"authors": [
-		"trashoflevillage",
-		"Floophead (Hibiscus and Gladioli textures)"
+		"trashoflevillage"
+	],
+	"contributors": [
+		"Floophead (Hibiscus and Gladioli textures)",
+		"pixlii (Dayflower, Myosotis, Centian)"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/project/trashs-mooblooms",
+		"sources": "https://github.com/trashoflevillage/trashs-mooblooms"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/trashs_mooblooms/icon.png",
 	"environment": "*",
 	"entrypoints": {

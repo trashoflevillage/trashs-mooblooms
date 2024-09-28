@@ -568,7 +568,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
                         this.getX(), this.getY(), this.getZ());
 
         if (closestEntity != null && this.distanceTo(closestEntity) <= 2)
-            super.move(movementType, movement.multiply(0, 0, 0));
+            super.move(movementType, movement.multiply(0, 1, 0));
         else super.move(movementType, movement);
     }
 
@@ -583,9 +583,9 @@ public class MoobloomEntity extends CowEntity implements Shearable {
         YELLOW("yellow", ModBlocks.BUTTERCUP.getDefaultState()),
         LIME("lime", Blocks.LIME_BANNER.getDefaultState()),
         GREEN("green", ModBlocks.GLADIOLI.getDefaultState()),
-        CYAN("cyan", Blocks.CYAN_BANNER.getDefaultState()),
-        LIGHT_BLUE("light_blue", Blocks.BLUE_ORCHID.getDefaultState()),
-        BLUE("blue", Blocks.CORNFLOWER.getDefaultState()),
+        CYAN("cyan", ModBlocks.CENTIAN.getDefaultState()),
+        LIGHT_BLUE("light_blue", ModBlocks.MYOSOTIS.getDefaultState()),
+        BLUE("blue", ModBlocks.DAYFLOWER.getDefaultState()),
         PURPLE("purple", Blocks.PURPLE_BANNER.getDefaultState()),
         MAGENTA("magenta", Blocks.ALLIUM.getDefaultState()),
         PINK("pink", ModBlocks.HIBISCUS.getDefaultState());

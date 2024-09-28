@@ -2,7 +2,10 @@
   "values": [
     "trashs_mooblooms:potted_buttercup",
     "trashs_mooblooms:potted_hibiscus",
-    "trashs_mooblooms:potted_gladioli"
+    "trashs_mooblooms:potted_gladioli",
+    "trashs_mooblooms:potted_dayflower",
+    "trashs_mooblooms:potted_myosotis",
+    "trashs_mooblooms:potted_centian"
   ],
   "replace": false
 }

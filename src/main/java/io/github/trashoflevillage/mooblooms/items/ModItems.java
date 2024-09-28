@@ -30,6 +30,9 @@ public class ModItems {
             content.add(ModBlocks.BUTTERCUP);
             content.add(ModBlocks.HIBISCUS);
             content.add(ModBlocks.GLADIOLI);
+            content.add(ModBlocks.DAYFLOWER);
+            content.add(ModBlocks.MYOSOTIS);
+            content.add(ModBlocks.CENTIAN);
         });
     }
 }

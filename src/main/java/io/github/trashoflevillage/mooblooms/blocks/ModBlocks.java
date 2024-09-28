@@ -25,6 +25,21 @@ public class ModBlocks {
     public static final Block POTTED_GLADIOLI =
             registerBlock("potted_gladioli", new FlowerPotBlock(ModBlocks.GLADIOLI, AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION)));
 
+    public static final Block DAYFLOWER =
+            registerBlock("dayflower", new FlowerBlock(StatusEffects.FIRE_RESISTANCE, 6, AbstractBlock.Settings.copy(Blocks.DANDELION)));
+    public static final Block POTTED_DAYFLOWER =
+            registerBlock("potted_dayflower", new FlowerPotBlock(ModBlocks.DAYFLOWER, AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION)));
+
+    public static final Block MYOSOTIS =
+            registerBlock("myosotis", new FlowerBlock(StatusEffects.SATURATION, 0.35f, AbstractBlock.Settings.copy(Blocks.DANDELION)));
+    public static final Block POTTED_MYOSOTIS =
+            registerBlock("potted_myosotis", new FlowerPotBlock(ModBlocks.MYOSOTIS, AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION)));
+
+    public static final Block CENTIAN =
+            registerBlock("centian", new FlowerBlock(StatusEffects.JUMP_BOOST, 15, AbstractBlock.Settings.copy(Blocks.DANDELION)));
+    public static final Block POTTED_CENTIAN =
+            registerBlock("potted_centian", new FlowerPotBlock(ModBlocks.CENTIAN, AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION)));
+
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK,

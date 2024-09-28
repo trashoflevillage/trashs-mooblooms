@@ -28,7 +28,7 @@ public class ModEntitySpawn {
                 BiomeSelectors.tag(moobloomSpawnable),
                 SpawnGroup.CREATURE,
                 ModEntities.MOOBLOOM,
-                15,
+                50,
                 2,
                 4
         );

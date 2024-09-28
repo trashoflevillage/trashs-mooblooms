@@ -8,12 +8,14 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.SuspiciousStewIngredient;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.MooshroomEntity;
 import net.minecraft.entity.passive.PassiveEntity;
@@ -21,6 +23,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
@@ -32,6 +35,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
@@ -42,6 +47,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class MoobloomEntity extends CowEntity implements Shearable {
@@ -546,6 +552,24 @@ public class MoobloomEntity extends CowEntity implements Shearable {
                 child.getWorld().playSoundFromEntity((PlayerEntity)null, this, SoundEvents.ENTITY_MOOSHROOM_CONVERT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
             }
         }
+    }
+
+    @Override
+    public void move(MovementType movementType, Vec3d movement) {
+        World world = getWorld();
+
+        List<BeeEntity> possibleEntities =
+                world.getEntitiesByClass(BeeEntity.class, Box.of(this.getPos(), 5, 5, 5), EntityPredicates.VALID_ENTITY);
+        BeeEntity closestEntity =
+                world.getClosestEntity(
+                        possibleEntities,
+                        TargetPredicate.DEFAULT,
+                        this,
+                        this.getX(), this.getY(), this.getZ());
+
+        if (closestEntity != null && this.distanceTo(closestEntity) <= 2)
+            super.move(movementType, movement.multiply(0, 0, 0));
+        else super.move(movementType, movement);
     }
 
     public enum MoobloomVariant implements StringIdentifiable {

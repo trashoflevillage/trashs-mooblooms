@@ -428,7 +428,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
         switch(biome) {
             default: colors.add("yellow"); colors.add("red"); colors.add("blue"); break;
         }
-        return colors.get(world.random.nextInt(colors.size()));
+        return colors.get(this.random.nextInt(colors.size()));
     }
 
     @Override

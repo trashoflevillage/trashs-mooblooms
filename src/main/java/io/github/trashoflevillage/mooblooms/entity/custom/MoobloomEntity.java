@@ -575,18 +575,18 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     public enum MoobloomVariant implements StringIdentifiable {
         WHITE("white", Blocks.WHITE_TULIP.getDefaultState()),
         LIGHT_GRAY("light_gray", Blocks.AZURE_BLUET.getDefaultState()),
-        GRAY("gray", Blocks.GRAY_BANNER.getDefaultState()),
+        GRAY("gray", ModBlocks.BUTTERCUP.getDefaultState()),
         BLACK("black", Blocks.WITHER_ROSE.getDefaultState()),
-        BROWN("brown", Blocks.BROWN_BANNER.getDefaultState()),
+        BROWN("brown", ModBlocks.BUTTERCUP.getDefaultState()),
         RED("red", Blocks.POPPY.getDefaultState()),
         ORANGE("orange", Blocks.ORANGE_TULIP.getDefaultState()),
         YELLOW("yellow", ModBlocks.BUTTERCUP.getDefaultState()),
-        LIME("lime", Blocks.LIME_BANNER.getDefaultState()),
+        LIME("lime", ModBlocks.BUTTERCUP.getDefaultState()),
         GREEN("green", ModBlocks.GLADIOLI.getDefaultState()),
         CYAN("cyan", ModBlocks.CENTIAN.getDefaultState()),
         LIGHT_BLUE("light_blue", ModBlocks.MYOSOTIS.getDefaultState()),
         BLUE("blue", ModBlocks.DAYFLOWER.getDefaultState()),
-        PURPLE("purple", Blocks.PURPLE_BANNER.getDefaultState()),
+        PURPLE("purple", ModBlocks.BUTTERCUP.getDefaultState()),
         MAGENTA("magenta", Blocks.ALLIUM.getDefaultState()),
         PINK("pink", ModBlocks.HIBISCUS.getDefaultState());
 

@@ -486,7 +486,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
                                 this.getX(),
                                 this.getBodyY(1.0),
                                 this.getZ(),
-                                new ItemStack(this.getVariant().flower.getBlock())));
+                                new ItemStack(this.getVariant().shearedItem)));
             }
             this.setSheared(true);
             this.setRegrowTimer(24000);
@@ -575,28 +575,36 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     public enum MoobloomVariant implements StringIdentifiable {
         WHITE("white", Blocks.WHITE_TULIP.getDefaultState()),
         LIGHT_GRAY("light_gray", Blocks.AZURE_BLUET.getDefaultState()),
-        GRAY("gray", ModBlocks.BUTTERCUP.getDefaultState()),
+        GRAY("gray", ModBlocks.BUTTERCUP.getDefaultState(), Items.GRAY_DYE),
         BLACK("black", Blocks.WITHER_ROSE.getDefaultState()),
-        BROWN("brown", ModBlocks.BUTTERCUP.getDefaultState()),
+        BROWN("brown", ModBlocks.BUTTERCUP.getDefaultState(), Items.BROWN_DYE),
         RED("red", Blocks.POPPY.getDefaultState()),
         ORANGE("orange", Blocks.ORANGE_TULIP.getDefaultState()),
         YELLOW("yellow", ModBlocks.BUTTERCUP.getDefaultState()),
-        LIME("lime", ModBlocks.BUTTERCUP.getDefaultState()),
+        LIME("lime", ModBlocks.BUTTERCUP.getDefaultState(), Items.LIME_DYE),
         GREEN("green", ModBlocks.GLADIOLI.getDefaultState()),
         CYAN("cyan", ModBlocks.CENTIAN.getDefaultState()),
         LIGHT_BLUE("light_blue", ModBlocks.MYOSOTIS.getDefaultState()),
         BLUE("blue", ModBlocks.DAYFLOWER.getDefaultState()),
-        PURPLE("purple", ModBlocks.BUTTERCUP.getDefaultState()),
+        PURPLE("purple", ModBlocks.BUTTERCUP.getDefaultState(), Items.PURPLE_DYE),
         MAGENTA("magenta", Blocks.ALLIUM.getDefaultState()),
         PINK("pink", ModBlocks.HIBISCUS.getDefaultState());
 
         public static final EnumCodec<MoobloomVariant> CODEC = StringIdentifiable.createCodec(MoobloomVariant::values);
         final String name;
         final BlockState flower;
+        final Item shearedItem;
 
         private MoobloomVariant(final String name, final BlockState flower) {
             this.name = name;
             this.flower = flower;
+            this.shearedItem = flower.getBlock().asItem();
+        }
+
+        private MoobloomVariant(final String name, final BlockState flower, Item shearedItem) {
+            this.name = name;
+            this.flower = flower;
+            this.shearedItem = shearedItem;
         }
 
         public BlockState getFlowerState() {

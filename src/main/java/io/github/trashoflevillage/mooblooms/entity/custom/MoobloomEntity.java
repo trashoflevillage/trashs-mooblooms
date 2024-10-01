@@ -7,6 +7,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SuspiciousStewIngredient;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.DyedColorComponent;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.damage.DamageSource;
@@ -24,6 +25,7 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.recipe.ArmorDyeRecipe;
 import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeType;
@@ -157,6 +159,8 @@ public class MoobloomEntity extends CowEntity implements Shearable {
         HashMap<TagKey<Item>, HashMap<String, Item>> dyedItems = getDyeableItemHashmap();
         ItemStack itemStack = player.getStackInHand(hand);
 
+
+
         for (TagKey<Item> i : dyedItems.keySet()) {
             if (itemStack.isIn(i)) {
                 if (dyedItems.get(i).containsKey(getVariant().name)) {
@@ -172,24 +176,34 @@ public class MoobloomEntity extends CowEntity implements Shearable {
 
         ItemStack d = new ItemStack(this.getVariant().dye);
 
-        CraftingRecipeInput[] recipeInputs = {
-                CraftingRecipeInput.create(2, 1,
-                List.of(itemStack, d)),
-                CraftingRecipeInput.create(3, 3,
-                        List.of(d, d, d, d, itemStack, d, d, d, d))
-        };
-
-        for (CraftingRecipeInput recipeInput : recipeInputs) {
-            Optional<Item> newItem = getWorld().getRecipeManager()
-                    .getFirstMatch(RecipeType.CRAFTING, recipeInput, getWorld())
-                    .map(recipe -> ((CraftingRecipe)recipe.value()).craft(recipeInput, this.getWorld().getRegistryManager()))
-                    .map(ItemStack::getItem);
-
-            if (newItem.isPresent()) {
-                ItemStack newItemStack = itemStack.copyComponentsToNewStack(newItem.get(), itemStack.getCount());
+        if (itemStack.isIn(ItemTags.DYEABLE)) {
+            Item dye = d.getItem();
+            if (dye instanceof DyeItem) {
+                ItemStack newItemStack = DyedColorComponent.setColor(itemStack, List.of((DyeItem)dye));
                 player.setStackInHand(player.getActiveHand(), newItemStack);
                 player.playSound(SoundEvents.ITEM_DYE_USE, 1.0F, 1.0F);
                 return true;
+            }
+        } else {
+            CraftingRecipeInput[] recipeInputs = {
+                    CraftingRecipeInput.create(2, 1,
+                            List.of(itemStack, d)),
+                    CraftingRecipeInput.create(3, 3,
+                            List.of(d, d, d, d, itemStack, d, d, d, d))
+            };
+
+            for (CraftingRecipeInput recipeInput : recipeInputs) {
+                Optional<Item> newItem = getWorld().getRecipeManager()
+                        .getFirstMatch(RecipeType.CRAFTING, recipeInput, getWorld())
+                        .map(recipe -> ((CraftingRecipe) recipe.value()).craft(recipeInput, this.getWorld().getRegistryManager()))
+                        .map(ItemStack::getItem);
+
+                if (newItem.isPresent()) {
+                    ItemStack newItemStack = itemStack.copyComponentsToNewStack(newItem.get(), itemStack.getCount());
+                    player.setStackInHand(player.getActiveHand(), newItemStack);
+                    player.playSound(SoundEvents.ITEM_DYE_USE, 1.0F, 1.0F);
+                    return true;
+                }
             }
         }
 

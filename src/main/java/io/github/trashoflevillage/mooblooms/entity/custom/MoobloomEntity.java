@@ -24,6 +24,10 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.recipe.CraftingRecipe;
+import net.minecraft.recipe.RecipeEntry;
+import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
@@ -45,10 +49,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class MoobloomEntity extends CowEntity implements Shearable {
     private static final TrackedData<Boolean> IS_SHEARED;
@@ -152,6 +153,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
 
     private boolean tryToDyeItem(PlayerEntity player, Hand hand) {
         if (this.isBaby()) return false;
+
         HashMap<TagKey<Item>, HashMap<String, Item>> dyedItems = getDyeableItemHashmap();
         ItemStack itemStack = player.getStackInHand(hand);
 
@@ -167,6 +169,30 @@ public class MoobloomEntity extends CowEntity implements Shearable {
                 }
             }
         }
+
+        ItemStack d = new ItemStack(this.getVariant().dye);
+
+        CraftingRecipeInput[] recipeInputs = {
+                CraftingRecipeInput.create(2, 1,
+                List.of(itemStack, d)),
+                CraftingRecipeInput.create(3, 3,
+                        List.of(d, d, d, d, itemStack, d, d, d, d))
+        };
+
+        for (CraftingRecipeInput recipeInput : recipeInputs) {
+            Optional<Item> newItem = getWorld().getRecipeManager()
+                    .getFirstMatch(RecipeType.CRAFTING, recipeInput, getWorld())
+                    .map(recipe -> ((CraftingRecipe)recipe.value()).craft(recipeInput, this.getWorld().getRegistryManager()))
+                    .map(ItemStack::getItem);
+
+            if (newItem.isPresent()) {
+                ItemStack newItemStack = itemStack.copyComponentsToNewStack(newItem.get(), itemStack.getCount());
+                player.setStackInHand(player.getActiveHand(), newItemStack);
+                player.playSound(SoundEvents.ITEM_DYE_USE, 1.0F, 1.0F);
+                return true;
+            }
+        }
+
         return false;
     }
 
@@ -573,37 +599,40 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     }
 
     public enum MoobloomVariant implements StringIdentifiable {
-        WHITE("white", Blocks.WHITE_TULIP.getDefaultState()),
-        LIGHT_GRAY("light_gray", Blocks.AZURE_BLUET.getDefaultState()),
-        GRAY("gray", ModBlocks.BUTTERCUP.getDefaultState(), Items.GRAY_DYE),
-        BLACK("black", Blocks.WITHER_ROSE.getDefaultState()),
-        BROWN("brown", ModBlocks.BUTTERCUP.getDefaultState(), Items.BROWN_DYE),
-        RED("red", Blocks.POPPY.getDefaultState()),
-        ORANGE("orange", Blocks.ORANGE_TULIP.getDefaultState()),
-        YELLOW("yellow", ModBlocks.BUTTERCUP.getDefaultState()),
-        LIME("lime", ModBlocks.BUTTERCUP.getDefaultState(), Items.LIME_DYE),
-        GREEN("green", ModBlocks.GLADIOLI.getDefaultState()),
-        CYAN("cyan", ModBlocks.CENTIAN.getDefaultState()),
-        LIGHT_BLUE("light_blue", ModBlocks.MYOSOTIS.getDefaultState()),
-        BLUE("blue", ModBlocks.DAYFLOWER.getDefaultState()),
-        PURPLE("purple", ModBlocks.BUTTERCUP.getDefaultState(), Items.PURPLE_DYE),
-        MAGENTA("magenta", Blocks.ALLIUM.getDefaultState()),
-        PINK("pink", ModBlocks.HIBISCUS.getDefaultState());
+        WHITE("white", Blocks.WHITE_TULIP.getDefaultState(), Items.WHITE_DYE),
+        LIGHT_GRAY("light_gray", Blocks.AZURE_BLUET.getDefaultState(), Items.LIGHT_GRAY_DYE),
+        GRAY("gray", ModBlocks.BUTTERCUP.getDefaultState(), Items.GRAY_DYE, Items.GRAY_DYE),
+        BLACK("black", Blocks.WITHER_ROSE.getDefaultState(), Items.BLACK_DYE),
+        BROWN("brown", ModBlocks.BUTTERCUP.getDefaultState(), Items.BROWN_DYE, Items.BROWN_DYE),
+        RED("red", Blocks.POPPY.getDefaultState(), Items.RED_DYE),
+        ORANGE("orange", Blocks.ORANGE_TULIP.getDefaultState(), Items.ORANGE_DYE),
+        YELLOW("yellow", ModBlocks.BUTTERCUP.getDefaultState(), Items.YELLOW_DYE),
+        LIME("lime", ModBlocks.BUTTERCUP.getDefaultState(), Items.LIME_DYE, Items.LIME_DYE),
+        GREEN("green", ModBlocks.GLADIOLI.getDefaultState(), Items.GREEN_DYE),
+        CYAN("cyan", ModBlocks.CENTIAN.getDefaultState(), Items.CYAN_DYE),
+        LIGHT_BLUE("light_blue", ModBlocks.MYOSOTIS.getDefaultState(), Items.LIGHT_BLUE_DYE),
+        BLUE("blue", ModBlocks.DAYFLOWER.getDefaultState(), Items.BLUE_DYE),
+        PURPLE("purple", ModBlocks.BUTTERCUP.getDefaultState(), Items.PURPLE_DYE, Items.PURPLE_DYE),
+        MAGENTA("magenta", Blocks.ALLIUM.getDefaultState(), Items.MAGENTA_DYE),
+        PINK("pink", ModBlocks.HIBISCUS.getDefaultState(), Items.PINK_DYE);
 
         public static final EnumCodec<MoobloomVariant> CODEC = StringIdentifiable.createCodec(MoobloomVariant::values);
         final String name;
         final BlockState flower;
         final Item shearedItem;
+        final Item dye;
 
-        private MoobloomVariant(final String name, final BlockState flower) {
+        private MoobloomVariant(final String name, final BlockState flower, Item dye) {
             this.name = name;
             this.flower = flower;
+            this.dye = dye;
             this.shearedItem = flower.getBlock().asItem();
         }
 
-        private MoobloomVariant(final String name, final BlockState flower, Item shearedItem) {
+        private MoobloomVariant(final String name, final BlockState flower, Item dye,Item shearedItem) {
             this.name = name;
             this.flower = flower;
+            this.dye = dye;
             this.shearedItem = shearedItem;
         }
 

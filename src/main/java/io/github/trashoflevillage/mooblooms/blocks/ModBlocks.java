@@ -2,11 +2,13 @@ package io.github.trashoflevillage.mooblooms.blocks;
 
 import io.github.trashoflevillage.mooblooms.TrashsMooblooms;
 import net.minecraft.block.*;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
 public class ModBlocks {
@@ -39,6 +41,17 @@ public class ModBlocks {
             registerBlock("centian", new FlowerBlock(StatusEffects.JUMP_BOOST, 15, AbstractBlock.Settings.copy(Blocks.DANDELION)));
     public static final Block POTTED_CENTIAN =
             registerBlock("potted_centian", new FlowerPotBlock(ModBlocks.CENTIAN, AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION)));
+
+    public static final Block TRILLIUM = registerFlowerBlock("trillium", StatusEffects.SPEED, 8);
+    public static final Block POTTED_TRILLIUM = registerPotBlock("potted_trillium", TRILLIUM);
+
+    private static Block registerPotBlock(String name, Block flower) {
+        return registerBlock(name, new FlowerPotBlock(flower, AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION)));
+    }
+
+    private static Block registerFlowerBlock(String name, RegistryEntry<StatusEffect> effect, int effectLengthInSeconds) {
+        return registerBlock(name, new FlowerBlock(effect, effectLengthInSeconds, AbstractBlock.Settings.copy(Blocks.DANDELION)));
+    }
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

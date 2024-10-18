@@ -24,6 +24,8 @@ public class MoobloomFlowerFeatureRenderer<T extends MoobloomEntity> extends Fea
     }
 
     public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T moobloomEntity, float f, float g, float h, float j, float k, float l) {
+        final float FLOWER_SCALE = getFlowerScale(moobloomEntity.getVariant());
+        final float FLOWER_SHIFT = getFlowerShift(FLOWER_SCALE);
         if (!moobloomEntity.isBaby() && !moobloomEntity.isSheared()) {
             MinecraftClient minecraftClient = MinecraftClient.getInstance();
             boolean bl = minecraftClient.hasOutline(moobloomEntity) && moobloomEntity.isInvisible();
@@ -32,31 +34,44 @@ public class MoobloomFlowerFeatureRenderer<T extends MoobloomEntity> extends Fea
                 int m = LivingEntityRenderer.getOverlay(moobloomEntity, 0.0F);
                 BakedModel bakedModel = this.blockRenderManager.getModel(blockState);
                 matrixStack.push();
-                matrixStack.translate(0.2F, -0.35F, 0.5F);
+                matrixStack.translate(0.2F, -0.35F * FLOWER_SCALE, 0.5F);
                 matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-48.0F));
-                matrixStack.scale(-1.0F, -1.0F, 1.0F);
-                matrixStack.translate(-0.5F, -0.5F, -0.5F);
+                matrixStack.scale(-1.0F * FLOWER_SCALE, -1.0F * FLOWER_SCALE, 1.0F * FLOWER_SCALE);
+                matrixStack.translate(-0.5F, -0.5F + FLOWER_SHIFT, -0.5F);
                 this.renderFlower(matrixStack, vertexConsumerProvider, i, bl, blockState, m, bakedModel);
                 matrixStack.pop();
                 matrixStack.push();
-                matrixStack.translate(0.2F, -0.35F, 0.5F);
+                matrixStack.translate(0.2F, -0.35F * FLOWER_SCALE, 0.5F);
                 matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(42.0F));
                 matrixStack.translate(0.1F, 0.0F, -0.6F);
                 matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-48.0F));
-                matrixStack.scale(-1.0F, -1.0F, 1.0F);
-                matrixStack.translate(-0.5F, -0.5F, -0.5F);
+                matrixStack.scale(-1.0F * FLOWER_SCALE, -1.0F * FLOWER_SCALE, 1.0F * FLOWER_SCALE);
+                matrixStack.translate(-0.5F, -0.5F + FLOWER_SHIFT, -0.5F);
                 this.renderFlower(matrixStack, vertexConsumerProvider, i, bl, blockState, m, bakedModel);
                 matrixStack.pop();
                 matrixStack.push();
                 ((CowEntityModel)this.getContextModel()).getHead().rotate(matrixStack);
-                matrixStack.translate(0.0F, -0.7F, -0.2F);
+                matrixStack.translate(0.0F, -0.7F * FLOWER_SCALE, -0.2F);
                 matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-78.0F));
-                matrixStack.scale(-1.0F, -1.0F, 1.0F);
-                matrixStack.translate(-0.5F, -0.5F, -0.5F);
+                matrixStack.scale(-1.0F * FLOWER_SCALE, -1.0F * FLOWER_SCALE, 1.0F * FLOWER_SCALE);
+                matrixStack.translate(-0.5F, -0.5F + FLOWER_SHIFT, -0.5F);
                 this.renderFlower(matrixStack, vertexConsumerProvider, i, bl, blockState, m, bakedModel);
                 matrixStack.pop();
             }
         }
+    }
+
+    private float getFlowerScale(MoobloomEntity.MoobloomVariant variant) {
+        switch (variant) {
+            case MoobloomEntity.MoobloomVariant.YELLOW, MoobloomEntity.MoobloomVariant.GREEN,
+                 MoobloomEntity.MoobloomVariant.PINK: return 1f;
+            default: return 0.75f;
+        }
+    }
+
+    private float getFlowerShift(float scale) {
+        if (scale == 0.75f) return -0.1f;
+        return 0f;
     }
 
     private void renderFlower(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, boolean renderAsModel, BlockState mushroomState, int overlay, BakedModel mushroomModel) {

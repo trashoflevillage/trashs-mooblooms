@@ -33,6 +33,7 @@ public class ModItems {
             content.add(ModBlocks.DAYFLOWER);
             content.add(ModBlocks.MYOSOTIS);
             content.add(ModBlocks.CENTIAN);
+            content.add(ModBlocks.TRILLIUM);
         });
     }
 }

@@ -166,7 +166,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
                 if (dyedItems.get(i).containsKey(getVariant().name)) {
                     ItemStack newItem = itemStack.copyComponentsToNewStack(dyedItems.get(i).get(getVariant().name), itemStack.getCount());
                     if (newItem.itemMatches(itemStack.getRegistryEntry())) return false;
-                    player.setStackInHand(player.getActiveHand(), newItem);
+                    player.setStackInHand(hand, newItem);
                     player.playSound(SoundEvents.ITEM_DYE_USE, 1.0F, 1.0F);
 
                     return true;
@@ -180,7 +180,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
             Item dye = d.getItem();
             if (dye instanceof DyeItem) {
                 ItemStack newItemStack = DyedColorComponent.setColor(itemStack, List.of((DyeItem)dye));
-                player.setStackInHand(player.getActiveHand(), newItemStack);
+                player.setStackInHand(hand, newItemStack);
                 player.playSound(SoundEvents.ITEM_DYE_USE, 1.0F, 1.0F);
                 return true;
             }
@@ -200,7 +200,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
 
                 if (newItem.isPresent()) {
                     ItemStack newItemStack = itemStack.copyComponentsToNewStack(newItem.get(), itemStack.getCount());
-                    player.setStackInHand(player.getActiveHand(), newItemStack);
+                    player.setStackInHand(hand, newItemStack);
                     player.playSound(SoundEvents.ITEM_DYE_USE, 1.0F, 1.0F);
                     return true;
                 }
@@ -618,7 +618,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
         GRAY("gray", ModBlocks.BUTTERCUP.getDefaultState(), Items.GRAY_DYE, Items.GRAY_DYE),
         BLACK("black", Blocks.WITHER_ROSE.getDefaultState(), Items.BLACK_DYE),
         BROWN("brown", ModBlocks.BUTTERCUP.getDefaultState(), Items.BROWN_DYE, Items.BROWN_DYE),
-        RED("red", Blocks.POPPY.getDefaultState(), Items.RED_DYE),
+        RED("red", ModBlocks.TRILLIUM.getDefaultState(), Items.RED_DYE),
         ORANGE("orange", Blocks.ORANGE_TULIP.getDefaultState(), Items.ORANGE_DYE),
         YELLOW("yellow", ModBlocks.BUTTERCUP.getDefaultState(), Items.YELLOW_DYE),
         LIME("lime", ModBlocks.BUTTERCUP.getDefaultState(), Items.LIME_DYE, Items.LIME_DYE),

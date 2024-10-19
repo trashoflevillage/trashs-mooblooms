@@ -1,7 +1,10 @@
 package io.github.trashoflevillage.mooblooms.entity.custom;
 
+import io.github.trashoflevillage.mooblooms.TrashsMooblooms;
 import io.github.trashoflevillage.mooblooms.blocks.ModBlocks;
 import io.github.trashoflevillage.mooblooms.entity.ModEntities;
+import io.github.trashoflevillage.mooblooms.entity.ModEntitySpawn;
+import io.github.trashoflevillage.mooblooms.util.ModTags;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -30,6 +33,7 @@ import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.input.CraftingRecipeInput;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
@@ -39,6 +43,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -48,6 +53,7 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.dimension.DimensionTypes;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
@@ -75,7 +81,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     }
 
     public static boolean canSpawn(EntityType<MoobloomEntity> entityType, ServerWorldAccess world, SpawnReason reason, BlockPos pos, Random random) {
-        return world.getBlockState(pos.down()).isIn(BlockTags.ANIMALS_SPAWNABLE_ON) && isLightLevelValidForNaturalSpawn(world, pos);
+        return world.getBlockState(pos.down()).isIn(ModTags.Blocks.MOOBLOOM_SPAWNABLE_ON) && ((world.getDimension().hasSkyLight() && isLightLevelValidForNaturalSpawn(world, pos)) || !world.getDimension().hasSkyLight());
     }
 
     private MoobloomVariant chooseBabyType(MoobloomEntity moobloom) {
@@ -465,9 +471,26 @@ public class MoobloomEntity extends CowEntity implements Shearable {
         RegistryEntry<Biome> biome = world.getBiome(getBlockPos());
 
         ArrayList<String> colors = new ArrayList<>();
-        switch(biome) {
-            default: colors.add("yellow"); colors.add("red"); colors.add("blue"); break;
-        }
+        
+        if (biome.isIn(ModEntitySpawn.WHITE_MOOBLOOM_SPAWNABLE)) colors.add("white");
+        if (biome.isIn(ModEntitySpawn.LIGHT_GRAY_MOOBLOOM_SPAWNABLE)) colors.add("light_gray");
+        if (biome.isIn(ModEntitySpawn.GRAY_MOOBLOOM_SPAWNABLE)) colors.add("gray");
+        if (biome.isIn(ModEntitySpawn.BLACK_MOOBLOOM_SPAWNABLE)) colors.add("black");
+        if (biome.isIn(ModEntitySpawn.BROWN_MOOBLOOM_SPAWNABLE)) colors.add("brown");
+        if (biome.isIn(ModEntitySpawn.RED_MOOBLOOM_SPAWNABLE)) colors.add("red");
+        if (biome.isIn(ModEntitySpawn.ORANGE_MOOBLOOM_SPAWNABLE)) colors.add("orange");
+        if (biome.isIn(ModEntitySpawn.YELLOW_MOOBLOOM_SPAWNABLE)) colors.add("yellow");
+        if (biome.isIn(ModEntitySpawn.LIME_MOOBLOOM_SPAWNABLE)) colors.add("lime");
+        if (biome.isIn(ModEntitySpawn.GREEN_MOOBLOOM_SPAWNABLE)) colors.add("green");
+        if (biome.isIn(ModEntitySpawn.CYAN_MOOBLOOM_SPAWNABLE)) colors.add("cyan");
+        if (biome.isIn(ModEntitySpawn.LIGHT_BLUE_MOOBLOOM_SPAWNABLE)) colors.add("light_blue");
+        if (biome.isIn(ModEntitySpawn.BLUE_MOOBLOOM_SPAWNABLE)) colors.add("blue");
+        if (biome.isIn(ModEntitySpawn.PURPLE_MOOBLOOM_SPAWNABLE)) colors.add("purple");
+        if (biome.isIn(ModEntitySpawn.MAGENTA_MOOBLOOM_SPAWNABLE)) colors.add("magenta");
+        if (biome.isIn(ModEntitySpawn.PINK_MOOBLOOM_SPAWNABLE)) colors.add("pink");
+
+        if (colors.isEmpty()) colors.add("yellow");
+
         return colors.get(this.random.nextInt(colors.size()));
     }
 

@@ -1,5 +1,20 @@
 {
   "values": [
-    "minecraft:flower_forest"
+    "#trashs_mooblooms:white_moobloom_spawnable",
+    "#trashs_mooblooms:light_gray_moobloom_spawnable",
+    "#trashs_mooblooms:gray_moobloom_spawnable",
+    "#trashs_mooblooms:black_moobloom_spawnable",
+    "#trashs_mooblooms:brown_moobloom_spawnable",
+    "#trashs_mooblooms:red_moobloom_spawnable",
+    "#trashs_mooblooms:orange_moobloom_spawnable",
+    "#trashs_mooblooms:yellow_moobloom_spawnable",
+    "#trashs_mooblooms:lime_moobloom_spawnable",
+    "#trashs_mooblooms:green_moobloom_spawnable",
+    "#trashs_mooblooms:cyan_moobloom_spawnable",
+    "#trashs_mooblooms:light_blue_moobloom_spawnable",
+    "#trashs_mooblooms:blue_moobloom_spawnable",
+    "#trashs_mooblooms:purple_moobloom_spawnable",
+    "#trashs_mooblooms:magenta_moobloom_spawnable",
+    "#trashs_mooblooms:pink_moobloom_spawnable"
   ]
 }

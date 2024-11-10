@@ -45,6 +45,14 @@ public class ModBlocks {
     public static final Block TRILLIUM = registerFlowerBlock("trillium", StatusEffects.SPEED, 8);
     public static final Block POTTED_TRILLIUM = registerPotBlock("potted_trillium", TRILLIUM);
 
+    public static final Block THUNDERBLOOM = registerFlowerBlock("thunderbloom", StatusEffects.GLOWING, 8);
+    public static final Block POTTED_THUNDERBLOOM = registerPotBlock("potted_thunderbloom", THUNDERBLOOM);
+
+    public static final Block WITHERED_BUTTERCUP =
+            registerBlock("withered_buttercup", new WitherRoseBlock(StatusEffects.WITHER, 10, AbstractBlock.Settings.copy(Blocks.WITHER_ROSE)));
+    public static final Block POTTED_WITHERED_BUTTERCUP =
+            registerBlock("potted_withered_buttercup", new FlowerPotBlock(ModBlocks.WITHERED_BUTTERCUP, AbstractBlock.Settings.copy(Blocks.POTTED_WITHER_ROSE)));
+
     private static Block registerPotBlock(String name, Block flower) {
         return registerBlock(name, new FlowerPotBlock(flower, AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION)));
     }

@@ -636,10 +636,10 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     }
 
     public enum MoobloomVariant implements StringIdentifiable {
-        WHITE("white", Blocks.WHITE_TULIP.getDefaultState(), Items.WHITE_DYE),
+        WHITE("white", ModBlocks.THUNDERBLOOM.getDefaultState(), Items.WHITE_DYE),
         LIGHT_GRAY("light_gray", Blocks.AZURE_BLUET.getDefaultState(), Items.LIGHT_GRAY_DYE),
         GRAY("gray", ModBlocks.BUTTERCUP.getDefaultState(), Items.GRAY_DYE, Items.GRAY_DYE),
-        BLACK("black", Blocks.WITHER_ROSE.getDefaultState(), Items.BLACK_DYE),
+        BLACK("black", ModBlocks.WITHERED_BUTTERCUP.getDefaultState(), Items.BLACK_DYE),
         BROWN("brown", ModBlocks.BUTTERCUP.getDefaultState(), Items.BROWN_DYE, Items.BROWN_DYE),
         RED("red", ModBlocks.TRILLIUM.getDefaultState(), Items.RED_DYE),
         ORANGE("orange", Blocks.ORANGE_TULIP.getDefaultState(), Items.ORANGE_DYE),

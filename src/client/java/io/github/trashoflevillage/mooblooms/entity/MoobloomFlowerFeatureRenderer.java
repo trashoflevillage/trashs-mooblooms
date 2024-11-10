@@ -64,13 +64,14 @@ public class MoobloomFlowerFeatureRenderer<T extends MoobloomEntity> extends Fea
     private float getFlowerScale(MoobloomEntity.MoobloomVariant variant) {
         switch (variant) {
             case MoobloomEntity.MoobloomVariant.YELLOW, MoobloomEntity.MoobloomVariant.GREEN,
-                 MoobloomEntity.MoobloomVariant.PINK: return 1f;
-            default: return 0.75f;
+                 MoobloomEntity.MoobloomVariant.PINK, MoobloomEntity.MoobloomVariant.BLACK: return 1f;
+            default: return 0.6f;
         }
     }
 
     private float getFlowerShift(float scale) {
         if (scale == 0.75f) return -0.1f;
+        if (scale == 0.6f) return -0.1f;
         return 0f;
     }
 

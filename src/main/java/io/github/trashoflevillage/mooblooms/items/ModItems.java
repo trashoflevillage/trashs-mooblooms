@@ -34,6 +34,8 @@ public class ModItems {
             content.add(ModBlocks.MYOSOTIS);
             content.add(ModBlocks.CENTIAN);
             content.add(ModBlocks.TRILLIUM);
+            content.add(ModBlocks.WITHERED_BUTTERCUP);
+            content.add(ModBlocks.THUNDERBLOOM);
         });
     }
 }

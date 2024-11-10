@@ -1,14 +1,14 @@
 {
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
-  "group": "blue_dye",
+  "group": "black_dye",
   "ingredients": [
     {
-      "item": "trashs_mooblooms:dayflower"
+      "item": "trashs_mooblooms:withered_buttercup"
     }
   ],
   "result": {
-    "id": "minecraft:blue_dye",
+    "id": "minecraft:black_dye",
     "count": 1
   }
 }

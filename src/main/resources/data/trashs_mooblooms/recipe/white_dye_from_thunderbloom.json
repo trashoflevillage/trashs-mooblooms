@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "white_dye",
+  "ingredients": [
+    {
+      "item": "trashs_mooblooms:thunderbloom"
+    }
+  ],
+  "result": {
+    "id": "minecraft:white_dye",
+    "count": 1
+  }
+}

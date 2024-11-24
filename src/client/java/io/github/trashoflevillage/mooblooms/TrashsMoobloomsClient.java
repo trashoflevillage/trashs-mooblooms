@@ -24,7 +24,8 @@ public class TrashsMoobloomsClient implements ClientModInitializer {
 			ModBlocks.CENTIAN, ModBlocks.POTTED_CENTIAN,
 			ModBlocks.TRILLIUM, ModBlocks.POTTED_TRILLIUM,
 			ModBlocks.WITHERED_BUTTERCUP, ModBlocks.POTTED_WITHERED_BUTTERCUP,
-			ModBlocks.THUNDERBLOOM, ModBlocks.POTTED_THUNDERBLOOM
+			ModBlocks.THUNDERBLOOM, ModBlocks.POTTED_THUNDERBLOOM,
+			ModBlocks.BELLFLOWER, ModBlocks.POTTED_BELLFLOWER
 	};
 
 	@Override

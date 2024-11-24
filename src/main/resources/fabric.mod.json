@@ -2,14 +2,14 @@
 	"schemaVersion": 1,
 	"id": "trashs-mooblooms",
 	"version": "${version}",
-	"name": "Trash's Mooblooms",
+	"name": "Trashs Mooblooms",
 	"description": "My take on Mooblooms, the flower cow from Minecraft Earth!",
 	"authors": [
 		"trashoflevillage"
 	],
 	"contributors": [
-		"Floophead (Hibiscus and Gladioli textures)",
-		"pixlii (Dayflower, Myosotis, Centian)"
+		"Floophead",
+		"pixlii"
 	],
 	"contact": {
 		"homepage": "https://modrinth.com/project/trashs-mooblooms",

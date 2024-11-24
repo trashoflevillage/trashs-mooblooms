@@ -50,11 +50,12 @@ public class MoobloomFlowerFeatureRenderer<T extends MoobloomEntity> extends Fea
                 this.renderFlower(matrixStack, vertexConsumerProvider, i, bl, blockState, m, bakedModel);
                 matrixStack.pop();
                 matrixStack.push();
+                // head flower
                 ((CowEntityModel)this.getContextModel()).getHead().rotate(matrixStack);
                 matrixStack.translate(0.0F, -0.7F * FLOWER_SCALE, -0.2F);
                 matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-78.0F));
                 matrixStack.scale(-1.0F * FLOWER_SCALE, -1.0F * FLOWER_SCALE, 1.0F * FLOWER_SCALE);
-                matrixStack.translate(-0.5F, -0.5F + FLOWER_SHIFT, -0.5F);
+                matrixStack.translate(-0.5F, getHeadFlowerShift(FLOWER_SCALE) + FLOWER_SHIFT, -0.5F);
                 this.renderFlower(matrixStack, vertexConsumerProvider, i, bl, blockState, m, bakedModel);
                 matrixStack.pop();
             }
@@ -65,13 +66,22 @@ public class MoobloomFlowerFeatureRenderer<T extends MoobloomEntity> extends Fea
         switch (variant) {
             case MoobloomEntity.MoobloomVariant.YELLOW, MoobloomEntity.MoobloomVariant.GREEN,
                  MoobloomEntity.MoobloomVariant.PINK, MoobloomEntity.MoobloomVariant.BLACK: return 1f;
+            case MoobloomEntity.MoobloomVariant.LIGHT_GRAY: return 0.5f;
             default: return 0.6f;
         }
     }
 
     private float getFlowerShift(float scale) {
         if (scale == 0.75f) return -0.1f;
-        if (scale == 0.6f) return -0.1f;
+        if (scale == 0.6f) return -0.09f;
+        if (scale == 0.5f) return -0.09f;
+        return 0f;
+    }
+
+    private float getHeadFlowerShift(float scale) {
+        if (scale == 1f) return -0.5F;
+        if (scale == 0.6f) return -0.3f;
+        if (scale == 0.5f) return -0.15f;
         return 0f;
     }
 

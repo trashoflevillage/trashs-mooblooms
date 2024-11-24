@@ -53,6 +53,9 @@ public class ModBlocks {
     public static final Block POTTED_WITHERED_BUTTERCUP =
             registerBlock("potted_withered_buttercup", new FlowerPotBlock(ModBlocks.WITHERED_BUTTERCUP, AbstractBlock.Settings.copy(Blocks.POTTED_WITHER_ROSE)));
 
+    public static final Block BELLFLOWER = registerFlowerBlock("bellflower", StatusEffects.BLINDNESS, 12);
+    public static final Block POTTED_BELLFLOWER = registerPotBlock("potted_bellflower", BELLFLOWER);
+
     private static Block registerPotBlock(String name, Block flower) {
         return registerBlock(name, new FlowerPotBlock(flower, AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION)));
     }

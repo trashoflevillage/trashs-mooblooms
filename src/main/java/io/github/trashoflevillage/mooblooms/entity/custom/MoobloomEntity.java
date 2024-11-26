@@ -1,6 +1,5 @@
 package io.github.trashoflevillage.mooblooms.entity.custom;
 
-import io.github.trashoflevillage.mooblooms.TrashsMooblooms;
 import io.github.trashoflevillage.mooblooms.blocks.ModBlocks;
 import io.github.trashoflevillage.mooblooms.entity.ModEntities;
 import io.github.trashoflevillage.mooblooms.entity.ModEntitySpawn;
@@ -17,25 +16,19 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.passive.CowEntity;
-import net.minecraft.entity.passive.MooshroomEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.predicate.entity.EntityPredicates;
-import net.minecraft.recipe.ArmorDyeRecipe;
 import net.minecraft.recipe.CraftingRecipe;
-import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.input.CraftingRecipeInput;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.world.ServerWorld;
@@ -43,7 +36,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -53,7 +45,6 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.dimension.DimensionTypes;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
@@ -129,7 +120,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
         ItemStack itemStack = player.getStackInHand(hand);
 
         if (tryConvertToSussyStew(player, hand) ||
-            tryToDyeItem(player, hand) ||
+            tryToDyeHandItem(player, hand) ||
             super.interactMob(player, hand) == ActionResult.SUCCESS)
                 result = ActionResult.SUCCESS;
         else if (itemStack.isOf(Items.SHEARS) && this.isShearable()) {
@@ -159,23 +150,30 @@ public class MoobloomEntity extends CowEntity implements Shearable {
         return false;
     }
 
-    private boolean tryToDyeItem(PlayerEntity player, Hand hand) {
+    private boolean tryToDyeHandItem(PlayerEntity player, Hand hand) {
         if (this.isBaby()) return false;
 
-        HashMap<TagKey<Item>, HashMap<String, Item>> dyedItems = getDyeableItemHashmap();
         ItemStack itemStack = player.getStackInHand(hand);
+        ItemStack newItem = tryToDyeItemStack(itemStack);
 
+        if (newItem != null && !itemStack.equals(newItem)) {
+            player.setStackInHand(hand, newItem);
+            player.playSound(SoundEvents.ITEM_DYE_USE, 1, 1);
+            return true;
+        }
+        return false;
+    }
 
+    public ItemStack tryToDyeItemStack(ItemStack itemStack) {
+        HashMap<TagKey<Item>, HashMap<String, Item>> dyedItems = getDyeableItemHashmap();
 
         for (TagKey<Item> i : dyedItems.keySet()) {
             if (itemStack.isIn(i)) {
                 if (dyedItems.get(i).containsKey(getVariant().name)) {
                     ItemStack newItem = itemStack.copyComponentsToNewStack(dyedItems.get(i).get(getVariant().name), itemStack.getCount());
-                    if (newItem.itemMatches(itemStack.getRegistryEntry())) return false;
-                    player.setStackInHand(hand, newItem);
-                    player.playSound(SoundEvents.ITEM_DYE_USE, 1.0F, 1.0F);
+                    if (newItem.itemMatches(itemStack.getRegistryEntry())) return null;
 
-                    return true;
+                    return newItem;
                 }
             }
         }
@@ -186,9 +184,8 @@ public class MoobloomEntity extends CowEntity implements Shearable {
             Item dye = d.getItem();
             if (dye instanceof DyeItem) {
                 ItemStack newItemStack = DyedColorComponent.setColor(itemStack, List.of((DyeItem)dye));
-                player.setStackInHand(hand, newItemStack);
-                player.playSound(SoundEvents.ITEM_DYE_USE, 1.0F, 1.0F);
-                return true;
+
+                return newItemStack;
             }
         } else {
             CraftingRecipeInput[] recipeInputs = {
@@ -206,14 +203,12 @@ public class MoobloomEntity extends CowEntity implements Shearable {
 
                 if (newItem.isPresent()) {
                     ItemStack newItemStack = itemStack.copyComponentsToNewStack(newItem.get(), itemStack.getCount());
-                    player.setStackInHand(hand, newItemStack);
-                    player.playSound(SoundEvents.ITEM_DYE_USE, 1.0F, 1.0F);
-                    return true;
+
+                    return newItemStack;
                 }
             }
         }
-
-        return false;
+        return null;
     }
 
     private HashMap<TagKey<Item>, HashMap<String, Item>> getDyeableItemHashmap() {

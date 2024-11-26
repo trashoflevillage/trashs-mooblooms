@@ -2,14 +2,15 @@
 	"schemaVersion": 1,
 	"id": "trashs-mooblooms",
 	"version": "${version}",
-	"name": "Trashs Mooblooms",
+	"name": "Trash's Mooblooms",
 	"description": "My take on Mooblooms, the flower cow from Minecraft Earth!",
 	"authors": [
 		"trashoflevillage"
 	],
 	"contributors": [
 		"Floophead",
-		"pixlii"
+		"pixlii",
+		"sao"
 	],
 	"contact": {
 		"homepage": "https://modrinth.com/project/trashs-mooblooms",

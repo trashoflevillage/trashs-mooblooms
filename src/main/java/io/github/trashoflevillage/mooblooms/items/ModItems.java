@@ -37,6 +37,12 @@ public class ModItems {
             content.add(ModBlocks.WITHERED_BUTTERCUP);
             content.add(ModBlocks.THUNDERBLOOM);
             content.add(ModBlocks.BELLFLOWER);
+            content.add(ModBlocks.BOAT_ORCHID);
+            content.add(ModBlocks.BUTTERFLY_CANDY);
+            content.add(ModBlocks.BUTTERFLY_WEED);
+            content.add(ModBlocks.CONBUSH);
+            content.add(ModBlocks.MORNING_GLORY);
+            content.add(ModBlocks.SILVER_IRIS);
         });
     }
 }

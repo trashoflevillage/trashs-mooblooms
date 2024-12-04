@@ -56,6 +56,24 @@ public class ModBlocks {
     public static final Block BELLFLOWER = registerFlowerBlock("bellflower", StatusEffects.BLINDNESS, 12);
     public static final Block POTTED_BELLFLOWER = registerPotBlock("potted_bellflower", BELLFLOWER);
 
+    public static final Block BOAT_ORCHID = registerFlowerBlock("boat_orchid", StatusEffects.WATER_BREATHING, 12);
+    public static final Block POTTED_BOAT_ORCHID = registerPotBlock("potted_boat_orchid", BOAT_ORCHID);
+
+    public static final Block BUTTERFLY_CANDY = registerFlowerBlock("butterfly_candy", StatusEffects.SPEED, 12);
+    public static final Block POTTED_BUTTERFLY_CANDY = registerPotBlock("potted_butterfly_candy", BUTTERFLY_CANDY);
+
+    public static final Block BUTTERFLY_WEED = registerFlowerBlock("butterfly_weed", StatusEffects.NAUSEA, 12);
+    public static final Block POTTED_BUTTERFLY_WEED = registerPotBlock("potted_butterfly_weed", BUTTERFLY_WEED);
+
+    public static final Block CONBUSH = registerFlowerBlock("conbush", StatusEffects.STRENGTH, 12);
+    public static final Block POTTED_CONBUSH = registerPotBlock("potted_conbush", CONBUSH);
+
+    public static final Block MORNING_GLORY = registerFlowerBlock("morning_glory", StatusEffects.REGENERATION, 12);
+    public static final Block POTTED_MORNING_GLORY = registerPotBlock("potted_morning_glory", MORNING_GLORY);
+
+    public static final Block SILVER_IRIS = registerFlowerBlock("silver_iris", StatusEffects.NIGHT_VISION, 12);
+    public static final Block POTTED_SILVER_IRIS = registerPotBlock("potted_silver_iris", SILVER_IRIS);
+
     private static Block registerPotBlock(String name, Block flower) {
         return registerBlock(name, new FlowerPotBlock(flower, AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION)));
     }

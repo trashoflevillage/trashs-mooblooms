@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "trashs_mooblooms:block/silver_iris"
+  }
+}

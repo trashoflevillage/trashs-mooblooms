@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "purple_dye",
+  "ingredients": [
+    {
+      "item": "trashs_mooblooms:morning_glory"
+    }
+  ],
+  "result": {
+    "id": "minecraft:purple_dye",
+    "count": 1
+  }
+}

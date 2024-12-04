@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "orange_dye",
+  "ingredients": [
+    {
+      "item": "trashs_mooblooms:butterfly_weed"
+    }
+  ],
+  "result": {
+    "id": "minecraft:orange_dye",
+    "count": 1
+  }
+}

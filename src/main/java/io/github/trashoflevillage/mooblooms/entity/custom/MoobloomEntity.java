@@ -633,19 +633,19 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     public enum MoobloomVariant implements StringIdentifiable {
         WHITE("white", ModBlocks.THUNDERBLOOM.getDefaultState(), Items.WHITE_DYE),
         LIGHT_GRAY("light_gray", ModBlocks.BELLFLOWER.getDefaultState(), Items.LIGHT_GRAY_DYE),
-        GRAY("gray", ModBlocks.BUTTERCUP.getDefaultState(), Items.GRAY_DYE, Items.GRAY_DYE),
+        GRAY("gray", ModBlocks.SILVER_IRIS.getDefaultState(), Items.GRAY_DYE),
         BLACK("black", ModBlocks.WITHERED_BUTTERCUP.getDefaultState(), Items.BLACK_DYE),
-        BROWN("brown", ModBlocks.BUTTERCUP.getDefaultState(), Items.BROWN_DYE, Items.BROWN_DYE),
+        BROWN("brown", ModBlocks.BOAT_ORCHID.getDefaultState(), Items.BROWN_DYE),
         RED("red", ModBlocks.TRILLIUM.getDefaultState(), Items.RED_DYE),
-        ORANGE("orange", Blocks.ORANGE_TULIP.getDefaultState(), Items.ORANGE_DYE),
+        ORANGE("orange", ModBlocks.BUTTERFLY_WEED.getDefaultState(), Items.ORANGE_DYE),
         YELLOW("yellow", ModBlocks.BUTTERCUP.getDefaultState(), Items.YELLOW_DYE),
-        LIME("lime", ModBlocks.BUTTERCUP.getDefaultState(), Items.LIME_DYE, Items.LIME_DYE),
+        LIME("lime", ModBlocks.CONBUSH.getDefaultState(), Items.LIME_DYE),
         GREEN("green", ModBlocks.GLADIOLI.getDefaultState(), Items.GREEN_DYE),
         CYAN("cyan", ModBlocks.CENTIAN.getDefaultState(), Items.CYAN_DYE),
         LIGHT_BLUE("light_blue", ModBlocks.MYOSOTIS.getDefaultState(), Items.LIGHT_BLUE_DYE),
         BLUE("blue", ModBlocks.DAYFLOWER.getDefaultState(), Items.BLUE_DYE),
-        PURPLE("purple", ModBlocks.BUTTERCUP.getDefaultState(), Items.PURPLE_DYE, Items.PURPLE_DYE),
-        MAGENTA("magenta", Blocks.ALLIUM.getDefaultState(), Items.MAGENTA_DYE),
+        PURPLE("purple", ModBlocks.MORNING_GLORY.getDefaultState(), Items.PURPLE_DYE),
+        MAGENTA("magenta", ModBlocks.BUTTERFLY_CANDY.getDefaultState(), Items.MAGENTA_DYE),
         PINK("pink", ModBlocks.HIBISCUS.getDefaultState(), Items.PINK_DYE);
 
         public static final EnumCodec<MoobloomVariant> CODEC = StringIdentifiable.createCodec(MoobloomVariant::values);

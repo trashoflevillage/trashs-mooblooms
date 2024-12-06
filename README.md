@@ -1,1 +1,1 @@
-Description and donwload on [Modrinth](https://modrinth.com/project/trashs-mooblooms).
+Description and download on [Modrinth](https://modrinth.com/project/trashs-mooblooms).

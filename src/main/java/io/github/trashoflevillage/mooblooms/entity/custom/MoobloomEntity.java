@@ -6,25 +6,21 @@ import io.github.trashoflevillage.mooblooms.entity.ModEntitySpawn;
 import io.github.trashoflevillage.mooblooms.util.ModTags;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.SuspiciousStewIngredient;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.DyedColorComponent;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.input.CraftingRecipeInput;
@@ -38,8 +34,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
@@ -63,7 +57,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
 
     @Nullable
     public MoobloomEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        MoobloomEntity moobloomEntity = ModEntities.MOOBLOOM.create(serverWorld);
+        MoobloomEntity moobloomEntity = ModEntities.MOOBLOOM.create(serverWorld, SpawnReason.BREEDING);
         if (moobloomEntity != null) {
             moobloomEntity.setVariant(this.chooseBabyType((MoobloomEntity)passiveEntity));
         }
@@ -75,62 +69,64 @@ public class MoobloomEntity extends CowEntity implements Shearable {
         return world.getBlockState(pos.down()).isIn(ModTags.Blocks.MOOBLOOM_SPAWNABLE_ON) && ((world.getDimension().hasSkyLight() && isLightLevelValidForNaturalSpawn(world, pos)) || !world.getDimension().hasSkyLight());
     }
 
-    private MoobloomVariant chooseBabyType(MoobloomEntity moobloom) {
-        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.BLUE, MoobloomVariant.YELLOW))
-            return MoobloomVariant.GREEN;
-        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.RED, MoobloomVariant.BLUE))
-            return MoobloomVariant.PURPLE;
-        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.RED, MoobloomVariant.YELLOW))
-            return MoobloomVariant.ORANGE;
-        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.BLUE, MoobloomVariant.GREEN))
-            return MoobloomVariant.CYAN;
-        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.BLUE, MoobloomVariant.WHITE))
-            return MoobloomVariant.LIGHT_BLUE;
-        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.RED, MoobloomVariant.WHITE))
-            return MoobloomVariant.PINK;
-        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.PURPLE, MoobloomVariant.PINK))
-            return MoobloomVariant.MAGENTA;
-        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.BLACK, MoobloomVariant.WHITE))
-            return MoobloomVariant.LIGHT_GRAY;
-        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.GRAY, MoobloomVariant.WHITE))
-            return MoobloomVariant.LIGHT_GRAY;
-        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.BLACK, MoobloomVariant.LIGHT_GRAY))
-            return MoobloomVariant.GRAY;
-        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.ORANGE, MoobloomVariant.BLACK))
-            return MoobloomVariant.BROWN;
-        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.GREEN, MoobloomVariant.WHITE))
-            return MoobloomVariant.LIME;
-        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomVariant.LIME, MoobloomVariant.BLACK))
-            return MoobloomVariant.GREEN;
+    private Type chooseBabyType(MoobloomEntity moobloom) {
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomEntity.Type.BLUE, MoobloomEntity.Type.YELLOW))
+            return MoobloomEntity.Type.GREEN;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomEntity.Type.RED, MoobloomEntity.Type.BLUE))
+            return MoobloomEntity.Type.PURPLE;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomEntity.Type.RED, MoobloomEntity.Type.YELLOW))
+            return MoobloomEntity.Type.ORANGE;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomEntity.Type.BLUE, MoobloomEntity.Type.GREEN))
+            return MoobloomEntity.Type.CYAN;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomEntity.Type.BLUE, MoobloomEntity.Type.WHITE))
+            return MoobloomEntity.Type.LIGHT_BLUE;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomEntity.Type.RED, MoobloomEntity.Type.WHITE))
+            return MoobloomEntity.Type.PINK;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomEntity.Type.PURPLE, MoobloomEntity.Type.PINK))
+            return MoobloomEntity.Type.MAGENTA;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomEntity.Type.BLACK, MoobloomEntity.Type.WHITE))
+            return MoobloomEntity.Type.LIGHT_GRAY;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomEntity.Type.GRAY, MoobloomEntity.Type.WHITE))
+            return MoobloomEntity.Type.LIGHT_GRAY;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomEntity.Type.BLACK, MoobloomEntity.Type.LIGHT_GRAY))
+            return MoobloomEntity.Type.GRAY;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomEntity.Type.ORANGE, MoobloomEntity.Type.BLACK))
+            return MoobloomEntity.Type.BROWN;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomEntity.Type.GREEN, MoobloomEntity.Type.WHITE))
+            return MoobloomEntity.Type.LIME;
+        if (areMoobloomsEqualToColorPair(this, moobloom, MoobloomEntity.Type.LIME, MoobloomEntity.Type.BLACK))
+            return MoobloomEntity.Type.GREEN;
 
-        MoobloomVariant[] types = new MoobloomVariant[] {
+        Type[] types = new Type[] {
                 this.getVariant(),
                 moobloom.getVariant()
         };
         return types[this.getWorld().random.nextInt(types.length)];
     }
 
-    private boolean areMoobloomsEqualToColorPair(MoobloomEntity a, MoobloomEntity b, MoobloomVariant c, MoobloomVariant d) {
+    private boolean areMoobloomsEqualToColorPair(MoobloomEntity a, MoobloomEntity b, Type c, Type d) {
         return (a.getVariant() == c && b.getVariant() == d) || (b.getVariant() == c && a.getVariant() == d);
     }
 
     @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ActionResult result = ActionResult.FAIL;
-        ItemStack itemStack = player.getStackInHand(hand);
+        if (this.getWorld() instanceof ServerWorld serverWorld) {
+            ItemStack itemStack = player.getStackInHand(hand);
 
-        if (tryConvertToSussyStew(player, hand) ||
-            tryToDyeHandItem(player, hand) ||
-            super.interactMob(player, hand) == ActionResult.SUCCESS)
+            if (tryConvertToSussyStew(player, hand) ||
+                    tryToDyeHandItem(player, hand) ||
+                    super.interactMob(player, hand) == ActionResult.SUCCESS)
                 result = ActionResult.SUCCESS;
-        else if (itemStack.isOf(Items.SHEARS) && this.isShearable()) {
-            this.sheared(SoundCategory.PLAYERS);
-            this.emitGameEvent(GameEvent.SHEAR, player);
-            if (!this.getWorld().isClient) {
-                itemStack.damage(1, player, getSlotForHand(hand));
-            }
+            else if (itemStack.isOf(Items.SHEARS) && this.isShearable()) {
+                this.sheared(serverWorld, SoundCategory.PLAYERS, itemStack);
+                this.emitGameEvent(GameEvent.SHEAR, player);
+                if (!this.getWorld().isClient) {
+                    itemStack.damage(1, player, getSlotForHand(hand));
+                }
 
-            return ActionResult.success(this.getWorld().isClient);
+                return ActionResult.SUCCESS;
+            }
         }
         return result;
     }
@@ -167,13 +163,15 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     public ItemStack tryToDyeItemStack(ItemStack itemStack) {
         HashMap<TagKey<Item>, HashMap<String, Item>> dyedItems = getDyeableItemHashmap();
 
-        for (TagKey<Item> i : dyedItems.keySet()) {
-            if (itemStack.isIn(i)) {
-                if (dyedItems.get(i).containsKey(getVariant().name)) {
-                    ItemStack newItem = itemStack.copyComponentsToNewStack(dyedItems.get(i).get(getVariant().name), itemStack.getCount());
-                    if (newItem.itemMatches(itemStack.getRegistryEntry())) return null;
+        if (!itemStack.isIn(ItemTags.DYEABLE)) {
+            for (TagKey<Item> i : dyedItems.keySet()) {
+                if (itemStack.isIn(i)) {
+                    if (dyedItems.get(i).containsKey(getVariant().name)) {
+                        ItemStack newItem = itemStack.copyComponentsToNewStack(dyedItems.get(i).get(getVariant().name), itemStack.getCount());
+                        if (newItem.itemMatches(itemStack.getRegistryEntry())) return null;
 
-                    return newItem;
+                        return newItem;
+                    }
                 }
             }
         }
@@ -184,7 +182,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
             Item dye = d.getItem();
             if (dye instanceof DyeItem) {
                 ItemStack newItemStack = DyedColorComponent.setColor(itemStack, List.of((DyeItem)dye));
-
+                newItemStack.setCount(itemStack.getCount());
                 return newItemStack;
             }
         } else {
@@ -196,15 +194,17 @@ public class MoobloomEntity extends CowEntity implements Shearable {
             };
 
             for (CraftingRecipeInput recipeInput : recipeInputs) {
-                Optional<Item> newItem = getWorld().getRecipeManager()
-                        .getFirstMatch(RecipeType.CRAFTING, recipeInput, getWorld())
-                        .map(recipe -> ((CraftingRecipe) recipe.value()).craft(recipeInput, this.getWorld().getRegistryManager()))
-                        .map(ItemStack::getItem);
+                if (getWorld() instanceof ServerWorld serverWorld) {
+                    Optional<Item> newItem = serverWorld.getRecipeManager()
+                            .getFirstMatch(RecipeType.CRAFTING, recipeInput, getWorld())
+                            .map(recipe -> ((CraftingRecipe) recipe.value()).craft(recipeInput, this.getWorld().getRegistryManager()))
+                            .map(ItemStack::getItem);
 
-                if (newItem.isPresent()) {
-                    ItemStack newItemStack = itemStack.copyComponentsToNewStack(newItem.get(), itemStack.getCount());
+                    if (newItem.isPresent()) {
+                        ItemStack newItemStack = itemStack.copyComponentsToNewStack(newItem.get(), itemStack.getCount());
 
-                    return newItemStack;
+                        return newItemStack;
+                    }
                 }
             }
         }
@@ -447,17 +447,17 @@ public class MoobloomEntity extends CowEntity implements Shearable {
         return dyedItems;
     }
 
-    public MoobloomVariant getVariant() {
-        return MoobloomVariant.fromName((String)this.dataTracker.get(TYPE));
+    public Type getVariant() {
+        return MoobloomEntity.Type.fromName((String)this.dataTracker.get(TYPE));
     }
 
-    public void setVariant(MoobloomVariant variant) {
+    public void setVariant(Type variant) {
         this.dataTracker.set(TYPE, variant.name);
     }
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
-        setVariant(MoobloomVariant.fromName(findVariant()));
+        setVariant(MoobloomEntity.Type.fromName(findVariant()));
         return super.initialize(world, difficulty, spawnReason, entityData);
     }
 
@@ -492,7 +492,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     @Override
     protected void initDataTracker(DataTracker.Builder builder) {
         super.initDataTracker(builder);
-        builder.add(TYPE, MoobloomVariant.YELLOW.name);
+        builder.add(TYPE, MoobloomEntity.Type.YELLOW.name);
         builder.add(IS_SHEARED, false);
         builder.add(REGROW_TIMER, 0);
     }
@@ -506,7 +506,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
 
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
-        this.setVariant(MoobloomVariant.fromName(nbt.getString("Type")));
+        this.setVariant(MoobloomEntity.Type.fromName(nbt.getString("Type")));
         this.setSheared(nbt.getBoolean("IsSheared"));
         this.setRegrowTimer(nbt.getInt("RegrowTimer"));
     }
@@ -534,8 +534,27 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     }
 
     @Override
-    public void sheared(SoundCategory shearedSoundCategory) {
-        this.getWorld().playSoundFromEntity((PlayerEntity)null, this, SoundEvents.ENTITY_MOOSHROOM_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
+    public void tick() {
+        super.tick();
+        flowerRegrowthTick();
+
+        if (this.getVariant() == MoobloomEntity.Type.BLACK &&
+                this.hasStatusEffect(StatusEffects.WITHER))
+            this.removeStatusEffect(StatusEffects.WITHER);
+    }
+
+    private void flowerRegrowthTick() {
+        int regrowTimer = this.getRegrowTimer();
+        if (regrowTimer > 0) {
+            regrowTimer--;
+            if (regrowTimer == 0) setSheared(false);
+        }
+        this.setRegrowTimer(regrowTimer);
+    }
+
+    @Override
+    public void sheared(ServerWorld world, SoundCategory shearedSoundCategory, ItemStack shears) {
+        world.playSoundFromEntity((PlayerEntity)null, this, SoundEvents.ENTITY_MOOSHROOM_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
         if (!this.getWorld().isClient()) {
             for(int i = 0; i < 5; ++i) {
                 this.getWorld().spawnEntity(
@@ -552,25 +571,6 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     }
 
     @Override
-    public void tick() {
-        super.tick();
-        flowerRegrowthTick();
-
-        if (this.getVariant() == MoobloomVariant.BLACK &&
-                this.hasStatusEffect(StatusEffects.WITHER))
-            this.removeStatusEffect(StatusEffects.WITHER);
-    }
-
-    private void flowerRegrowthTick() {
-        int regrowTimer = this.getRegrowTimer();
-        if (regrowTimer > 0) {
-            regrowTimer--;
-            if (regrowTimer == 0) setSheared(false);
-        }
-        this.setRegrowTimer(regrowTimer);
-    }
-
-    @Override
     public boolean isShearable() {
         return !this.isSheared() && this.isAlive() && !this.isBaby();
     }
@@ -579,7 +579,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     public void onStruckByLightning(ServerWorld world, LightningEntity lightning) {
         UUID uUID = lightning.getUuid();
         if (!uUID.equals(this.lightningUUID)) {
-            this.setVariant(MoobloomVariant.WHITE);
+            this.setVariant(MoobloomEntity.Type.WHITE);
             this.lightningUUID = uUID;
             this.playSound(SoundEvents.ENTITY_MOOSHROOM_CONVERT, 2.0F, 1.0F);
         }
@@ -589,13 +589,13 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     public void onDeath(DamageSource damageSource) {
         super.onDeath(damageSource);
         if (this.hasStatusEffect(StatusEffects.WITHER)) {
-            MoobloomEntity child = ModEntities.MOOBLOOM.create(this.getWorld());
+            MoobloomEntity child = ModEntities.MOOBLOOM.create(this.getWorld(), SpawnReason.CONVERSION);
             if (child != null) {
                 ((ServerWorld)this.getWorld()).spawnParticles(ParticleTypes.WITCH, this.getX(), this.getBodyY(0.5), this.getZ(), 1, 0.0, 0.0, 0.0, 0.0);
                 this.discard();
                 child.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
                 child.bodyYaw = this.bodyYaw;
-                child.setVariant(MoobloomVariant.BLACK);
+                child.setVariant(MoobloomEntity.Type.BLACK);
                 child.setBaby(true);
                 if (this.hasCustomName()) {
                     child.setCustomName(this.getCustomName());
@@ -612,25 +612,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
         }
     }
 
-    @Override
-    public void move(MovementType movementType, Vec3d movement) {
-        World world = getWorld();
-
-        List<BeeEntity> possibleEntities =
-                world.getEntitiesByClass(BeeEntity.class, Box.of(this.getPos(), 5, 5, 5), EntityPredicates.VALID_ENTITY);
-        BeeEntity closestEntity =
-                world.getClosestEntity(
-                        possibleEntities,
-                        TargetPredicate.DEFAULT,
-                        this,
-                        this.getX(), this.getY(), this.getZ());
-
-        if (closestEntity != null && this.distanceTo(closestEntity) <= 2)
-            super.move(movementType, movement.multiply(0, 1, 0));
-        else super.move(movementType, movement);
-    }
-
-    public enum MoobloomVariant implements StringIdentifiable {
+    public enum Type implements StringIdentifiable {
         WHITE("white", ModBlocks.THUNDERBLOOM.getDefaultState(), Items.WHITE_DYE),
         LIGHT_GRAY("light_gray", ModBlocks.BELLFLOWER.getDefaultState(), Items.LIGHT_GRAY_DYE),
         GRAY("gray", ModBlocks.SILVER_IRIS.getDefaultState(), Items.GRAY_DYE),
@@ -648,20 +630,20 @@ public class MoobloomEntity extends CowEntity implements Shearable {
         MAGENTA("magenta", ModBlocks.BUTTERFLY_CANDY.getDefaultState(), Items.MAGENTA_DYE),
         PINK("pink", ModBlocks.HIBISCUS.getDefaultState(), Items.PINK_DYE);
 
-        public static final EnumCodec<MoobloomVariant> CODEC = StringIdentifiable.createCodec(MoobloomVariant::values);
+        public static final EnumCodec<Type> CODEC = StringIdentifiable.createCodec(MoobloomEntity.Type::values);
         final String name;
         final BlockState flower;
         final Item shearedItem;
         final Item dye;
 
-        private MoobloomVariant(final String name, final BlockState flower, Item dye) {
+        private Type(final String name, final BlockState flower, Item dye) {
             this.name = name;
             this.flower = flower;
             this.dye = dye;
             this.shearedItem = flower.getBlock().asItem();
         }
 
-        private MoobloomVariant(final String name, final BlockState flower, Item dye,Item shearedItem) {
+        private Type(final String name, final BlockState flower, Item dye, Item shearedItem) {
             this.name = name;
             this.flower = flower;
             this.dye = dye;
@@ -676,8 +658,8 @@ public class MoobloomEntity extends CowEntity implements Shearable {
             return this.name;
         }
 
-        static MoobloomVariant fromName(String name) {
-            return (MoobloomVariant)CODEC.byId(name, YELLOW);
+        static Type fromName(String name) {
+            return (Type)CODEC.byId(name, YELLOW);
         }
     }
 }

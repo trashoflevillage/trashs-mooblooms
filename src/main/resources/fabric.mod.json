@@ -2,8 +2,8 @@
 	"schemaVersion": 1,
 	"id": "trashs-mooblooms",
 	"version": "${version}",
-	"name": "Trash's Mooblooms",
-	"description": "My take on Mooblooms, the flower cow from Minecraft Earth!",
+	"name": "Many Mooblooms",
+	"description": "A unique take on the Moobloom, adding 16 new variants!",
 	"authors": [
 		"trashoflevillage"
 	],
@@ -41,7 +41,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.16.5",
-		"minecraft": "~1.21",
+		"minecraft": "~1.21.2",
 		"java": ">=21",
 		"fabric-api": "*"
 	},

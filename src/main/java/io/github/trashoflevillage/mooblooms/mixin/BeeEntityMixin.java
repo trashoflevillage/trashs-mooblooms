@@ -23,34 +23,34 @@ public abstract class BeeEntityMixin extends AnimalEntity {
     protected BeeEntityMixin(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
     }
-
-    @ModifyReturnValue(method = "isFlowers", at = @At("TAIL"))
-    private boolean isFlowers(boolean original) {
-        if (!original) {
-            World world = getWorld();
-            List<MoobloomEntity> possibleEntities =
-                    world.getEntitiesByClass(MoobloomEntity.class, Box.of(this.getPos(), 5, 5, 5), EntityPredicates.VALID_ENTITY);
-            MoobloomEntity closestEntity =
-                    world.getClosestEntity(
-                            possibleEntities,
-                            TargetPredicate.DEFAULT,
-                            (BeeEntity)world.getEntityById(getId()),
-                            this.getX(), this.getY(), this.getZ());
-            if (closestEntity != null) return true;
-        }
-        return original;
-    }
-
-    @ModifyReturnValue(method = "getFlowerPos", at = @At("TAIL"))
-    private BlockPos getFlowerPos(BlockPos original) {
-        BeeData beeData = getBeeData();
-        if (beeData.getTargetMoobloom() != null) {
-            return beeData.getTargetMoobloom().getBlockPos();
-        }
-        return original;
-    }
-
-    public BeeData getBeeData() {
-        return BeeData.getBeeData(this.uuid);
-    }
+//
+//    @ModifyReturnValue(method = "isFlowers", at = @At("TAIL"))
+//    private boolean isFlowers(boolean original) {
+//        if (!original) {
+//            World world = getWorld();
+//            List<MoobloomEntity> possibleEntities =
+//                    world.getEntitiesByClass(MoobloomEntity.class, Box.of(this.getPos(), 5, 5, 5), EntityPredicates.VALID_ENTITY);
+//            MoobloomEntity closestEntity =
+//                    world.getClosestEntity(
+//                            possibleEntities,
+//                            TargetPredicate.DEFAULT,
+//                            (BeeEntity)world.getEntityById(getId()),
+//                            this.getX(), this.getY(), this.getZ());
+//            if (closestEntity != null) return true;
+//        }
+//        return original;
+//    }
+//
+//    @ModifyReturnValue(method = "getFlowerPos", at = @At("TAIL"))
+//    private BlockPos getFlowerPos(BlockPos original) {
+//        BeeData beeData = getBeeData();
+//        if (beeData.getTargetMoobloom() != null) {
+//            return beeData.getTargetMoobloom().getBlockPos();
+//        }
+//        return original;
+//    }
+//
+//    public BeeData getBeeData() {
+//        return BeeData.getBeeData(this.uuid);
+//    }
 }

@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "pink_dye",
   "ingredients": [
-    {
-      "item": "trashs_mooblooms:hibiscus"
-    }
+    "trashs_mooblooms:hibiscus"
   ],
   "result": {
     "id": "minecraft:pink_dye",

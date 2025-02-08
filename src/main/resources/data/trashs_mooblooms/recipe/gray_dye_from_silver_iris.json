@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "gray_dye",
   "ingredients": [
-    {
-      "item": "trashs_mooblooms:silver_iris"
-    }
+    "trashs_mooblooms:silver_iris"
   ],
   "result": {
     "id": "minecraft:gray_dye",

@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "blue_dye",
   "ingredients": [
-    {
-      "item": "trashs_mooblooms:dayflower"
-    }
+    "trashs_mooblooms:dayflower"
   ],
   "result": {
     "id": "minecraft:blue_dye",

@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "orange_dye",
   "ingredients": [
-    {
-      "item": "trashs_mooblooms:butterfly_weed"
-    }
+    "trashs_mooblooms:butterfly_weed"
   ],
   "result": {
     "id": "minecraft:orange_dye",

@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "red_dye",
   "ingredients": [
-    {
-      "item": "trashs_mooblooms:trillium"
-    }
+    "trashs_mooblooms:trillium"
   ],
   "result": {
     "id": "minecraft:red_dye",

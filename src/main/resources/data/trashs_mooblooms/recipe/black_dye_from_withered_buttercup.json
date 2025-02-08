@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "black_dye",
   "ingredients": [
-    {
-      "item": "trashs_mooblooms:withered_buttercup"
-    }
+    "trashs_mooblooms:withered_buttercup"
   ],
   "result": {
     "id": "minecraft:black_dye",

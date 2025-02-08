@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "lime_dye",
   "ingredients": [
-    {
-      "item": "trashs_mooblooms:conbush"
-    }
+    "trashs_mooblooms:conbush"
   ],
   "result": {
     "id": "minecraft:lime_dye",

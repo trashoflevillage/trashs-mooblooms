@@ -2,14 +2,16 @@ package io.github.trashoflevillage.mooblooms.entity;
 
 import io.github.trashoflevillage.mooblooms.TrashsMooblooms;
 import io.github.trashoflevillage.mooblooms.entity.custom.MoobloomEntity;
+import net.minecraft.client.render.entity.AgeableMobEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.render.entity.model.CowEntityModel;
+import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.util.Identifier;
 
-public class MoobloomEntityRenderer extends MobEntityRenderer<MoobloomEntity, MoobloomEntityRenderState, CowEntityModel> {
+public class MoobloomEntityRenderer extends AgeableMobEntityRenderer<MoobloomEntity, MoobloomEntityRenderState, CowEntityModel> {
     public MoobloomEntityRenderer(EntityRendererFactory.Context context) {
-        super(context, new CowEntityModel(context.getPart(ModModelLayers.MOOBLOOM)), 0.7f);
+        super(context, new CowEntityModel(context.getPart(ModModelLayers.MOOBLOOM)), new CowEntityModel(context.getPart(EntityModelLayers.COW_BABY)), 0.7f);
         this.addFeature(new MoobloomEntityFlowerFeatureRenderer<>(this, context.getBlockRenderManager()));
     }
 
@@ -26,7 +28,7 @@ public class MoobloomEntityRenderer extends MobEntityRenderer<MoobloomEntity, Mo
     @Override
     public void updateRenderState(MoobloomEntity entity, MoobloomEntityRenderState state, float f) {
         super.updateRenderState(entity, state, f);
-        state.baby = entity.isBaby();
         state.sheared = entity.isSheared();
+        state.type = entity.getVariant();
     }
 }

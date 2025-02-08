@@ -110,25 +110,22 @@ public class MoobloomEntity extends CowEntity implements Shearable {
 
     @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
-        ActionResult result = ActionResult.FAIL;
         if (this.getWorld() instanceof ServerWorld serverWorld) {
             ItemStack itemStack = player.getStackInHand(hand);
-
             if (tryConvertToSussyStew(player, hand) ||
                     tryToDyeHandItem(player, hand) ||
                     super.interactMob(player, hand) == ActionResult.SUCCESS)
-                result = ActionResult.SUCCESS;
+                return ActionResult.SUCCESS;
             else if (itemStack.isOf(Items.SHEARS) && this.isShearable()) {
                 this.sheared(serverWorld, SoundCategory.PLAYERS, itemStack);
                 this.emitGameEvent(GameEvent.SHEAR, player);
                 if (!this.getWorld().isClient) {
                     itemStack.damage(1, player, getSlotForHand(hand));
                 }
-
                 return ActionResult.SUCCESS;
             }
         }
-        return result;
+        return super.interactMob(player, hand);
     }
 
 

@@ -60,7 +60,7 @@ public class MoobloomEntityFlowerFeatureRenderer<M extends CowEntityModel> exten
     public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, MoobloomEntityRenderState state, float limbAngle, float limbDistance) {
         final float FLOWER_SCALE = getFlowerScale(state.type);
         final float FLOWER_SHIFT = getFlowerShift(FLOWER_SCALE);
-        if (state.baby && !state.sheared) {
+        if (!state.baby && !state.sheared) {
             MinecraftClient minecraftClient = MinecraftClient.getInstance();
             boolean bl = state.hasOutline && state.invisible;
             if (!state.invisible || bl) {

@@ -87,8 +87,8 @@ public class ModBlocks {
     private static Item registerBlockItem(String name, BlockItemFactory factory, Block block) {
         Identifier id = Identifier.of(TrashsMooblooms.MOD_ID, name);
         Item.Settings settings = new Item.Settings();
-        Item item = factory.create(block, settings.registryKey(RegistryKey.of(RegistryKeys.ITEM, id)));
         settings.useBlockPrefixedTranslationKey();
+        Item item = factory.create(block, settings.registryKey(RegistryKey.of(RegistryKeys.ITEM, id)));
         return Registry.register(Registries.ITEM, id, item);
     }
 

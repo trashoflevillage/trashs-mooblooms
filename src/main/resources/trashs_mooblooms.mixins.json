@@ -3,8 +3,9 @@
 	"package": "io.github.trashoflevillage.mooblooms.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"PlayerEntityMixin",
 		"BeeEntityMixin",
+		"BeeEntityMixin$ValidateFlowerGoalMixin",
+		"PlayerEntityMixin",
 		"PollinateGoalMixin"
 	],
 	"injectors": {

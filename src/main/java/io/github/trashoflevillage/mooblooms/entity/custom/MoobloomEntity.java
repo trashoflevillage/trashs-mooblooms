@@ -10,17 +10,20 @@ import net.minecraft.block.SuspiciousStewIngredient;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.DyedColorComponent;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.input.CraftingRecipeInput;
@@ -34,6 +37,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
@@ -606,6 +611,26 @@ public class MoobloomEntity extends CowEntity implements Shearable {
                 child.getWorld().playSoundFromEntity((PlayerEntity)null, this, SoundEvents.ENTITY_MOOSHROOM_CONVERT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
             }
         }
+    }
+
+    @Override
+    public void move(MovementType type, Vec3d movement) {
+        World world = getWorld();
+
+        if (world instanceof ServerWorld serverWorld) {
+            List<BeeEntity> possibleEntities =
+                    world.getEntitiesByClass(BeeEntity.class, Box.of(this.getPos(), 5, 5, 5), EntityPredicates.VALID_ENTITY);
+            BeeEntity closestEntity =
+                    serverWorld.getClosestEntity(
+                            possibleEntities,
+                            TargetPredicate.DEFAULT,
+                            this,
+                            this.getX(), this.getY(), this.getZ());
+
+            if (closestEntity != null && this.distanceTo(closestEntity) <= 2)
+                super.move(type, movement.multiply(0, 1, 0));
+            else super.move(type, movement);
+        } else super.move(type, movement);
     }
 
     public enum Type implements StringIdentifiable {

@@ -56,7 +56,6 @@ public abstract class PollinateGoalMixin {
         if (!returnOriginal && field_20377.distanceTo(closestEntity) <= 8) {
             mutable.set(closestEntity.getBlockPos());
             BeeData.getBeeData(field_20377.getUuid()).setTargetMoobloom(closestEntity);
-            System.out.println("moobloom targeted by " + field_20377.getUuid());
         }
         else returnOriginal = true;
 
@@ -72,9 +71,7 @@ public abstract class PollinateGoalMixin {
     private void tick(CallbackInfo ci) {
         BeeData data = BeeData.getBeeData(field_20377.getUuid());
         if (data.getTargetMoobloom() != null) {
-            BlockPos pos = data.getTargetMoobloom().getBlockPos();
             field_20377.setFlowerPos(field_20377.getFlowerPos());
-            //this.nextTarget = new Vec3d(pos.getX(), pos.getY(), pos.getZ());
         }
     }
 }

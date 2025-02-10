@@ -17,7 +17,7 @@ import net.minecraft.util.Identifier;
 
 public class ModItems {
     public static final Item MOOBLOOM_SPAWN_EGG = registerSpawnEggItem("moobloom_spawn_egg",
-            SpawnEggItem::new, ModEntities.MOOBLOOM, 0xFDD500, 0xFBF8DE, new Item.Settings());
+            SpawnEggItem::new, ModEntities.MOOBLOOM, new Item.Settings());
 
     private static Item registerItem(String name, ItemFactory factory, Item.Settings settings) {
         Identifier id = Identifier.of(TrashsMooblooms.MOD_ID, name);
@@ -29,12 +29,10 @@ public class ModItems {
              String name,
              SpawnEggItemFactory factory,
              EntityType<? extends MobEntity> entity,
-             int primaryColor,
-             int secondaryColor,
              Item.Settings settings
     ) {
         Identifier id = Identifier.of(TrashsMooblooms.MOD_ID, name);
-        SpawnEggItem item = factory.create(entity, primaryColor, secondaryColor, settings.registryKey(RegistryKey.of(RegistryKeys.ITEM, id)));
+        SpawnEggItem item = factory.create(entity, settings.registryKey(RegistryKey.of(RegistryKeys.ITEM, id)));
         return Registry.register(Registries.ITEM, id, item);
     }
     
@@ -72,6 +70,6 @@ public class ModItems {
 
     @FunctionalInterface
     public interface SpawnEggItemFactory {
-        SpawnEggItem create(EntityType<? extends MobEntity> entity, int primaryColor, int secondaryColor, Item.Settings settings);
+        SpawnEggItem create(EntityType<? extends MobEntity> entity, Item.Settings settings);
     }
 }

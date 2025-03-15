@@ -28,7 +28,7 @@ public class ModBlocks {
     public static final Block POTTED_BUTTERCUP =
             initializer.register(
                     "potted_buttercup", s -> new FlowerPotBlock(BUTTERCUP, s),
-                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION), false);
 
     public static final Block HIBISCUS =
             initializer.register(
@@ -37,7 +37,7 @@ public class ModBlocks {
     public static final Block POTTED_HIBISCUS =
             initializer.register(
                     "potted_hibiscus", s -> new FlowerPotBlock(HIBISCUS, s),
-                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION), false);
 
     public static final Block GLADIOLI =
             initializer.register(
@@ -46,7 +46,7 @@ public class ModBlocks {
     public static final Block POTTED_GLADIOLI =
             initializer.register(
                     "potted_gladioli", s -> new FlowerPotBlock(GLADIOLI, s),
-                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION), false);
 
     public static final Block DAYFLOWER =
             initializer.register(
@@ -55,7 +55,7 @@ public class ModBlocks {
     public static final Block POTTED_DAYFLOWER =
             initializer.register(
                     "potted_dayflower", s -> new FlowerPotBlock(DAYFLOWER, s),
-                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION), false);
 
     public static final Block MYOSOTIS =
             initializer.register(
@@ -64,7 +64,7 @@ public class ModBlocks {
     public static final Block POTTED_MYOSOTIS =
             initializer.register(
                     "potted_myosotis", s -> new FlowerPotBlock(MYOSOTIS, s),
-                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION), false);
 
     public static final Block CENTIAN =
             initializer.register(
@@ -73,7 +73,7 @@ public class ModBlocks {
     public static final Block POTTED_CENTIAN =
             initializer.register(
                     "potted_centian", s -> new FlowerPotBlock(CENTIAN, s),
-                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION), false);
 
     public static final Block TRILLIUM =
             initializer.register(
@@ -82,7 +82,7 @@ public class ModBlocks {
     public static final Block POTTED_TRILLIUM =
             initializer.register(
                     "potted_trillium", s -> new FlowerPotBlock(TRILLIUM, s),
-                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION), false);
 
     public static final Block THUNDERBLOOM =
             initializer.register(
@@ -91,7 +91,7 @@ public class ModBlocks {
     public static final Block POTTED_THUNDERBLOOM =
             initializer.register(
                     "potted_thunderbloom", s -> new FlowerPotBlock(THUNDERBLOOM, s),
-                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION), false);
 
     public static final Block WITHERED_BUTTERCUP =
             initializer.register(
@@ -100,7 +100,7 @@ public class ModBlocks {
     public static final Block POTTED_WITHERED_BUTTERCUP =
             initializer.register(
                     "potted_withered_buttercup", s -> new FlowerPotBlock(WITHERED_BUTTERCUP, s),
-                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION), false);
 
     public static final Block BELLFLOWER =
             initializer.register(
@@ -109,7 +109,7 @@ public class ModBlocks {
     public static final Block POTTED_BELLFLOWER =
             initializer.register(
                     "potted_bellflower", s -> new FlowerPotBlock(BELLFLOWER, s),
-                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION), false);
 
     public static final Block BOAT_ORCHID =
             initializer.register(
@@ -118,7 +118,7 @@ public class ModBlocks {
     public static final Block POTTED_BOAT_ORCHID =
             initializer.register(
                     "potted_boat_orchid", s -> new FlowerPotBlock(BOAT_ORCHID, s),
-                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION), false);
 
     public static final Block BUTTERFLY_CANDY =
             initializer.register(
@@ -127,7 +127,7 @@ public class ModBlocks {
     public static final Block POTTED_BUTTERFLY_CANDY =
             initializer.register(
                     "potted_butterfly_candy", s -> new FlowerPotBlock(BUTTERFLY_CANDY, s),
-                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION), false);
 
     public static final Block BUTTERFLY_WEED =
             initializer.register(
@@ -136,7 +136,7 @@ public class ModBlocks {
     public static final Block POTTED_BUTTERFLY_WEED =
             initializer.register(
                     "potted_butterfly_weed", s -> new FlowerPotBlock(BUTTERFLY_WEED, s),
-                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION), false);
 
 
     public static final Block CONBUSH =
@@ -146,7 +146,7 @@ public class ModBlocks {
     public static final Block POTTED_CONBUSH =
             initializer.register(
                     "potted_conbush", s -> new FlowerPotBlock(CONBUSH, s),
-                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION), false);
 
     public static final Block MORNING_GLORY =
             initializer.register(
@@ -155,7 +155,7 @@ public class ModBlocks {
     public static final Block POTTED_MORNING_GLORY =
             initializer.register(
                     "potted_morning_glory", s -> new FlowerPotBlock(MORNING_GLORY, s),
-                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION), false);
 
     public static final Block SILVER_IRIS =
             initializer.register(
@@ -164,7 +164,7 @@ public class ModBlocks {
     public static final Block POTTED_SILVER_IRIS =
             initializer.register(
                     "potted_silver_iris", s -> new FlowerPotBlock(SILVER_IRIS, s),
-                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION), false);
 
 
     private static Block registerBlock(String name, BlockFactory factory, AbstractBlock.Settings settings) {

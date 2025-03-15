@@ -1,0 +1,28 @@
+{
+  "entity.manymooblooms.moobloom": "Moobloom",
+
+  "item.manymooblooms.moobloom_spawn_egg": "Moobloom Spawn Egg",
+
+  "advancements.husbandry.suspicious_brewery": "Suspicious Brewery",
+  "advancements.husbandry.suspicious_brewery.description": "Milk a Mooshroom for Mushroom Stew, and then convert it to Suspicious Stew using a Moobloom",
+
+  "advancements.husbandry.withered_moobloom_slaughter":  "Sickening Slaughter",
+  "advancements.husbandry.withered_moobloom_slaughter.description":  "Kill a Moobloom inflicted with the Wither effect",
+
+  "block.manymooblooms.buttercup": "Buttercup",
+  "block.manymooblooms.hibiscus": "Tropical Hibiscus",
+  "block.manymooblooms.gladioli": "Gladioli",
+  "block.manymooblooms.dayflower": "Dayflower",
+  "block.manymooblooms.myosotis": "Myosotis",
+  "block.manymooblooms.centian": "Centian",
+  "block.manymooblooms.trillium": "Trillium",
+  "block.manymooblooms.withered_buttercup": "Withercup",
+  "block.manymooblooms.thunderbloom": "Thunderbloom",
+  "block.manymooblooms.bellflower": "Bellflower",
+  "block.manymooblooms.boat_orchid": "Boat Orchid",
+  "block.manymooblooms.butterfly_candy": "Butterfly Candy",
+  "block.manymooblooms.butterfly_weed": "Butterfly Weed",
+  "block.manymooblooms.conbush": "Conbush",
+  "block.manymooblooms.morning_glory": "Morning Glory",
+  "block.manymooblooms.silver_iris": "Silver Iris"
+}

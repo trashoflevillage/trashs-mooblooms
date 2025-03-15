@@ -1,21 +1,21 @@
 {
   "values": [
-    "trashs_mooblooms:buttercup",
-    "trashs_mooblooms:hibiscus",
-    "trashs_mooblooms:gladioli",
-    "trashs_mooblooms:dayflower",
-    "trashs_mooblooms:myosotis",
-    "trashs_mooblooms:centian",
-    "trashs_mooblooms:trillium",
-    "trashs_mooblooms:withered_buttercup",
-    "trashs_mooblooms:thunderbloom",
-    "trashs_mooblooms:bellflower",
-    "trashs_mooblooms:boat_orchid",
-    "trashs_mooblooms:butterfly_candy",
-    "trashs_mooblooms:butterfly_weed",
-    "trashs_mooblooms:conbush",
-    "trashs_mooblooms:morning_glory",
-    "trashs_mooblooms:silver_iris"
+    "manymooblooms:buttercup",
+    "manymooblooms:hibiscus",
+    "manymooblooms:gladioli",
+    "manymooblooms:dayflower",
+    "manymooblooms:myosotis",
+    "manymooblooms:centian",
+    "manymooblooms:trillium",
+    "manymooblooms:withered_buttercup",
+    "manymooblooms:thunderbloom",
+    "manymooblooms:bellflower",
+    "manymooblooms:boat_orchid",
+    "manymooblooms:butterfly_candy",
+    "manymooblooms:butterfly_weed",
+    "manymooblooms:conbush",
+    "manymooblooms:morning_glory",
+    "manymooblooms:silver_iris"
   ],
   "replace": false
 }

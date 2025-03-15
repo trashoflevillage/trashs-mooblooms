@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "pink_dye",
+  "ingredients": [
+    "manymooblooms:hibiscus"
+  ],
+  "result": {
+    "id": "minecraft:pink_dye",
+    "count": 1
+  }
+}

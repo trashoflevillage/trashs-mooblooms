@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "brown_dye",
+  "ingredients": [
+      "manymooblooms:boat_orchid"
+  ],
+  "result": {
+    "id": "minecraft:brown_dye",
+    "count": 1
+  }
+}

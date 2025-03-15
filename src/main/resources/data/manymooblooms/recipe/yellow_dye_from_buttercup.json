@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "yellow_dye",
+  "ingredients": [
+    "manymooblooms:buttercup"
+  ],
+  "result": {
+    "id": "minecraft:yellow_dye",
+    "count": 1
+  }
+}

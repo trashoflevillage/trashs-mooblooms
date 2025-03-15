@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "lime_dye",
+  "ingredients": [
+    "manymooblooms:conbush"
+  ],
+  "result": {
+    "id": "minecraft:lime_dye",
+    "count": 1
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "gray_dye",
+  "ingredients": [
+    "manymooblooms:silver_iris"
+  ],
+  "result": {
+    "id": "minecraft:gray_dye",
+    "count": 1
+  }
+}

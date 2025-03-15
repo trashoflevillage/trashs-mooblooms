@@ -1,21 +1,21 @@
 {
   "values": [
-    "trashs_mooblooms:potted_buttercup",
-    "trashs_mooblooms:potted_hibiscus",
-    "trashs_mooblooms:potted_gladioli",
-    "trashs_mooblooms:potted_dayflower",
-    "trashs_mooblooms:potted_myosotis",
-    "trashs_mooblooms:potted_centian",
-    "trashs_mooblooms:potted_trillium",
-    "trashs_mooblooms:potted_withered_buttercup",
-    "trashs_mooblooms:potted_thunderbloom",
-    "trashs_mooblooms:potted_bellflower",
-    "trashs_mooblooms:potted_boat_orchid",
-    "trashs_mooblooms:potted_butterfly_candy",
-    "trashs_mooblooms:potted_butterfly_weed",
-    "trashs_mooblooms:potted_conbush",
-    "trashs_mooblooms:potted_morning_glory",
-    "trashs_mooblooms:potted_silver_iris"
+    "manymooblooms:potted_buttercup",
+    "manymooblooms:potted_hibiscus",
+    "manymooblooms:potted_gladioli",
+    "manymooblooms:potted_dayflower",
+    "manymooblooms:potted_myosotis",
+    "manymooblooms:potted_centian",
+    "manymooblooms:potted_trillium",
+    "manymooblooms:potted_withered_buttercup",
+    "manymooblooms:potted_thunderbloom",
+    "manymooblooms:potted_bellflower",
+    "manymooblooms:potted_boat_orchid",
+    "manymooblooms:potted_butterfly_candy",
+    "manymooblooms:potted_butterfly_weed",
+    "manymooblooms:potted_conbush",
+    "manymooblooms:potted_morning_glory",
+    "manymooblooms:potted_silver_iris"
   ],
   "replace": false
 }

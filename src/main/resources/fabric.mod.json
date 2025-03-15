@@ -19,21 +19,21 @@
 		"sources": "https://github.com/trashoflevillage/trashs-mooblooms"
 	},
 	"license": "MIT",
-	"icon": "assets/trashs_mooblooms/icon.png",
+	"icon": "assets/manymooblooms/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"io.github.trashoflevillage.mooblooms.TrashsMooblooms"
+			"io.github.trashoflevillage.mooblooms.ManyMooblooms"
 		],
 		"client": [
 			"io.github.trashoflevillage.mooblooms.TrashsMoobloomsClient"
 		],
 		"fabric-datagen": [
-			"io.github.trashoflevillage.mooblooms.TrashsMoobloomsDataGenerator"
+			"io.github.trashoflevillage.mooblooms.ManyMoobloomsDataGenerator"
 		]
 	},
 	"mixins": [
-      "trashs_mooblooms.mixins.json",
+      "manymooblooms.mixins.json",
 		{
 			"config": "trashs-mooblooms.client.mixins.json",
 			"environment": "client"
@@ -43,7 +43,8 @@
 		"fabricloader": ">=0.16.5",
 		"minecraft": "~1.21.4",
 		"java": ">=21",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"trashlib": ">=1.1.19"
 	},
 	"suggests": {
 		"another-mod": "*"

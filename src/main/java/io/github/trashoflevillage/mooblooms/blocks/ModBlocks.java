@@ -1,9 +1,11 @@
 package io.github.trashoflevillage.mooblooms.blocks;
 
-import io.github.trashoflevillage.mooblooms.TrashsMooblooms;
-import io.github.trashoflevillage.mooblooms.items.ModItems;
+import io.github.trashoflevillage.mooblooms.ManyMooblooms;
+import io.github.trashoflevillage.trashlib.initializers.BlockInitializer;
 import net.minecraft.block.*;
+import net.minecraft.component.type.SuspiciousStewEffectsComponent;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -14,78 +16,166 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
+import java.util.List;
+
 public class ModBlocks {
+    private static final BlockInitializer initializer = new BlockInitializer(ManyMooblooms.MOD_ID).addModIdAlias(ManyMooblooms.OLD_MOD_ID);
+
     public static final Block BUTTERCUP =
-            registerFlowerBlock("buttercup", FlowerBlock::new, StatusEffects.POISON, 10);
+            initializer.register(
+                    "buttercup", (s) -> new FlowerBlock(StatusEffects.POISON, 10, s),
+                    AbstractBlock.Settings.copy(Blocks.DANDELION));
     public static final Block POTTED_BUTTERCUP =
-            registerPotBlock("potted_buttercup", FlowerPotBlock::new, ModBlocks.BUTTERCUP);
+            initializer.register(
+                    "potted_buttercup", s -> new FlowerPotBlock(BUTTERCUP, s),
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
 
     public static final Block HIBISCUS =
-            registerFlowerBlock("hibiscus", FlowerBlock::new, StatusEffects.REGENERATION, 5);
+            initializer.register(
+                    "hibiscus", (s) -> new FlowerBlock(StatusEffects.REGENERATION, 5, s),
+                    AbstractBlock.Settings.copy(Blocks.DANDELION));
     public static final Block POTTED_HIBISCUS =
-            registerPotBlock("potted_hibiscus", FlowerPotBlock::new, HIBISCUS);
+            initializer.register(
+                    "potted_hibiscus", s -> new FlowerPotBlock(HIBISCUS, s),
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
 
     public static final Block GLADIOLI =
-            registerFlowerBlock("gladioli", FlowerBlock::new, StatusEffects.NIGHT_VISION, 12);
+            initializer.register(
+                    "gladioli", (s) -> new FlowerBlock(StatusEffects.NIGHT_VISION, 12, s),
+                    AbstractBlock.Settings.copy(Blocks.DANDELION));
     public static final Block POTTED_GLADIOLI =
-            registerPotBlock("potted_gladioli", FlowerPotBlock::new, GLADIOLI);
+            initializer.register(
+                    "potted_gladioli", s -> new FlowerPotBlock(GLADIOLI, s),
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
 
     public static final Block DAYFLOWER =
-            registerFlowerBlock("dayflower", FlowerBlock::new, StatusEffects.FIRE_RESISTANCE, 6);
+            initializer.register(
+                    "dayflower", (s) -> new FlowerBlock(StatusEffects.FIRE_RESISTANCE, 6, s),
+                    AbstractBlock.Settings.copy(Blocks.DANDELION));
     public static final Block POTTED_DAYFLOWER =
-            registerPotBlock("potted_dayflower", FlowerPotBlock::new, DAYFLOWER);
+            initializer.register(
+                    "potted_dayflower", s -> new FlowerPotBlock(DAYFLOWER, s),
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
 
     public static final Block MYOSOTIS =
-            registerFlowerBlock("myosotis", FlowerBlock::new, StatusEffects.SATURATION, 0.35f);
+            initializer.register(
+                    "myosotis", (s) -> new FlowerBlock(StatusEffects.SATURATION, 0.35f, s),
+                    AbstractBlock.Settings.copy(Blocks.DANDELION));
     public static final Block POTTED_MYOSOTIS =
-            registerPotBlock("potted_myosotis", FlowerPotBlock::new, MYOSOTIS);
+            initializer.register(
+                    "potted_myosotis", s -> new FlowerPotBlock(MYOSOTIS, s),
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
 
     public static final Block CENTIAN =
-            registerFlowerBlock("centian", FlowerBlock::new, StatusEffects.JUMP_BOOST, 15);
+            initializer.register(
+                    "centian", (s) -> new FlowerBlock(StatusEffects.JUMP_BOOST, 15, s),
+                    AbstractBlock.Settings.copy(Blocks.DANDELION));
     public static final Block POTTED_CENTIAN =
-            registerPotBlock("potted_centian", FlowerPotBlock::new, CENTIAN);
+            initializer.register(
+                    "potted_centian", s -> new FlowerPotBlock(CENTIAN, s),
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
 
-    public static final Block TRILLIUM = registerFlowerBlock("trillium", FlowerBlock::new, StatusEffects.SPEED, 8);
-    public static final Block POTTED_TRILLIUM = registerPotBlock("potted_trillium", FlowerPotBlock::new, TRILLIUM);
+    public static final Block TRILLIUM =
+            initializer.register(
+                    "trillium", (s) -> new FlowerBlock(StatusEffects.SPEED, 8, s),
+                    AbstractBlock.Settings.copy(Blocks.DANDELION));
+    public static final Block POTTED_TRILLIUM =
+            initializer.register(
+                    "potted_trillium", s -> new FlowerPotBlock(TRILLIUM, s),
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
 
-    public static final Block THUNDERBLOOM = registerFlowerBlock("thunderbloom", FlowerBlock::new, StatusEffects.GLOWING, 8);
-    public static final Block POTTED_THUNDERBLOOM = registerPotBlock("potted_thunderbloom", FlowerPotBlock::new, THUNDERBLOOM);
+    public static final Block THUNDERBLOOM =
+            initializer.register(
+                    "thunderbloom", (s) -> new FlowerBlock(StatusEffects.GLOWING, 8, s),
+                    AbstractBlock.Settings.copy(Blocks.DANDELION));
+    public static final Block POTTED_THUNDERBLOOM =
+            initializer.register(
+                    "potted_thunderbloom", s -> new FlowerPotBlock(THUNDERBLOOM, s),
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
 
     public static final Block WITHERED_BUTTERCUP =
-            registerFlowerBlock("withered_buttercup", FlowerBlock::new, StatusEffects.WITHER, 10);
+            initializer.register(
+                    "withered_buttercup", (s) -> new FlowerBlock(StatusEffects.WITHER, 10, s),
+                    AbstractBlock.Settings.copy(Blocks.DANDELION));
     public static final Block POTTED_WITHERED_BUTTERCUP =
-            registerPotBlock("potted_withered_buttercup", FlowerPotBlock::new, WITHERED_BUTTERCUP);
+            initializer.register(
+                    "potted_withered_buttercup", s -> new FlowerPotBlock(WITHERED_BUTTERCUP, s),
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
 
-    public static final Block BELLFLOWER = registerFlowerBlock("bellflower", FlowerBlock::new, StatusEffects.BLINDNESS, 12);
-    public static final Block POTTED_BELLFLOWER = registerPotBlock("potted_bellflower", FlowerPotBlock::new, BELLFLOWER);
+    public static final Block BELLFLOWER =
+            initializer.register(
+                    "bellflower", (s) -> new FlowerBlock(StatusEffects.BLINDNESS, 12, s),
+                    AbstractBlock.Settings.copy(Blocks.DANDELION));
+    public static final Block POTTED_BELLFLOWER =
+            initializer.register(
+                    "potted_bellflower", s -> new FlowerPotBlock(BELLFLOWER, s),
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
 
-    public static final Block BOAT_ORCHID = registerFlowerBlock("boat_orchid", FlowerBlock::new, StatusEffects.WATER_BREATHING, 12);
-    public static final Block POTTED_BOAT_ORCHID = registerPotBlock("potted_boat_orchid", FlowerPotBlock::new, BOAT_ORCHID);
+    public static final Block BOAT_ORCHID =
+            initializer.register(
+                    "boat_orchid", (s) -> new FlowerBlock(StatusEffects.WATER_BREATHING, 12, s),
+                    AbstractBlock.Settings.copy(Blocks.DANDELION));
+    public static final Block POTTED_BOAT_ORCHID =
+            initializer.register(
+                    "potted_boat_orchid", s -> new FlowerPotBlock(BOAT_ORCHID, s),
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
 
-    public static final Block BUTTERFLY_CANDY = registerFlowerBlock("butterfly_candy", FlowerBlock::new, StatusEffects.SPEED, 12);
-    public static final Block POTTED_BUTTERFLY_CANDY = registerPotBlock("potted_butterfly_candy", FlowerPotBlock::new, BUTTERFLY_CANDY);
+    public static final Block BUTTERFLY_CANDY =
+            initializer.register(
+                    "butterfly_candy", (s) -> new FlowerBlock(StatusEffects.SPEED, 12, s),
+                    AbstractBlock.Settings.copy(Blocks.DANDELION));
+    public static final Block POTTED_BUTTERFLY_CANDY =
+            initializer.register(
+                    "potted_butterfly_candy", s -> new FlowerPotBlock(BUTTERFLY_CANDY, s),
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
 
-    public static final Block BUTTERFLY_WEED = registerFlowerBlock("butterfly_weed", FlowerBlock::new, StatusEffects.NAUSEA, 12);
-    public static final Block POTTED_BUTTERFLY_WEED = registerPotBlock("potted_butterfly_weed", FlowerPotBlock::new, BUTTERFLY_WEED);
+    public static final Block BUTTERFLY_WEED =
+            initializer.register(
+                    "butterfly_weed", (s) -> new FlowerBlock(StatusEffects.NAUSEA, 12, s),
+                    AbstractBlock.Settings.copy(Blocks.DANDELION));
+    public static final Block POTTED_BUTTERFLY_WEED =
+            initializer.register(
+                    "potted_butterfly_weed", s -> new FlowerPotBlock(BUTTERFLY_WEED, s),
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
 
-    public static final Block CONBUSH = registerFlowerBlock("conbush", FlowerBlock::new, StatusEffects.STRENGTH, 12);
-    public static final Block POTTED_CONBUSH = registerPotBlock("potted_conbush", FlowerPotBlock::new, CONBUSH);
 
-    public static final Block MORNING_GLORY = registerFlowerBlock("morning_glory", FlowerBlock::new, StatusEffects.REGENERATION, 12);
-    public static final Block POTTED_MORNING_GLORY = registerPotBlock("potted_morning_glory", FlowerPotBlock::new, MORNING_GLORY);
+    public static final Block CONBUSH =
+            initializer.register(
+                    "conbush", (s) -> new FlowerBlock(StatusEffects.STRENGTH, 12, s),
+                    AbstractBlock.Settings.copy(Blocks.DANDELION));
+    public static final Block POTTED_CONBUSH =
+            initializer.register(
+                    "potted_conbush", s -> new FlowerPotBlock(CONBUSH, s),
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
 
-    public static final Block SILVER_IRIS = registerFlowerBlock("silver_iris", FlowerBlock::new, StatusEffects.NIGHT_VISION, 12);
-    public static final Block POTTED_SILVER_IRIS = registerPotBlock("potted_silver_iris", FlowerPotBlock::new, SILVER_IRIS);
+    public static final Block MORNING_GLORY =
+            initializer.register(
+                    "morning_glory", (s) -> new FlowerBlock(StatusEffects.REGENERATION, 12, s),
+                    AbstractBlock.Settings.copy(Blocks.DANDELION));
+    public static final Block POTTED_MORNING_GLORY =
+            initializer.register(
+                    "potted_morning_glory", s -> new FlowerPotBlock(MORNING_GLORY, s),
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
+
+    public static final Block SILVER_IRIS =
+            initializer.register(
+                    "silver_iris", (s) -> new FlowerBlock(StatusEffects.NIGHT_VISION, 12, s),
+                    AbstractBlock.Settings.copy(Blocks.DANDELION));
+    public static final Block POTTED_SILVER_IRIS =
+            initializer.register(
+                    "potted_silver_iris", s -> new FlowerPotBlock(SILVER_IRIS, s),
+                    AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION));
+
 
     private static Block registerBlock(String name, BlockFactory factory, AbstractBlock.Settings settings) {
-        Identifier id = Identifier.of(TrashsMooblooms.MOD_ID, name);
+        Identifier id = Identifier.of(ManyMooblooms.MOD_ID, name);
         Block block = factory.create(settings.registryKey(RegistryKey.of(RegistryKeys.BLOCK, id)));
         registerBlockItem(name, BlockItem::new, block);
         return Registry.register(Registries.BLOCK, id, block);
     }
 
     private static Item registerBlockItem(String name, BlockItemFactory factory, Block block) {
-        Identifier id = Identifier.of(TrashsMooblooms.MOD_ID, name);
+        Identifier id = Identifier.of(ManyMooblooms.MOD_ID, name);
         Item.Settings settings = new Item.Settings();
         settings.useBlockPrefixedTranslationKey();
         Item item = factory.create(block, settings.registryKey(RegistryKey.of(RegistryKeys.ITEM, id)));
@@ -98,7 +188,7 @@ public class ModBlocks {
             RegistryEntry<StatusEffect> effect,
             float effectLengthInSeconds
     ) {
-        Identifier id = Identifier.of(TrashsMooblooms.MOD_ID, name);
+        Identifier id = Identifier.of(ManyMooblooms.MOD_ID, name);
         AbstractBlock.Settings settings = AbstractBlock.Settings.copy(Blocks.DANDELION);
         Block block = factory.create(effect, effectLengthInSeconds, settings.registryKey(RegistryKey.of(RegistryKeys.BLOCK, id)));
         registerBlockItem(name, BlockItem::new, block);
@@ -110,7 +200,7 @@ public class ModBlocks {
             PotBlockFactory factory,
             Block flower
     ) {
-        Identifier id = Identifier.of(TrashsMooblooms.MOD_ID, name);
+        Identifier id = Identifier.of(ManyMooblooms.MOD_ID, name);
         AbstractBlock.Settings settings = AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION);
         Block block = factory.create(flower, settings.registryKey(RegistryKey.of(RegistryKeys.BLOCK, id)));
         registerBlockItem(name, BlockItem::new, block);
@@ -118,7 +208,7 @@ public class ModBlocks {
     }
 
     public static void registerModBlocks() {
-        TrashsMooblooms.LOGGER.info("Registering blocks for " + TrashsMooblooms.MOD_ID);
+        ManyMooblooms.LOGGER.info("Registering blocks for " + ManyMooblooms.MOD_ID);
     }
 
     @FunctionalInterface

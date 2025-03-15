@@ -1,10 +1,9 @@
 package io.github.trashoflevillage.mooblooms.entity;
 
-import io.github.trashoflevillage.mooblooms.TrashsMooblooms;
+import io.github.trashoflevillage.mooblooms.ManyMooblooms;
 import io.github.trashoflevillage.mooblooms.entity.custom.MoobloomEntity;
 import net.minecraft.client.render.entity.AgeableMobEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.render.entity.model.CowEntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.util.Identifier;
@@ -22,7 +21,7 @@ public class MoobloomEntityRenderer extends AgeableMobEntityRenderer<MoobloomEnt
 
     @Override
     public Identifier getTexture(MoobloomEntityRenderState state) {
-        return Identifier.of(TrashsMooblooms.MOD_ID, "textures/entity/moobloom_" + state.type.name().toLowerCase() + ".png");
+        return Identifier.of(ManyMooblooms.MOD_ID, "textures/entity/moobloom_" + state.type.name().toLowerCase() + ".png");
     }
 
     @Override

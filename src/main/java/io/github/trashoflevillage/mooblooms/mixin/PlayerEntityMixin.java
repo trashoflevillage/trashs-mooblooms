@@ -1,35 +1,22 @@
 package io.github.trashoflevillage.mooblooms.mixin;
 
-import io.github.trashoflevillage.mooblooms.TrashsMooblooms;
+import io.github.trashoflevillage.mooblooms.ManyMooblooms;
 import io.github.trashoflevillage.mooblooms.data.PlayerData;
 import io.github.trashoflevillage.mooblooms.entity.ModEntities;
-import io.github.trashoflevillage.mooblooms.items.ModItems;
-import net.minecraft.advancement.Advancement;
-import net.minecraft.advancement.AdvancementCriterion;
-import net.minecraft.advancement.AdvancementEntry;
-import net.minecraft.advancement.AdvancementRequirements;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.server.command.AdvancementCommand;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Arm;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
-import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.HashMap;
@@ -61,7 +48,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 						.getAdvancementTracker()
 						.grantCriterion(
 							serverPlayer.server.getAdvancementLoader().get(
-									Identifier.of(TrashsMooblooms.MOD_ID, "suspicious_brewery")
+									Identifier.of(ManyMooblooms.MOD_ID, "suspicious_brewery")
 							), "milk_mooshroom_then_moobloom_for_stew"
 						);
 				}

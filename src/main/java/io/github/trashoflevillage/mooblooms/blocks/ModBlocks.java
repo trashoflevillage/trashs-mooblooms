@@ -95,7 +95,7 @@ public class ModBlocks {
 
     public static final Block WITHERED_BUTTERCUP =
             initializer.register(
-                    "withered_buttercup", (s) -> new FlowerBlock(StatusEffects.WITHER, 10, s),
+                    "withered_buttercup", (s) -> new WitherRoseBlock(StatusEffects.WITHER, 10, s),
                     AbstractBlock.Settings.copy(Blocks.DANDELION));
     public static final Block POTTED_WITHERED_BUTTERCUP =
             initializer.register(

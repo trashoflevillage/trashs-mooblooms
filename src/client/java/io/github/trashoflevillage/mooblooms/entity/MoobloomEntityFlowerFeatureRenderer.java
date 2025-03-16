@@ -1,6 +1,7 @@
 package io.github.trashoflevillage.mooblooms.entity;
 
 import io.github.trashoflevillage.mooblooms.entity.custom.MoobloomEntity;
+import io.github.trashoflevillage.mooblooms.entity.custom.util.MoobloomType;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
@@ -24,13 +25,15 @@ public class MoobloomEntityFlowerFeatureRenderer<M extends CowEntityModel> exten
         this.blockRenderManager = blockRenderManager;
     }
 
-    private float getFlowerScale(MoobloomEntity.Type variant) {
-        switch (variant) {
-            case MoobloomEntity.Type.YELLOW, MoobloomEntity.Type.GREEN,
-                 MoobloomEntity.Type.PINK, MoobloomEntity.Type.BLACK: return 1f;
-            case MoobloomEntity.Type.LIGHT_GRAY: return 0.5f;
-            default: return 0.6f;
-        }
+    private float getFlowerScale(MoobloomType variant) {
+        return 1f;
+//        switch (variant) {
+//            case MoobloomType.YELLOW, MoobloomType.GREEN,
+//                 MoobloomType.PINK, MoobloomType.BLACK: return 1f;
+//            case MoobloomType.LIGHT_GRAY: return 0.5f;
+//            default: return 0.6f;
+//        }
+//        if (variant == MoobloomType.YELLOW || variant == MoobloomType.GREEN || variant == MoobloomType.PINK || variant == MoobloomType.BLACK) return 1f;
     }
 
     private float getFlowerShift(float scale) {

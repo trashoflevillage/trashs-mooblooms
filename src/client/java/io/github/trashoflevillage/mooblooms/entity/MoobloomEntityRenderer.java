@@ -21,7 +21,7 @@ public class MoobloomEntityRenderer extends AgeableMobEntityRenderer<MoobloomEnt
 
     @Override
     public Identifier getTexture(MoobloomEntityRenderState state) {
-        return Identifier.of(ManyMooblooms.MOD_ID, "textures/entity/moobloom_" + state.type.name().toLowerCase() + ".png");
+        return Identifier.of(state.type.getId().getNamespace(), "textures/entity/moobloom_" + state.type.getId().getPath() + ".png");
     }
 
     @Override

@@ -4,6 +4,7 @@ import io.github.trashoflevillage.mooblooms.blocks.ModBlocks;
 import io.github.trashoflevillage.mooblooms.entity.ModEntities;
 import io.github.trashoflevillage.mooblooms.entity.ModEntitySpawn;
 import io.github.trashoflevillage.mooblooms.entity.custom.MoobloomEntity;
+import io.github.trashoflevillage.mooblooms.entity.custom.util.MoobloomType;
 import io.github.trashoflevillage.mooblooms.items.ModItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -26,8 +27,7 @@ public class ManyMooblooms implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-
-
+		MoobloomType.registerAll();
 		ModBlocks.registerModBlocks();
 		ModItems.registerModItems();
 		ModEntitySpawn.addEntitySpawns();

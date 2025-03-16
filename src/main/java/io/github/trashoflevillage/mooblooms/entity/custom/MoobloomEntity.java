@@ -57,7 +57,6 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     private static final TrackedData<Boolean> IS_SHEARED;
     private static final TrackedData<Integer> REGROW_TIMER;
     private static final TrackedData<String> TYPE;
-    private static final float SPAWN_CHANCE = 0.1f;
     private UUID lightningUUID;
 
     public MoobloomEntity(EntityType<? extends CowEntity> entityType, World world) {
@@ -551,12 +550,14 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     }
 
     private void flowerRegrowthTick() {
-        int regrowTimer = this.getRegrowTimer();
-        if (regrowTimer > 0) {
-            regrowTimer--;
-            if (regrowTimer == 0) setSheared(false);
+        if (getEntityWorld().getLightLevel(getBlockPos()) >= 7) {
+            int regrowTimer = this.getRegrowTimer();
+            if (regrowTimer > 0) {
+                regrowTimer--;
+                if (regrowTimer == 0) setSheared(false);
+            }
+            this.setRegrowTimer(regrowTimer);
         }
-        this.setRegrowTimer(regrowTimer);
     }
 
     @Override
@@ -573,7 +574,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
                                 new ItemStack(this.getVariant().getItemFromShearing())));
             }
             this.setSheared(true);
-            this.setRegrowTimer(24000);
+            this.setRegrowTimer(getVariant().getRegrowTimer());
         }
     }
 
@@ -637,5 +638,10 @@ public class MoobloomEntity extends CowEntity implements Shearable {
                 super.move(type, movement.multiply(0, 1, 0));
             else super.move(type, movement);
         } else super.move(type, movement);
+    }
+
+    @Override
+    public boolean isBreedingItem(ItemStack stack) {
+        return getVariant().getBreedingItemFactory().apply(stack);
     }
 }

@@ -26,14 +26,7 @@ public class MoobloomEntityFlowerFeatureRenderer<M extends CowEntityModel> exten
     }
 
     private float getFlowerScale(MoobloomType variant) {
-        return 1f;
-//        switch (variant) {
-//            case MoobloomType.YELLOW, MoobloomType.GREEN,
-//                 MoobloomType.PINK, MoobloomType.BLACK: return 1f;
-//            case MoobloomType.LIGHT_GRAY: return 0.5f;
-//            default: return 0.6f;
-//        }
-//        if (variant == MoobloomType.YELLOW || variant == MoobloomType.GREEN || variant == MoobloomType.PINK || variant == MoobloomType.BLACK) return 1f;
+        return variant.getFlowerScale();
     }
 
     private float getFlowerShift(float scale) {

@@ -154,5 +154,28 @@ public class ModBlocks {
                     "potted_silver_iris", s -> new FlowerPotBlock(SILVER_IRIS.get(), s),
                     AbstractBlock.Settings.copy(Blocks.POTTED_DANDELION), false);
 
-    public static void registerAll() {}
+    public static void registerAll() {
+        registerTransparency();
+    }
+
+    private static void registerTransparency() {
+        initializer.addTransparentBlocks(
+                BUTTERCUP, POTTED_BUTTERCUP,
+                HIBISCUS, POTTED_HIBISCUS,
+                GLADIOLI, POTTED_GLADIOLI,
+                DAYFLOWER, POTTED_DAYFLOWER,
+                MYOSOTIS, POTTED_MYOSOTIS,
+                CENTIAN, POTTED_CENTIAN,
+                TRILLIUM, POTTED_TRILLIUM,
+                THUNDERBLOOM, POTTED_THUNDERBLOOM,
+                WITHERED_BUTTERCUP, POTTED_WITHERED_BUTTERCUP,
+                BELLFLOWER, POTTED_BELLFLOWER,
+                BOAT_ORCHID, POTTED_BOAT_ORCHID,
+                BUTTERFLY_CANDY, POTTED_BUTTERFLY_CANDY,
+                BUTTERFLY_WEED, POTTED_BUTTERFLY_WEED,
+                CONBUSH, POTTED_CONBUSH,
+                MORNING_GLORY, POTTED_MORNING_GLORY,
+                SILVER_IRIS, POTTED_SILVER_IRIS
+        );
+    }
 }

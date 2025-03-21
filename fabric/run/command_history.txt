@@ -1,2 +1,16 @@
 /give Player37 manymooblooms:bellflower
 /time set day
+/gamemode survival
+/gamemode creativee
+/gamemode creative
+/effect give Player100 minecraft:bad_omen infinite 255 true
+/tick sprint 1d
+/tick sprint stop
+/execute as @e at @s run summon minecraft:evoker
+/execute as @e at @s run summon vex
+/effect give @e[type=minecraft:villager] minecraft:glowing infinite 255 true
+/effect give @e[type=minecraft:villager] minecraft:wither infinite 255 true
+/kill @e[type=!player]
+/reload
+/time set day
+/advancement grant @a everything

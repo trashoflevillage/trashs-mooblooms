@@ -1,0 +1,20 @@
+{
+  "values": [
+    "#manymooblooms:white_moobloom_spawnable",
+    "#manymooblooms:light_gray_moobloom_spawnable",
+    "#manymooblooms:gray_moobloom_spawnable",
+    "#manymooblooms:black_moobloom_spawnable",
+    "#manymooblooms:brown_moobloom_spawnable",
+    "#manymooblooms:red_moobloom_spawnable",
+    "#manymooblooms:orange_moobloom_spawnable",
+    "#manymooblooms:yellow_moobloom_spawnable",
+    "#manymooblooms:lime_moobloom_spawnable",
+    "#manymooblooms:green_moobloom_spawnable",
+    "#manymooblooms:cyan_moobloom_spawnable",
+    "#manymooblooms:light_blue_moobloom_spawnable",
+    "#manymooblooms:blue_moobloom_spawnable",
+    "#manymooblooms:purple_moobloom_spawnable",
+    "#manymooblooms:magenta_moobloom_spawnable",
+    "#manymooblooms:pink_moobloom_spawnable"
+  ]
+}

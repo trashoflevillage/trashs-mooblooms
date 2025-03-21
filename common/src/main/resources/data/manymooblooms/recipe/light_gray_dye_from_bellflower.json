@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "white_dye",
+  "ingredients": [
+    "manymooblooms:bellflower"
+  ],
+  "result": {
+    "id": "minecraft:light_gray_dye",
+    "count": 1
+  }
+}

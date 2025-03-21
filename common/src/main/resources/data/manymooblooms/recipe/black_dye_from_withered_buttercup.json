@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "black_dye",
+  "ingredients": [
+    "manymooblooms:withered_buttercup"
+  ],
+  "result": {
+    "id": "minecraft:black_dye",
+    "count": 1
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:suspicious_stew",
+      "count": 1
+    },
+    "title": {
+      "translate": "advancements.husbandry.suspicious_brewery"
+    },
+    "description": {
+      "translate": "advancements.husbandry.suspicious_brewery.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "minecraft:husbandry/root",
+  "criteria": {
+    "milk_mooshroom_then_moobloom_for_stew": {
+      "trigger": "minecraft:impossible",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "milk_mooshroom_then_moobloom_for_stew"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}

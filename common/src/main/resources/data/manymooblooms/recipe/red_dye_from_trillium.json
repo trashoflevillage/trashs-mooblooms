@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "red_dye",
+  "ingredients": [
+    "manymooblooms:trillium"
+  ],
+  "result": {
+    "id": "minecraft:red_dye",
+    "count": 1
+  }
+}

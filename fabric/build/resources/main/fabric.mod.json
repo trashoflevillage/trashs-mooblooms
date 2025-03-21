@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "manymooblooms",
+  "version": "1.0.0",
+  "name": "Many Mooblooms",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "Me!"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/manymooblooms/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.trashoflevillage.manymooblooms.fabric.ManyMoobloomsFabric"
+    ],
+    "client": [
+      "io.github.trashoflevillage.manymooblooms.fabric.client.ExampleModFabricClient"
+    ]
+  },
+  "mixins": [
+    "manymooblooms.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.10",
+    "minecraft": "~1.21.4",
+    "java": ">=21",
+    "architectury": ">=15.0.1",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

@@ -1,15 +1,15 @@
 modLoader = "javafml"
 loaderVersion = "[4,)"
 #issueTrackerURL = ""
-license = "Insert License Here"
+license = "MIT"
 
 [[mods]]
 modId = "manymooblooms"
 version = "${version}"
 displayName = "Many Mooblooms"
-authors = "Me!"
+authors = "trashoflevillage"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+A unique take on the Moobloom, adding 16 new variants!
 '''
 #logoFile = ""
 

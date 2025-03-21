@@ -1,6 +1,8 @@
-[21:00:26] [main/INFO] (FabricLoader/GameProvider) Loading Minecraft 1.21.4 with Fabric Loader 0.16.10
-[21:00:26] [main/INFO] (FabricLoader) Loading 58 mods:
-	- architectury 15.0.1
+[00:35:37] [main/INFO] (FabricLoader/GameProvider) Loading Minecraft 1.21.4 with Fabric Loader 0.16.10
+[00:35:38] [main/INFO] (FabricLoader) Loading 62 mods:
+	- architectury 15.0.2
+	- cloth-config 17.0.144
+	   \-- cloth-basic-math 0.6.1
 	- fabric-api 0.119.2+1.21.4
 	- fabric-api-base 0.4.54+b47eab6b04
 	- fabric-api-lookup-api-v1 1.6.86+b1caf1e904
@@ -52,77 +54,195 @@
 	- fabric-transfer-api-v1 5.4.9+efa825c904
 	- fabric-transitive-access-wideners-v1 6.3.2+56e78b9b04
 	- fabricloader 0.16.10
-	- generated_f8b4da8 1.0.0
+	- generated_b41db5b 1.0.0
 	- java 21
 	- manymooblooms 1.0.0
 	- minecraft 1.21.4
 	- mixinextras 0.4.1
+	- roughlyenoughitems 18.0.800
+	   \-- error_notifier 1.0.11
 	- trashlib 2.0-ALPHA-1
-[21:00:26] [main/INFO] (FabricLoader/Mixin) SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/C:/Users/uhhno/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.15.4+mixin.0.8.7/6a12aacc794f1078458433116e9ed42c1cc98096/sponge-mixin-0.15.4+mixin.0.8.7.jar Service=Knot/Fabric Env=CLIENT
-[21:00:26] [main/INFO] (FabricLoader/Mixin) Loaded Fabric development mappings for mixin remapper!
-[21:00:26] [main/INFO] (FabricLoader/Mixin) Compatibility level set to JAVA_21
-[21:00:26] [main/WARN] (FabricLoader/Mixin) Reference map 'trashlib-common-common-refmap.json' for trashlib.mixins.json could not be read. If this is a development environment you can ignore this message
-[21:00:27] [main/INFO] (FabricLoader/MixinExtras|Service) Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.4.1).
-[21:00:28] [Datafixer Bootstrap/INFO] (Minecraft) 243 Datafixer optimizations took 396 milliseconds
-[21:00:28] [main/WARN] (PerfmonDisabled) Invalid registry value type detected for PerfOS counters. Should be REG_DWORD. Ignoring: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PerfOS\Performance\Disable Performance Counters.
-[21:00:33] [Render thread/INFO] (Minecraft) Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
-[21:00:33] [Render thread/INFO] (Minecraft) Setting user: Player457
-[21:00:33] [Render thread/INFO] (NetworkManagerImpl) Registering S2C receiver with id architectury:spawn_entity_packet
-[21:00:33] [Render thread/INFO] (Indigo) [Indigo] Registering Indigo renderer!
-[21:00:33] [Render thread/INFO] (Minecraft) Backend library: LWJGL version 3.3.3-snapshot
-[21:00:34] [Render thread/INFO] (Minecraft) Reloading ResourceManager: vanilla, fabric, fabric-api, fabric-api-base, fabric-api-lookup-api-v1, fabric-biome-api-v1, fabric-block-api-v1, fabric-block-view-api-v2, fabric-blockrenderlayer-v1, fabric-client-gametest-api-v1, fabric-client-tags-api-v1, fabric-command-api-v1, fabric-command-api-v2, fabric-commands-v0, fabric-content-registries-v0, fabric-convention-tags-v1, fabric-convention-tags-v2, fabric-crash-report-info-v1, fabric-data-attachment-api-v1, fabric-data-generation-api-v1, fabric-dimensions-v1, fabric-entity-events-v1, fabric-events-interaction-v0, fabric-game-rule-api-v1, fabric-gametest-api-v1, fabric-item-api-v1, fabric-item-group-api-v1, fabric-key-binding-api-v1, fabric-keybindings-v0, fabric-lifecycle-events-v1, fabric-loot-api-v2, fabric-loot-api-v3, fabric-message-api-v1, fabric-model-loading-api-v1, fabric-networking-api-v1, fabric-object-builder-api-v1, fabric-particles-v1, fabric-recipe-api-v1, fabric-registry-sync-v0, fabric-renderer-api-v1, fabric-renderer-indigo, fabric-rendering-data-attachment-v1, fabric-rendering-fluids-v1, fabric-rendering-v1, fabric-resource-conditions-api-v1, fabric-resource-loader-v0, fabric-screen-api-v1, fabric-screen-handler-api-v1, fabric-sound-api-v1, fabric-tag-api-v1, fabric-transfer-api-v1, fabric-transitive-access-wideners-v1, fabricloader, generated_f8b4da8
-[21:00:34] [Worker-Main-3/INFO] (Minecraft) Found unifont_jp_patch-16.0.01.hex, loading
-[21:00:34] [Worker-Main-2/INFO] (Minecraft) Found unifont_all_no_pua-16.0.01.hex, loading
-[21:00:35] [Worker-Main-6/WARN] (Minecraft) Missing model for variant: 'trashlib:test_block#'
-[21:00:35] [Render thread/INFO] (Minecraft) OpenAL initialized on device OpenAL Soft on Headset Earphone (CORSAIR HS80 RGB Wireless Gaming Headset)
-[21:00:35] [Render thread/INFO] (Minecraft) Sound engine started
-[21:00:35] [Render thread/INFO] (Minecraft) Created: 1024x512x4 minecraft:textures/atlas/blocks.png-atlas
-[21:00:35] [Render thread/INFO] (Minecraft) Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
-[21:00:35] [Render thread/INFO] (Minecraft) Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
-[21:00:35] [Render thread/INFO] (Minecraft) Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
-[21:00:35] [Render thread/INFO] (Minecraft) Created: 2048x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
-[21:00:35] [Render thread/INFO] (Minecraft) Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
-[21:00:35] [Render thread/INFO] (Minecraft) Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
-[21:00:35] [Render thread/INFO] (Minecraft) Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
-[21:00:35] [Render thread/INFO] (Minecraft) Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
-[21:00:35] [Render thread/INFO] (Minecraft) Created: 64x64x0 minecraft:textures/atlas/map_decorations.png-atlas
-[21:00:35] [Render thread/INFO] (Minecraft) Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
-[21:00:35] [Render thread/INFO] (Minecraft) Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
-[21:00:35] [Render thread/INFO] (Minecraft) Created: 256x128x0 minecraft:textures/atlas/mob_effects.png-atlas
-[21:00:35] [Render thread/INFO] (Minecraft) Created: 1024x512x0 minecraft:textures/atlas/gui.png-atlas
-[21:00:39] [Render thread/WARN] (Minecraft) Missing data pack generated_bc81c6e
-[21:00:39] [Render thread/INFO] (Minecraft) Found new data pack generated_f8b4da8, loading it automatically
-[21:00:40] [Worker-Main-11/ERROR] (Minecraft) Couldn't parse data file 'manymooblooms:withered_moobloom_slaughter' from 'manymooblooms:advancement/withered_moobloom_slaughter.json': DataResult.Error['Failed to parse either. First: Not a tag id; Second: Failed to parse either. First: Not a json array: "manymooblooms:moobloom"; Second: Failed to get element manymooblooms:moobloom missed input: {"withered_moobloom_slaughter":{"trigger":"minecraft:player_killed_entity","conditions":{"entity":[{"condition":"minecraft:entity_properties","entity":"this","predicate":{"type":"manymooblooms:moobloom","effects":{"minecraft:wither":{}}}}]}}}': Advancement[parent=Optional[minecraft:husbandry/root], display=Optional[net.minecraft.advancement.AdvancementDisplay@25d66822], rewards=AdvancementRewards[experience=50, loot=[], recipes=[], function=Optional.empty], criteria={withered_moobloom_slaughter=AdvancementCriterion[trigger=net.minecraft.advancement.criterion.OnKilledCriterion@5538acff, triggerInstance=Conditions[player=Optional.empty, entityPredicate=Optional[net.minecraft.predicate.entity.LootContextPredicate@62f3bf54], killingBlow=Optional.empty]]}, requirements=[[withered_moobloom_slaughter]], sendsTelemetryEvent=true, name=Optional[translation{key='chat.square_brackets', args=[translation{key='advancements.husbandry.withered_moobloom_slaughter', args=[]}[style={hoverEvent=EventData[action=<action show_text>, value=translation{key='advancements.husbandry.withered_moobloom_slaughter', args=[]}[style={color=dark_purple}, siblings=[literal{
+[00:35:42] [main/INFO] (FabricLoader/Mixin) SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/C:/Users/uhhno/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.15.4+mixin.0.8.7/6a12aacc794f1078458433116e9ed42c1cc98096/sponge-mixin-0.15.4+mixin.0.8.7.jar Service=Knot/Fabric Env=CLIENT
+[00:35:42] [main/INFO] (FabricLoader/Mixin) Loaded Fabric development mappings for mixin remapper!
+[00:35:42] [main/INFO] (FabricLoader/Mixin) Compatibility level set to JAVA_21
+[00:35:42] [main/WARN] (FabricLoader/Mixin) Reference map 'trashlib-common-common-refmap.json' for trashlib.mixins.json could not be read. If this is a development environment you can ignore this message
+[00:35:43] [main/INFO] (FabricLoader/MixinExtras|Service) Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.4.1).
+[00:35:44] [Datafixer Bootstrap/INFO] (Minecraft) 243 Datafixer optimizations took 464 milliseconds
+[00:35:44] [main/WARN] (PerfmonDisabled) Invalid registry value type detected for PerfOS counters. Should be REG_DWORD. Ignoring: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PerfOS\Performance\Disable Performance Counters.
+[00:35:49] [Render thread/INFO] (Minecraft) Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[00:35:49] [Render thread/INFO] (Minecraft) Setting user: Player948
+[00:35:49] [Render thread/INFO] (REI) [REI] Config loaded
+[00:35:49] [Render thread/INFO] (NetworkManagerImpl) Registering S2C receiver with id roughlyenoughitems:request_tags_s2c
+[00:35:49] [Render thread/INFO] (NetworkManagerImpl) Registering C2S receiver with id roughlyenoughitems:request_tags_c2s
+[00:35:49] [Render thread/INFO] (REI) [REI] Registered plugin provider DefaultPlugin [roughlyenoughitems] for REICommonPlugin
+[00:35:49] [Render thread/INFO] (REI) [REI] Registered plugin provider DefaultRuntimePlugin [roughlyenoughitems] for REICommonPlugin
+[00:35:49] [Render thread/INFO] (REI) [REI] Registered plugin provider FabricFluidAPISupportPlugin for REICommonPlugin
+[00:35:49] [Render thread/INFO] (NetworkManagerImpl) Registering C2S receiver with id roughlyenoughitems:delete_item
+[00:35:49] [Render thread/INFO] (NetworkManagerImpl) Registering C2S receiver with id roughlyenoughitems:create_item
+[00:35:49] [Render thread/INFO] (NetworkManagerImpl) Registering C2S receiver with id roughlyenoughitems:create_item_grab
+[00:35:49] [Render thread/INFO] (NetworkManagerImpl) Registering C2S receiver with id roughlyenoughitems:create_item_hotbar
+[00:35:49] [Render thread/INFO] (NetworkManagerImpl) Registering C2S receiver with id roughlyenoughitems:move_items_new
+[00:35:49] [Render thread/INFO] (Indigo) [Indigo] Registering Indigo renderer!
+[00:35:49] [Render thread/INFO] (REI) [REI] Registered plugin provider DefaultClientPlugin [roughlyenoughitems] for REIClientPlugin
+[00:35:49] [Render thread/INFO] (REI) [REI] Registered plugin provider DefaultClientRuntimePlugin [roughlyenoughitems] for REIClientPlugin
+[00:35:49] [Render thread/INFO] (REI) [REI] Registered plugin provider HideIngredientsFromTagsPlugin [roughlyenoughitems] for REIClientPlugin
+[00:35:49] [Render thread/INFO] (NetworkManagerImpl) Registering S2C receiver with id roughlyenoughitems:ci_msg
+[00:35:49] [Render thread/INFO] (NetworkManagerImpl) Registering S2C receiver with id roughlyenoughitems:og_not_enough
+[00:35:49] [Render thread/INFO] (NetworkManagerImpl) Registering S2C receiver with id roughlyenoughitems:sync_displays
+[00:35:49] [Render thread/INFO] (NetworkManagerImpl) Registering S2C receiver with id architectury:spawn_entity_packet
+[00:35:49] [Render thread/INFO] (Minecraft) Backend library: LWJGL version 3.3.3-snapshot
+[00:35:51] [Render thread/INFO] (Minecraft) Reloading ResourceManager: vanilla, fabric, cloth-config, fabric-api, fabric-api-base, fabric-api-lookup-api-v1, fabric-biome-api-v1, fabric-block-api-v1, fabric-block-view-api-v2, fabric-blockrenderlayer-v1, fabric-client-gametest-api-v1, fabric-client-tags-api-v1, fabric-command-api-v1, fabric-command-api-v2, fabric-commands-v0, fabric-content-registries-v0, fabric-convention-tags-v1, fabric-convention-tags-v2, fabric-crash-report-info-v1, fabric-data-attachment-api-v1, fabric-data-generation-api-v1, fabric-dimensions-v1, fabric-entity-events-v1, fabric-events-interaction-v0, fabric-game-rule-api-v1, fabric-gametest-api-v1, fabric-item-api-v1, fabric-item-group-api-v1, fabric-key-binding-api-v1, fabric-keybindings-v0, fabric-lifecycle-events-v1, fabric-loot-api-v2, fabric-loot-api-v3, fabric-message-api-v1, fabric-model-loading-api-v1, fabric-networking-api-v1, fabric-object-builder-api-v1, fabric-particles-v1, fabric-recipe-api-v1, fabric-registry-sync-v0, fabric-renderer-api-v1, fabric-renderer-indigo, fabric-rendering-data-attachment-v1, fabric-rendering-fluids-v1, fabric-rendering-v1, fabric-resource-conditions-api-v1, fabric-resource-loader-v0, fabric-screen-api-v1, fabric-screen-handler-api-v1, fabric-sound-api-v1, fabric-tag-api-v1, fabric-transfer-api-v1, fabric-transitive-access-wideners-v1, fabricloader, generated_b41db5b, roughlyenoughitems
+[00:35:51] [Worker-Main-1/INFO] (Minecraft) Found unifont_jp_patch-16.0.01.hex, loading
+[00:35:51] [Worker-Main-7/INFO] (Minecraft) Found unifont_all_no_pua-16.0.01.hex, loading
+[00:35:51] [Worker-Main-11/WARN] (Minecraft) Missing model for variant: 'trashlib:test_block#'
+[00:35:52] [Render thread/INFO] (Minecraft) OpenAL initialized on device OpenAL Soft on Headset Earphone (CORSAIR HS80 RGB Wireless Gaming Headset)
+[00:35:52] [Render thread/INFO] (Minecraft) Sound engine started
+[00:35:52] [Render thread/INFO] (Minecraft) Created: 1024x512x4 minecraft:textures/atlas/blocks.png-atlas
+[00:35:52] [Render thread/INFO] (Minecraft) Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
+[00:35:52] [Render thread/INFO] (Minecraft) Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
+[00:35:52] [Render thread/INFO] (Minecraft) Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
+[00:35:52] [Render thread/INFO] (Minecraft) Created: 2048x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
+[00:35:52] [Render thread/INFO] (Minecraft) Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
+[00:35:52] [Render thread/INFO] (Minecraft) Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
+[00:35:52] [Render thread/INFO] (Minecraft) Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
+[00:35:52] [Render thread/INFO] (Minecraft) Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
+[00:35:52] [Render thread/INFO] (Minecraft) Created: 64x64x0 minecraft:textures/atlas/map_decorations.png-atlas
+[00:35:52] [Render thread/INFO] (Minecraft) Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
+[00:35:52] [Render thread/INFO] (Minecraft) Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
+[00:35:52] [Render thread/INFO] (Minecraft) Created: 256x128x0 minecraft:textures/atlas/mob_effects.png-atlas
+[00:35:52] [Render thread/INFO] (Minecraft) Created: 1024x1024x0 minecraft:textures/atlas/gui.png-atlas
+[00:35:56] [Render thread/WARN] (Minecraft) Missing data pack generated_6761b2c
+[00:35:56] [Render thread/INFO] (Minecraft) Found new data pack generated_b41db5b, loading it automatically
+[00:35:57] [Worker-Main-1/ERROR] (Minecraft) Couldn't parse data file 'manymooblooms:withered_moobloom_slaughter' from 'manymooblooms:advancement/withered_moobloom_slaughter.json': DataResult.Error['Failed to parse either. First: Not a tag id; Second: Failed to parse either. First: Not a json array: "manymooblooms:moobloom"; Second: Failed to get element manymooblooms:moobloom missed input: {"withered_moobloom_slaughter":{"trigger":"minecraft:player_killed_entity","conditions":{"entity":[{"condition":"minecraft:entity_properties","entity":"this","predicate":{"type":"manymooblooms:moobloom","effects":{"minecraft:wither":{}}}}]}}}': Advancement[parent=Optional[minecraft:husbandry/root], display=Optional[net.minecraft.advancement.AdvancementDisplay@54660870], rewards=AdvancementRewards[experience=50, loot=[], recipes=[], function=Optional.empty], criteria={withered_moobloom_slaughter=AdvancementCriterion[trigger=net.minecraft.advancement.criterion.OnKilledCriterion@1b9f5523, triggerInstance=Conditions[player=Optional.empty, entityPredicate=Optional[net.minecraft.predicate.entity.LootContextPredicate@259d31cf], killingBlow=Optional.empty]]}, requirements=[[withered_moobloom_slaughter]], sendsTelemetryEvent=true, name=Optional[translation{key='chat.square_brackets', args=[translation{key='advancements.husbandry.withered_moobloom_slaughter', args=[]}[style={hoverEvent=EventData[action=<action show_text>, value=translation{key='advancements.husbandry.withered_moobloom_slaughter', args=[]}[style={color=dark_purple}, siblings=[literal{
 }, translation{key='advancements.husbandry.withered_moobloom_slaughter.description', args=[]}]]]}]]}[style={color=dark_purple}]]]]
-[21:00:40] [Render thread/INFO] (Minecraft) Loaded 1386 recipes
-[21:00:40] [Render thread/INFO] (Minecraft) Loaded 1482 advancements
-[21:00:40] [Render thread/INFO] (BiomeModificationImpl) Applied 0 biome modifications to 0 of 65 new biomes in 873.5 μs
-[21:00:40] [Server thread/INFO] (Minecraft) Starting integrated minecraft server version 1.21.4
-[21:00:40] [Server thread/INFO] (Minecraft) Generating keypair
-[21:00:40] [Server thread/INFO] (Minecraft) Preparing start region for dimension minecraft:overworld
-[21:00:41] [Render thread/INFO] (Minecraft) Preparing spawn area: 0%
-[21:00:41] [Render thread/INFO] (Minecraft) Preparing spawn area: 0%
-[21:00:41] [Render thread/INFO] (Minecraft) Time elapsed: 897 ms
-[21:00:41] [Server thread/INFO] (Minecraft) Changing view distance to 12, from 10
-[21:00:41] [Server thread/INFO] (Minecraft) Changing simulation distance to 12, from 0
-[21:00:42] [Server thread/INFO] (Minecraft) Player457[local:E:d377e389] logged in with entity id 50 at (-93.84554075199893, 66.0, 2.643915383410561)
-[21:00:42] [Server thread/INFO] (Minecraft) Player457 joined the game
-[21:00:42] [Render thread/INFO] (Minecraft) Loaded 2 advancements
-[21:00:53] [Server thread/INFO] (Minecraft) Saving and pausing game...
-[21:00:53] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
-[21:00:53] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
-[21:00:53] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
-[21:00:53] [Server thread/INFO] (Minecraft) Player457 lost connection: Disconnected
-[21:00:53] [Server thread/INFO] (Minecraft) Player457 left the game
-[21:00:53] [Server thread/INFO] (Minecraft) Stopping singleplayer server as player logged out
-[21:00:54] [Server thread/INFO] (Minecraft) Stopping server
-[21:00:54] [Server thread/INFO] (Minecraft) Saving players
-[21:00:54] [Server thread/INFO] (Minecraft) Saving worlds
-[21:00:54] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
-[21:00:54] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
-[21:00:54] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
-[21:00:54] [Server thread/INFO] (Minecraft) ThreadedAnvilChunkStorage (New World): All chunks are saved
-[21:00:54] [Server thread/INFO] (Minecraft) ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
-[21:00:54] [Server thread/INFO] (Minecraft) ThreadedAnvilChunkStorage (DIM1): All chunks are saved
-[21:00:54] [Server thread/INFO] (Minecraft) ThreadedAnvilChunkStorage: All dimensions are saved
-[21:00:56] [Render thread/INFO] (Minecraft) Stopping!
+[00:35:57] [Render thread/INFO] (Minecraft) Loaded 1386 recipes
+[00:35:57] [Render thread/INFO] (Minecraft) Loaded 1482 advancements
+[00:35:57] [Render thread/INFO] (BiomeModificationImpl) Applied 0 biome modifications to 0 of 65 new biomes in 965.5 μs
+[00:35:57] [Server thread/INFO] (Minecraft) Starting integrated minecraft server version 1.21.4
+[00:35:57] [Server thread/INFO] (Minecraft) Generating keypair
+[00:35:57] [Server thread/INFO] (Minecraft) Preparing start region for dimension minecraft:overworld
+[00:35:58] [Render thread/INFO] (Minecraft) Preparing spawn area: 0%
+[00:35:58] [Render thread/INFO] (Minecraft) Preparing spawn area: 0%
+[00:35:58] [Render thread/INFO] (Minecraft) Time elapsed: 834 ms
+[00:35:58] [Server thread/INFO] (Minecraft) Changing view distance to 12, from 10
+[00:35:58] [Server thread/INFO] (Minecraft) Changing simulation distance to 12, from 0
+[00:35:59] [Server thread/INFO] (Minecraft) Player948[local:E:34f0ea99] logged in with entity id 44 at (-91.36905195998696, 68.11650136792812, -3.2138816836243063)
+[00:35:59] [Server thread/INFO] (Minecraft) Player948 joined the game
+[00:35:59] [Render thread/WARN] (REI) [REI] Found 1 existing reload task(s) after trying to terminate them!
+[00:35:59] [Render thread/INFO] (Minecraft) Loaded 2 advancements
+[00:35:59] [REI-ReloadPlugins/INFO] (REI) [REI] ++++++++++++++++++++++++++++++++++++++++
+[00:35:59] [REI-ReloadPlugins/INFO] (REI) [REI] REICommonPlugin starting main-reload for START.
+[00:35:59] [REI-ReloadPlugins/INFO] (REI) [REI] Plugins (3):
+[00:35:59] [REI-ReloadPlugins/INFO] (REI) [REI]  - (-100.00) DefaultPlugin of DefaultPlugin [roughlyenoughitems]
+[00:35:59] [REI-ReloadPlugins/INFO] (REI) [REI]  - (0.00) FabricFluidAPISupportPlugin
+[00:35:59] [REI-ReloadPlugins/INFO] (REI) [REI]  - (0.00) DefaultRuntimePlugin of DefaultRuntimePlugin [roughlyenoughitems]
+[00:35:59] [REI-ReloadPlugins/INFO] (REI) [REI] ++++++++++++++++++++++++++++++++++++++++
+[00:35:59] [REI-ReloadPlugins/INFO] (REI) [REI] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[00:35:59] [REI-ReloadPlugins/INFO] (REI) [REI] REIClientPlugin starting main-reload for START.
+[00:35:59] [REI-ReloadPlugins/INFO] (REI) [REI] Plugins (3):
+[00:35:59] [REI-ReloadPlugins/INFO] (REI) [REI]  - (-100.00) DefaultClientPlugin of DefaultClientPlugin [roughlyenoughitems]
+[00:35:59] [REI-ReloadPlugins/INFO] (REI) [REI]  - (0.00) HideIngredientsFromTagsPlugin of HideIngredientsFromTagsPlugin [roughlyenoughitems]
+[00:35:59] [REI-ReloadPlugins/INFO] (REI) [REI]  - (0.00) DefaultClientRuntimePlugin of DefaultClientRuntimePlugin [roughlyenoughitems]
+[00:35:59] [REI-ReloadPlugins/INFO] (REI) [REI] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[00:36:00] [REI-ReloadPlugins/INFO] (REI) [REI] REICommonPlugin finished post-reload for START in 1.470 ms, totaling 88.23 ms.
+[00:36:00] [REI-ReloadPlugins/INFO] (REI) [REI] REIClientPlugin finished post-reload for START in 1.595 ms, totaling 394.1 ms.
+[00:36:00] [REI-ReloadPlugins/INFO] (REI) [REI] ++++++++++++++++++++++++++++++++++++++++
+[00:36:00] [REI-ReloadPlugins/INFO] (REI) [REI] REICommonPlugin starting main-reload for END.
+[00:36:00] [REI-ReloadPlugins/INFO] (REI) [REI] Plugins (3):
+[00:36:00] [REI-ReloadPlugins/INFO] (REI) [REI]  - (-100.00) DefaultPlugin of DefaultPlugin [roughlyenoughitems]
+[00:36:00] [REI-ReloadPlugins/INFO] (REI) [REI]  - (0.00) FabricFluidAPISupportPlugin
+[00:36:00] [REI-ReloadPlugins/INFO] (REI) [REI]  - (0.00) DefaultRuntimePlugin of DefaultRuntimePlugin [roughlyenoughitems]
+[00:36:00] [REI-ReloadPlugins/INFO] (REI) [REI] ++++++++++++++++++++++++++++++++++++++++
+[00:36:00] [REI-ReloadPlugins/INFO] (REI) [REI] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[00:36:00] [REI-ReloadPlugins/INFO] (REI) [REI] REIClientPlugin starting main-reload for END.
+[00:36:00] [REI-ReloadPlugins/INFO] (REI) [REI] Plugins (3):
+[00:36:00] [REI-ReloadPlugins/INFO] (REI) [REI]  - (-100.00) DefaultClientPlugin of DefaultClientPlugin [roughlyenoughitems]
+[00:36:00] [REI-ReloadPlugins/INFO] (REI) [REI]  - (0.00) HideIngredientsFromTagsPlugin of HideIngredientsFromTagsPlugin [roughlyenoughitems]
+[00:36:00] [REI-ReloadPlugins/INFO] (REI) [REI]  - (0.00) DefaultClientRuntimePlugin of DefaultClientRuntimePlugin [roughlyenoughitems]
+[00:36:00] [REI-ReloadPlugins/INFO] (REI) [REI] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[00:36:00] [REI-ReloadPlugins/INFO] (REI) [REI] REICommonPlugin finished post-reload for END in 1.102 ms, totaling 157.5 ms.
+[00:36:00] [REI-ReloadPlugins/INFO] (REI) [REI] REIClientPlugin finished post-reload for END in 2.859 ms, totaling 728.1 ms.
+[00:36:02] [Render thread/INFO] (REI) [REI] [REI Server Display Sync] Received server's request to set 1566 recipes.
+[00:36:02] [Render thread/WARN] (REI) [REI] Detected runtime DisplayRegistry modification, this can be extremely dangerous!
+[00:37:03] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[00:37:03] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[00:37:03] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[00:37:03] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[00:37:38] [Render thread/WARN] (Minecraft) Unable to play empty soundEvent: minecraft:entity.salmon.ambient
+[00:37:56] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[00:37:56] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[00:37:56] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[00:37:56] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[00:38:02] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[00:38:02] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[00:38:02] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[00:38:02] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[00:38:45] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[00:38:45] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[00:38:45] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[00:38:45] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[00:38:50] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[00:38:50] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[00:38:50] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[00:38:50] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[00:38:56] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[00:38:56] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[00:38:56] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[00:38:56] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[00:39:46] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[00:39:46] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[00:39:46] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[00:39:46] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[00:40:43] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[00:40:43] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[00:40:43] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[00:40:43] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[00:41:02] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[00:41:02] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[00:41:02] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[00:41:02] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[00:41:11] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[00:41:11] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[00:41:11] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[00:41:11] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[00:41:17] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[00:41:17] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[00:41:17] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[00:41:17] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[00:41:59] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[00:41:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[00:41:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[00:41:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[00:42:11] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[00:42:11] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[00:42:11] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[00:42:11] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[00:42:31] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[00:42:31] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[00:42:31] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[00:42:31] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[00:42:48] [Render thread/INFO] (Minecraft) [System] [CHAT] Saved screenshot as 2025-03-21_00.42.48.png
+[00:52:45] [Server thread/INFO] (Minecraft) [Player948: Set the time to 1000]
+[00:52:45] [Render thread/INFO] (Minecraft) [System] [CHAT] Set the time to 1000
+[00:52:50] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[00:52:50] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[00:52:50] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[00:52:50] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[00:53:04] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[00:53:04] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[00:53:04] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[00:53:04] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[00:53:04] [Server thread/INFO] (Minecraft) Player948 lost connection: Disconnected
+[00:53:04] [Server thread/INFO] (Minecraft) Player948 left the game
+[00:53:04] [Server thread/INFO] (Minecraft) Stopping singleplayer server as player logged out
+[00:53:05] [Server thread/INFO] (Minecraft) Stopping server
+[00:53:05] [Server thread/INFO] (Minecraft) Saving players
+[00:53:05] [Server thread/INFO] (Minecraft) Saving worlds
+[00:53:05] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[00:53:05] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[00:53:05] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[00:53:05] [Server thread/INFO] (Minecraft) ThreadedAnvilChunkStorage (New World): All chunks are saved
+[00:53:05] [Server thread/INFO] (Minecraft) ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[00:53:05] [Server thread/INFO] (Minecraft) ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[00:53:05] [Server thread/INFO] (Minecraft) ThreadedAnvilChunkStorage: All dimensions are saved
+[00:53:06] [Render thread/INFO] (Minecraft) Stopping!

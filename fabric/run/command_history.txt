@@ -1,1 +1,2 @@
 /give Player37 manymooblooms:bellflower
+/time set day

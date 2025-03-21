@@ -3,15 +3,22 @@
   "id": "manymooblooms",
   "version": "1.0.0",
   "name": "Many Mooblooms",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "A unique take on the Moobloom, adding 16 new variants!",
   "authors": [
-    "Me!"
+    "trashoflevillage"
+  ],
+  "contributors": [
+    "Floophead",
+    "pixlii",
+    "sao",
+    "Sovseabird",
+    "RedDude9999"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://modrinth.com/project/trashs-mooblooms",
+    "sources": "https://github.com/trashoflevillage/trashs-mooblooms"
   },
-  "license": "CC0-1.0",
+  "license": "MIT",
   "icon": "assets/manymooblooms/icon.png",
   "environment": "*",
   "entrypoints": {
@@ -29,7 +36,7 @@
     "fabricloader": ">=0.16.10",
     "minecraft": "~1.21.4",
     "java": ">=21",
-    "architectury": ">=15.0.1",
+    "architectury": ">=15.0.2",
     "fabric-api": "*"
   },
   "suggests": {

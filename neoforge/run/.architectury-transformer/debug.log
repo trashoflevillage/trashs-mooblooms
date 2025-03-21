@@ -106,46 +106,27 @@
 [Architectury Transformer DEBUG]  - C:\Users\uhhno\.gradle\caches\modules-2\files-2.1\io.netty\netty-transport-native-epoll\4.1.115.Final\a6cc58c4a259bad159cbb06120cea9b3474e86a0\netty-transport-native-epoll-4.1.115.Final-linux-x86_64.jar
 [Architectury Transformer DEBUG]  - C:\Users\uhhno\.gradle\caches\modules-2\files-2.1\io.netty\netty-transport-native-epoll\4.1.115.Final\a80b32f98ceb4e27958c0ceaf22ddad9ea6c0d4e\netty-transport-native-epoll-4.1.115.Final-linux-aarch_64.jar
 [Architectury Transformer DEBUG]  - C:\Users\uhhno\IdeaProjects\trashs-mooblooms\.gradle\loom-cache\remapped_mods\loom_mappings_1_21_4_layered_hash_1284229067_v2_neoforge_21_4_9_beta_forge\maven\modrinth\trashlib\2.0-ALPHA-1-neoforge\trashlib-2.0-ALPHA-1-neoforge.jar
-[Architectury Transformer DEBUG]  - C:\Users\uhhno\IdeaProjects\trashs-mooblooms\.gradle\loom-cache\remapped_mods\loom_mappings_1_21_4_layered_hash_1284229067_v2_neoforge_21_4_9_beta_forge\dev\architectury\architectury-neoforge\15.0.1\architectury-neoforge-15.0.1.jar
-[Architectury Transformer] Read classpath in 1.127 s
+[Architectury Transformer DEBUG]  - C:\Users\uhhno\IdeaProjects\trashs-mooblooms\.gradle\loom-cache\remapped_mods\loom_mappings_1_21_4_layered_hash_1284229067_v2_neoforge_21_4_9_beta_forge\dev\architectury\architectury-neoforge\15.0.2\architectury-neoforge-15.0.2.jar
+[Architectury Transformer] Read classpath in 1.213 s
 [Architectury Transformer DEBUG] Closed File Systems for C:\Users\uhhno\IdeaProjects\trashs-mooblooms\common\build\devlibs\manymooblooms-common-1.0.0-dev.jar
-[Architectury Transformer DEBUG] Transforming 6 transformer(s) from C:\Users\uhhno\IdeaProjects\trashs-mooblooms\common\build\devlibs\manymooblooms-common-1.0.0-dev.jar to C:\Users\uhhno\AppData\Local\Temp\15703636209177410510.jar: 
+[Architectury Transformer DEBUG] Transforming 6 transformer(s) from C:\Users\uhhno\IdeaProjects\trashs-mooblooms\common\build\devlibs\manymooblooms-common-1.0.0-dev.jar to C:\Users\uhhno\AppData\Local\Temp\15907729301102124040.jar: 
 [Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformExpectPlatform@4ec4f3a0
 [Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.RemapInjectables@223191a6
 [Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformPlatformOnly@49139829
 [Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformNeoForgeAnnotations@9597028
 [Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformNeoForgeEnvironment@6069db50
 [Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.GenerateFakeNeoForgeMod@4efbca5a
-[Architectury Transformer DEBUG] Transforming from C:\Users\uhhno\IdeaProjects\trashs-mooblooms\common\build\devlibs\manymooblooms-common-1.0.0-dev.jar to C:\Users\uhhno\AppData\Local\Temp\15703636209177410510.jar with 6 transformer(s) on dev.architectury.transformer.handler.SimpleTransformerHandler
+[Architectury Transformer DEBUG] Transforming from C:\Users\uhhno\IdeaProjects\trashs-mooblooms\common\build\devlibs\manymooblooms-common-1.0.0-dev.jar to C:\Users\uhhno\AppData\Local\Temp\15907729301102124040.jar with 6 transformer(s) on dev.architectury.transformer.handler.SimpleTransformerHandler
 [Architectury Transformer DEBUG] Remapping with 1 mapping provider(s):
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformNeoForgeEnvironment$$Lambda/0x000002328302fa90@6cf0e0ba
+[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformNeoForgeEnvironment$$Lambda/0x000002823202f860@6cf0e0ba
 [Architectury Transformer DEBUG] Remapping Classes:
 [Architectury Transformer DEBUG] net/fabricmc/api/EnvType -> net/neoforged/api/distmarker/Dist
 [Architectury Transformer DEBUG] net/fabricmc/api/Environment -> net/neoforged/api/distmarker/OnlyIn
 [Architectury Transformer DEBUG] Found class transformer
 [Architectury Transformer DEBUG] Writing io/github/trashoflevillage/manymooblooms/ManyMooblooms with maxs=true frames=true
 [Architectury Transformer DEBUG] Writing io/github/trashoflevillage/manymooblooms/blocks/ModBlocks with maxs=true frames=true
-[Architectury Transformer DEBUG] Closed File Systems for C:\Users\uhhno\AppData\Local\Temp\15703636209177410510.jar
+[Architectury Transformer DEBUG] Closed File Systems for C:\Users\uhhno\AppData\Local\Temp\15907729301102124040.jar
 [Architectury Transformer] Listening at C:\Users\uhhno\IdeaProjects\trashs-mooblooms\common\build\devlibs\manymooblooms-common-1.0.0-dev.jar
-[Architectury Transformer DEBUG] Temporary jar [C:\Users\uhhno\AppData\Local\Temp\15703636209177410510.jar] contains packages: io.github.trashoflevillage.manymooblooms, io.github.trashoflevillage.manymooblooms.blocks
+[Architectury Transformer DEBUG] Temporary jar [C:\Users\uhhno\AppData\Local\Temp\15907729301102124040.jar] contains packages: io.github.trashoflevillage.manymooblooms, io.github.trashoflevillage.manymooblooms.blocks
 [Architectury Transformer DEBUG] Closed File Systems for C:\Users\uhhno\IdeaProjects\trashs-mooblooms\common\build\devlibs\manymooblooms-common-1.0.0-dev.jar
 [Architectury Transformer DEBUG] Classpath entry [C:\Users\uhhno\IdeaProjects\trashs-mooblooms\neoforge\build\resources\main] contains packages: 
-[Architectury Transformer DEBUG] Transforming from io/github/trashoflevillage/manymooblooms/ManyMooblooms.class to io/github/trashoflevillage/manymooblooms/ManyMooblooms.class with 6 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
-[Architectury Transformer DEBUG] Remapping with 1 mapping provider(s):
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformNeoForgeEnvironment$$Lambda/0x000002328302fa90@6cf0e0ba
-[Architectury Transformer DEBUG] Remapping with Dirty Mappings...
-[Architectury Transformer DEBUG] Remapping Classes:
-[Architectury Transformer DEBUG] net/fabricmc/api/EnvType -> net/neoforged/api/distmarker/Dist
-[Architectury Transformer DEBUG] net/fabricmc/api/Environment -> net/neoforged/api/distmarker/OnlyIn
-[Architectury Transformer DEBUG] Found class transformer
-[Architectury Transformer DEBUG] Writing io/github/trashoflevillage/manymooblooms/ManyMooblooms with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed io/github/trashoflevillage/manymooblooms/ManyMooblooms in 64.79 ms
-[Architectury Transformer DEBUG] Transforming from io/github/trashoflevillage/manymooblooms/blocks/ModBlocks.class to io/github/trashoflevillage/manymooblooms/blocks/ModBlocks.class with 6 transformer(s) on dev.architectury.transformer.handler.TinyRemapperPreparedTransformerHandler
-[Architectury Transformer DEBUG] Remapping with 1 mapping provider(s):
-[Architectury Transformer DEBUG]  - dev.architectury.transformer.transformers.TransformNeoForgeEnvironment$$Lambda/0x000002328302fa90@6cf0e0ba
-[Architectury Transformer DEBUG] Remapping Classes:
-[Architectury Transformer DEBUG] net/fabricmc/api/EnvType -> net/neoforged/api/distmarker/Dist
-[Architectury Transformer DEBUG] net/fabricmc/api/Environment -> net/neoforged/api/distmarker/OnlyIn
-[Architectury Transformer DEBUG] Found class transformer
-[Architectury Transformer DEBUG] Writing io/github/trashoflevillage/manymooblooms/blocks/ModBlocks with maxs=true frames=true
-[Architectury Transformer DEBUG] Transformed io/github/trashoflevillage/manymooblooms/blocks/ModBlocks in 24.11 ms

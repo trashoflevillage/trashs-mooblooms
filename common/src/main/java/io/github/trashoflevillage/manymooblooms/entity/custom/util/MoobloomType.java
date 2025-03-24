@@ -1,4 +1,4 @@
-package io.github.trashoflevillage.manymooblooms.entities.custom.util;
+package io.github.trashoflevillage.manymooblooms.entity.custom.util;
 
 
 import io.github.trashoflevillage.manymooblooms.ManyMooblooms;

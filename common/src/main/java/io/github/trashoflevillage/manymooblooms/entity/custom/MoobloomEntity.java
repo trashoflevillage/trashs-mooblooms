@@ -1,8 +1,9 @@
-package io.github.trashoflevillage.manymooblooms.entities.custom;
+package io.github.trashoflevillage.manymooblooms.entity.custom;
 
 import io.github.trashoflevillage.manymooblooms.ManyMooblooms;
-import io.github.trashoflevillage.manymooblooms.entities.ModEntities;
-import io.github.trashoflevillage.manymooblooms.entities.custom.util.MoobloomType;
+import io.github.trashoflevillage.manymooblooms.entity.ModEntities;
+import io.github.trashoflevillage.manymooblooms.entity.ModEntitySpawn;
+import io.github.trashoflevillage.manymooblooms.entity.custom.util.MoobloomType;
 import net.minecraft.block.SuspiciousStewIngredient;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.DyedColorComponent;
@@ -28,6 +29,7 @@ import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.world.ServerWorld;
@@ -37,6 +39,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LocalDifficulty;
@@ -60,7 +63,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
 
     @Nullable
     public MoobloomEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        MoobloomEntity moobloomEntity = ModEntities.MOOBLOOM.create(serverWorld, SpawnReason.BREEDING);
+        MoobloomEntity moobloomEntity = ModEntities.MOOBLOOM.get().create(serverWorld, SpawnReason.BREEDING);
         if (moobloomEntity != null) {
             moobloomEntity.setVariant(this.chooseBabyType((MoobloomEntity)passiveEntity));
         }
@@ -69,7 +72,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     }
 
     public static boolean canSpawn(EntityType<MoobloomEntity> entityType, ServerWorldAccess world, SpawnReason reason, BlockPos pos, Random random) {
-        return world.getBlockState(pos.down()).isIn(ModTags.Blocks.MOOBLOOM_SPAWNABLE_ON) && ((world.getDimension().hasSkyLight() && isLightLevelValidForNaturalSpawn(world, pos)) || !world.getDimension().hasSkyLight());
+        return world.getBlockState(pos.down()).isIn(BlockTags.ANIMALS_SPAWNABLE_ON/*ModTags.Blocks.MOOBLOOM_SPAWNABLE_ON*/) && ((world.getDimension().hasSkyLight() && isLightLevelValidForNaturalSpawn(world, pos)) || !world.getDimension().hasSkyLight());
     }
 
     private MoobloomType chooseBabyType(MoobloomEntity moobloom) {
@@ -160,7 +163,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     }
 
     public ItemStack tryToDyeItemStack(ItemStack itemStack) {
-        HashMap<TagKey<Item>, HashMap<String, Item>> dyedItems = getDyeableItemHashmap();
+        HashMap<TagKey<Item>, HashMap<String, Item>> dyedItems = new HashMap<>(); //getDyeableItemHashmap();
 
         if (!itemStack.isIn(ItemTags.DYEABLE)) {
             for (TagKey<Item> i : dyedItems.keySet()) {
@@ -210,241 +213,241 @@ public class MoobloomEntity extends CowEntity implements Shearable {
         return null;
     }
 
-    private HashMap<TagKey<Item>, HashMap<String, Item>> getDyeableItemHashmap() {
-        HashMap<TagKey<Item>, HashMap<String, Item>> dyedItems = new HashMap<>();
-
-        HashMap<String, Item> entry;
-        dyedItems.put(ItemTags.WOOL, new HashMap<>());
-
-        entry = dyedItems.get(ItemTags.WOOL);
-        entry.put("white", Items.WHITE_WOOL);
-        entry.put("light_gray", Items.LIGHT_GRAY_WOOL);
-        entry.put("gray", Items.GRAY_WOOL);
-        entry.put("black", Items.BLACK_WOOL);
-        entry.put("brown", Items.BROWN_WOOL);
-        entry.put("red", Items.RED_WOOL);
-        entry.put("orange", Items.ORANGE_WOOL);
-        entry.put("yellow", Items.YELLOW_WOOL);
-        entry.put("lime", Items.LIME_WOOL);
-        entry.put("green", Items.GREEN_WOOL);
-        entry.put("cyan", Items.CYAN_WOOL);
-        entry.put("light_blue", Items.LIGHT_BLUE_WOOL);
-        entry.put("blue", Items.BLUE_WOOL);
-        entry.put("purple", Items.PURPLE_WOOL);
-        entry.put("magenta", Items.MAGENTA_WOOL);
-        entry.put("pink", Items.PINK_WOOL);
-
-        dyedItems.put(ItemTags.WOOL_CARPETS, new HashMap<>());
-        entry = dyedItems.get(ItemTags.WOOL_CARPETS);
-        entry.put("white", Items.WHITE_CARPET);
-        entry.put("light_gray", Items.LIGHT_GRAY_CARPET);
-        entry.put("gray", Items.GRAY_CARPET);
-        entry.put("black", Items.BLACK_CARPET);
-        entry.put("brown", Items.BROWN_CARPET);
-        entry.put("red", Items.RED_CARPET);
-        entry.put("orange", Items.ORANGE_CARPET);
-        entry.put("yellow", Items.YELLOW_CARPET);
-        entry.put("lime", Items.LIME_CARPET);
-        entry.put("green", Items.GREEN_CARPET);
-        entry.put("cyan", Items.CYAN_CARPET);
-        entry.put("light_blue", Items.LIGHT_BLUE_CARPET);
-        entry.put("blue", Items.BLUE_CARPET);
-        entry.put("purple", Items.PURPLE_CARPET);
-        entry.put("magenta", Items.MAGENTA_CARPET);
-        entry.put("pink", Items.PINK_CARPET);
-
-        dyedItems.put(ItemTags.BANNERS, new HashMap<>());
-        entry = dyedItems.get(ItemTags.BANNERS);
-        entry.put("white", Items.WHITE_BANNER);
-        entry.put("light_gray", Items.LIGHT_GRAY_BANNER);
-        entry.put("gray", Items.GRAY_BANNER);
-        entry.put("black", Items.BLACK_BANNER);
-        entry.put("brown", Items.BROWN_BANNER);
-        entry.put("red", Items.RED_BANNER);
-        entry.put("orange", Items.ORANGE_BANNER);
-        entry.put("yellow", Items.YELLOW_BANNER);
-        entry.put("lime", Items.LIME_BANNER);
-        entry.put("green", Items.GREEN_BANNER);
-        entry.put("cyan", Items.CYAN_BANNER);
-        entry.put("light_blue", Items.LIGHT_BLUE_BANNER);
-        entry.put("blue", Items.BLUE_BANNER);
-        entry.put("purple", Items.PURPLE_BANNER);
-        entry.put("magenta", Items.MAGENTA_BANNER);
-        entry.put("pink", Items.PINK_BANNER);
-
-        dyedItems.put(ItemTags.TERRACOTTA, new HashMap<>());
-        entry = dyedItems.get(ItemTags.TERRACOTTA);
-        entry.put("white", Items.WHITE_TERRACOTTA);
-        entry.put("light_gray", Items.LIGHT_GRAY_TERRACOTTA);
-        entry.put("gray", Items.GRAY_TERRACOTTA);
-        entry.put("black", Items.BLACK_TERRACOTTA);
-        entry.put("brown", Items.BROWN_TERRACOTTA);
-        entry.put("red", Items.RED_TERRACOTTA);
-        entry.put("orange", Items.ORANGE_TERRACOTTA);
-        entry.put("yellow", Items.YELLOW_TERRACOTTA);
-        entry.put("lime", Items.LIME_TERRACOTTA);
-        entry.put("green", Items.GREEN_TERRACOTTA);
-        entry.put("cyan", Items.CYAN_TERRACOTTA);
-        entry.put("light_blue", Items.LIGHT_BLUE_TERRACOTTA);
-        entry.put("blue", Items.BLUE_TERRACOTTA);
-        entry.put("purple", Items.PURPLE_TERRACOTTA);
-        entry.put("magenta", Items.MAGENTA_TERRACOTTA);
-        entry.put("pink", Items.PINK_TERRACOTTA);
-
-        dyedItems.put(ItemTags.BEDS, new HashMap<>());
-        entry = dyedItems.get(ItemTags.BEDS);
-        entry.put("white", Items.WHITE_BED);
-        entry.put("light_gray", Items.LIGHT_GRAY_BED);
-        entry.put("gray", Items.GRAY_BED);
-        entry.put("black", Items.BLACK_BED);
-        entry.put("brown", Items.BROWN_BED);
-        entry.put("red", Items.RED_BED);
-        entry.put("orange", Items.ORANGE_BED);
-        entry.put("yellow", Items.YELLOW_BED);
-        entry.put("lime", Items.LIME_BED);
-        entry.put("green", Items.GREEN_BED);
-        entry.put("cyan", Items.CYAN_BED);
-        entry.put("light_blue", Items.LIGHT_BLUE_BED);
-        entry.put("blue", Items.BLUE_BED);
-        entry.put("purple", Items.PURPLE_BED);
-        entry.put("magenta", Items.MAGENTA_BED);
-        entry.put("pink", Items.PINK_BED);
-
-        dyedItems.put(ConventionalItemTags.CONCRETE_POWDERS, new HashMap<>());
-        entry = dyedItems.get(ConventionalItemTags.CONCRETE_POWDERS);
-        entry.put("white", Items.WHITE_CONCRETE_POWDER);
-        entry.put("light_gray", Items.LIGHT_GRAY_CONCRETE_POWDER);
-        entry.put("gray", Items.GRAY_CONCRETE_POWDER);
-        entry.put("black", Items.BLACK_CONCRETE_POWDER);
-        entry.put("brown", Items.BROWN_CONCRETE_POWDER);
-        entry.put("red", Items.RED_CONCRETE_POWDER);
-        entry.put("orange", Items.ORANGE_CONCRETE_POWDER);
-        entry.put("yellow", Items.YELLOW_CONCRETE_POWDER);
-        entry.put("lime", Items.LIME_CONCRETE_POWDER);
-        entry.put("green", Items.GREEN_CONCRETE_POWDER);
-        entry.put("cyan", Items.CYAN_CONCRETE_POWDER);
-        entry.put("light_blue", Items.LIGHT_BLUE_CONCRETE_POWDER);
-        entry.put("blue", Items.BLUE_CONCRETE_POWDER);
-        entry.put("purple", Items.PURPLE_CONCRETE_POWDER);
-        entry.put("magenta", Items.MAGENTA_CONCRETE_POWDER);
-        entry.put("pink", Items.PINK_CONCRETE_POWDER);
-
-        dyedItems.put(ConventionalItemTags.CONCRETE, new HashMap<>());
-        entry = dyedItems.get(ConventionalItemTags.CONCRETE);
-        entry.put("white", Items.WHITE_CONCRETE);
-        entry.put("light_gray", Items.LIGHT_GRAY_CONCRETE);
-        entry.put("gray", Items.GRAY_CONCRETE);
-        entry.put("black", Items.BLACK_CONCRETE);
-        entry.put("brown", Items.BROWN_CONCRETE);
-        entry.put("red", Items.RED_CONCRETE);
-        entry.put("orange", Items.ORANGE_CONCRETE);
-        entry.put("yellow", Items.YELLOW_CONCRETE);
-        entry.put("lime", Items.LIME_CONCRETE);
-        entry.put("green", Items.GREEN_CONCRETE);
-        entry.put("cyan", Items.CYAN_CONCRETE);
-        entry.put("light_blue", Items.LIGHT_BLUE_CONCRETE);
-        entry.put("blue", Items.BLUE_CONCRETE);
-        entry.put("purple", Items.PURPLE_CONCRETE);
-        entry.put("magenta", Items.MAGENTA_CONCRETE);
-        entry.put("pink", Items.PINK_CONCRETE);
-
-        dyedItems.put(ConventionalItemTags.GLASS_BLOCKS, new HashMap<>());
-        entry = dyedItems.get(ConventionalItemTags.GLASS_BLOCKS);
-        entry.put("white", Items.WHITE_STAINED_GLASS);
-        entry.put("light_gray", Items.LIGHT_GRAY_STAINED_GLASS);
-        entry.put("gray", Items.GRAY_STAINED_GLASS);
-        entry.put("black", Items.BLACK_STAINED_GLASS);
-        entry.put("brown", Items.BROWN_STAINED_GLASS);
-        entry.put("red", Items.RED_STAINED_GLASS);
-        entry.put("orange", Items.ORANGE_STAINED_GLASS);
-        entry.put("yellow", Items.YELLOW_STAINED_GLASS);
-        entry.put("lime", Items.LIME_STAINED_GLASS);
-        entry.put("green", Items.GREEN_STAINED_GLASS);
-        entry.put("cyan", Items.CYAN_STAINED_GLASS);
-        entry.put("light_blue", Items.LIGHT_BLUE_STAINED_GLASS);
-        entry.put("blue", Items.BLUE_STAINED_GLASS);
-        entry.put("purple", Items.PURPLE_STAINED_GLASS);
-        entry.put("magenta", Items.MAGENTA_STAINED_GLASS);
-        entry.put("pink", Items.PINK_STAINED_GLASS);
-
-        dyedItems.put(ConventionalItemTags.GLASS_PANES, new HashMap<>());
-        entry = dyedItems.get(ConventionalItemTags.GLASS_PANES);
-        entry.put("white", Items.WHITE_STAINED_GLASS_PANE);
-        entry.put("light_gray", Items.LIGHT_GRAY_STAINED_GLASS_PANE);
-        entry.put("gray", Items.GRAY_STAINED_GLASS_PANE);
-        entry.put("black", Items.BLACK_STAINED_GLASS_PANE);
-        entry.put("brown", Items.BROWN_STAINED_GLASS_PANE);
-        entry.put("red", Items.RED_STAINED_GLASS_PANE);
-        entry.put("orange", Items.ORANGE_STAINED_GLASS_PANE);
-        entry.put("yellow", Items.YELLOW_STAINED_GLASS_PANE);
-        entry.put("lime", Items.LIME_STAINED_GLASS_PANE);
-        entry.put("green", Items.GREEN_STAINED_GLASS_PANE);
-        entry.put("cyan", Items.CYAN_STAINED_GLASS_PANE);
-        entry.put("light_blue", Items.LIGHT_BLUE_STAINED_GLASS_PANE);
-        entry.put("blue", Items.BLUE_STAINED_GLASS_PANE);
-        entry.put("purple", Items.PURPLE_STAINED_GLASS_PANE);
-        entry.put("magenta", Items.MAGENTA_STAINED_GLASS_PANE);
-        entry.put("pink", Items.PINK_STAINED_GLASS_PANE);
-
-        dyedItems.put(ConventionalItemTags.SHULKER_BOXES, new HashMap<>());
-        entry = dyedItems.get(ConventionalItemTags.SHULKER_BOXES);
-        entry.put("white", Items.WHITE_SHULKER_BOX);
-        entry.put("light_gray", Items.LIGHT_GRAY_SHULKER_BOX);
-        entry.put("gray", Items.GRAY_SHULKER_BOX);
-        entry.put("black", Items.BLACK_SHULKER_BOX);
-        entry.put("brown", Items.BROWN_SHULKER_BOX);
-        entry.put("red", Items.RED_SHULKER_BOX);
-        entry.put("orange", Items.ORANGE_SHULKER_BOX);
-        entry.put("yellow", Items.YELLOW_SHULKER_BOX);
-        entry.put("lime", Items.LIME_SHULKER_BOX);
-        entry.put("green", Items.GREEN_SHULKER_BOX);
-        entry.put("cyan", Items.CYAN_SHULKER_BOX);
-        entry.put("light_blue", Items.LIGHT_BLUE_SHULKER_BOX);
-        entry.put("blue", Items.BLUE_SHULKER_BOX);
-        entry.put("purple", Items.PURPLE_SHULKER_BOX);
-        entry.put("magenta", Items.MAGENTA_SHULKER_BOX);
-        entry.put("pink", Items.PINK_SHULKER_BOX);
-
-        dyedItems.put(ConventionalItemTags.GLAZED_TERRACOTTAS, new HashMap<>());
-        entry = dyedItems.get(ConventionalItemTags.GLAZED_TERRACOTTAS);
-        entry.put("white", Items.WHITE_GLAZED_TERRACOTTA);
-        entry.put("light_gray", Items.LIGHT_GRAY_GLAZED_TERRACOTTA);
-        entry.put("gray", Items.GRAY_GLAZED_TERRACOTTA);
-        entry.put("black", Items.BLACK_GLAZED_TERRACOTTA);
-        entry.put("brown", Items.BROWN_GLAZED_TERRACOTTA);
-        entry.put("red", Items.RED_GLAZED_TERRACOTTA);
-        entry.put("orange", Items.ORANGE_GLAZED_TERRACOTTA);
-        entry.put("yellow", Items.YELLOW_GLAZED_TERRACOTTA);
-        entry.put("lime", Items.LIME_GLAZED_TERRACOTTA);
-        entry.put("green", Items.GREEN_GLAZED_TERRACOTTA);
-        entry.put("cyan", Items.CYAN_GLAZED_TERRACOTTA);
-        entry.put("light_blue", Items.LIGHT_BLUE_GLAZED_TERRACOTTA);
-        entry.put("blue", Items.BLUE_GLAZED_TERRACOTTA);
-        entry.put("purple", Items.PURPLE_GLAZED_TERRACOTTA);
-        entry.put("magenta", Items.MAGENTA_GLAZED_TERRACOTTA);
-        entry.put("pink", Items.PINK_GLAZED_TERRACOTTA);
-
-        dyedItems.put(ItemTags.CANDLES, new HashMap<>());
-        entry = dyedItems.get(ItemTags.CANDLES);
-        entry.put("white", Items.WHITE_CANDLE);
-        entry.put("light_gray", Items.LIGHT_GRAY_CANDLE);
-        entry.put("gray", Items.GRAY_CANDLE);
-        entry.put("black", Items.BLACK_CANDLE);
-        entry.put("brown", Items.BROWN_CANDLE);
-        entry.put("red", Items.RED_CANDLE);
-        entry.put("orange", Items.ORANGE_CANDLE);
-        entry.put("yellow", Items.YELLOW_CANDLE);
-        entry.put("lime", Items.LIME_CANDLE);
-        entry.put("green", Items.GREEN_CANDLE);
-        entry.put("cyan", Items.CYAN_CANDLE);
-        entry.put("light_blue", Items.LIGHT_BLUE_CANDLE);
-        entry.put("blue", Items.BLUE_CANDLE);
-        entry.put("purple", Items.PURPLE_CANDLE);
-        entry.put("magenta", Items.MAGENTA_CANDLE);
-        entry.put("pink", Items.PINK_CANDLE);
-
-        return dyedItems;
-    }
+//    private HashMap<TagKey<Item>, HashMap<String, Item>> getDyeableItemHashmap() {
+//        HashMap<TagKey<Item>, HashMap<String, Item>> dyedItems = new HashMap<>();
+//
+//        HashMap<String, Item> entry;
+//        dyedItems.put(ItemTags.WOOL, new HashMap<>());
+//
+//        entry = dyedItems.get(ItemTags.WOOL);
+//        entry.put("white", Items.WHITE_WOOL);
+//        entry.put("light_gray", Items.LIGHT_GRAY_WOOL);
+//        entry.put("gray", Items.GRAY_WOOL);
+//        entry.put("black", Items.BLACK_WOOL);
+//        entry.put("brown", Items.BROWN_WOOL);
+//        entry.put("red", Items.RED_WOOL);
+//        entry.put("orange", Items.ORANGE_WOOL);
+//        entry.put("yellow", Items.YELLOW_WOOL);
+//        entry.put("lime", Items.LIME_WOOL);
+//        entry.put("green", Items.GREEN_WOOL);
+//        entry.put("cyan", Items.CYAN_WOOL);
+//        entry.put("light_blue", Items.LIGHT_BLUE_WOOL);
+//        entry.put("blue", Items.BLUE_WOOL);
+//        entry.put("purple", Items.PURPLE_WOOL);
+//        entry.put("magenta", Items.MAGENTA_WOOL);
+//        entry.put("pink", Items.PINK_WOOL);
+//
+//        dyedItems.put(ItemTags.WOOL_CARPETS, new HashMap<>());
+//        entry = dyedItems.get(ItemTags.WOOL_CARPETS);
+//        entry.put("white", Items.WHITE_CARPET);
+//        entry.put("light_gray", Items.LIGHT_GRAY_CARPET);
+//        entry.put("gray", Items.GRAY_CARPET);
+//        entry.put("black", Items.BLACK_CARPET);
+//        entry.put("brown", Items.BROWN_CARPET);
+//        entry.put("red", Items.RED_CARPET);
+//        entry.put("orange", Items.ORANGE_CARPET);
+//        entry.put("yellow", Items.YELLOW_CARPET);
+//        entry.put("lime", Items.LIME_CARPET);
+//        entry.put("green", Items.GREEN_CARPET);
+//        entry.put("cyan", Items.CYAN_CARPET);
+//        entry.put("light_blue", Items.LIGHT_BLUE_CARPET);
+//        entry.put("blue", Items.BLUE_CARPET);
+//        entry.put("purple", Items.PURPLE_CARPET);
+//        entry.put("magenta", Items.MAGENTA_CARPET);
+//        entry.put("pink", Items.PINK_CARPET);
+//
+//        dyedItems.put(ItemTags.BANNERS, new HashMap<>());
+//        entry = dyedItems.get(ItemTags.BANNERS);
+//        entry.put("white", Items.WHITE_BANNER);
+//        entry.put("light_gray", Items.LIGHT_GRAY_BANNER);
+//        entry.put("gray", Items.GRAY_BANNER);
+//        entry.put("black", Items.BLACK_BANNER);
+//        entry.put("brown", Items.BROWN_BANNER);
+//        entry.put("red", Items.RED_BANNER);
+//        entry.put("orange", Items.ORANGE_BANNER);
+//        entry.put("yellow", Items.YELLOW_BANNER);
+//        entry.put("lime", Items.LIME_BANNER);
+//        entry.put("green", Items.GREEN_BANNER);
+//        entry.put("cyan", Items.CYAN_BANNER);
+//        entry.put("light_blue", Items.LIGHT_BLUE_BANNER);
+//        entry.put("blue", Items.BLUE_BANNER);
+//        entry.put("purple", Items.PURPLE_BANNER);
+//        entry.put("magenta", Items.MAGENTA_BANNER);
+//        entry.put("pink", Items.PINK_BANNER);
+//
+//        dyedItems.put(ItemTags.TERRACOTTA, new HashMap<>());
+//        entry = dyedItems.get(ItemTags.TERRACOTTA);
+//        entry.put("white", Items.WHITE_TERRACOTTA);
+//        entry.put("light_gray", Items.LIGHT_GRAY_TERRACOTTA);
+//        entry.put("gray", Items.GRAY_TERRACOTTA);
+//        entry.put("black", Items.BLACK_TERRACOTTA);
+//        entry.put("brown", Items.BROWN_TERRACOTTA);
+//        entry.put("red", Items.RED_TERRACOTTA);
+//        entry.put("orange", Items.ORANGE_TERRACOTTA);
+//        entry.put("yellow", Items.YELLOW_TERRACOTTA);
+//        entry.put("lime", Items.LIME_TERRACOTTA);
+//        entry.put("green", Items.GREEN_TERRACOTTA);
+//        entry.put("cyan", Items.CYAN_TERRACOTTA);
+//        entry.put("light_blue", Items.LIGHT_BLUE_TERRACOTTA);
+//        entry.put("blue", Items.BLUE_TERRACOTTA);
+//        entry.put("purple", Items.PURPLE_TERRACOTTA);
+//        entry.put("magenta", Items.MAGENTA_TERRACOTTA);
+//        entry.put("pink", Items.PINK_TERRACOTTA);
+//
+//        dyedItems.put(ItemTags.BEDS, new HashMap<>());
+//        entry = dyedItems.get(ItemTags.BEDS);
+//        entry.put("white", Items.WHITE_BED);
+//        entry.put("light_gray", Items.LIGHT_GRAY_BED);
+//        entry.put("gray", Items.GRAY_BED);
+//        entry.put("black", Items.BLACK_BED);
+//        entry.put("brown", Items.BROWN_BED);
+//        entry.put("red", Items.RED_BED);
+//        entry.put("orange", Items.ORANGE_BED);
+//        entry.put("yellow", Items.YELLOW_BED);
+//        entry.put("lime", Items.LIME_BED);
+//        entry.put("green", Items.GREEN_BED);
+//        entry.put("cyan", Items.CYAN_BED);
+//        entry.put("light_blue", Items.LIGHT_BLUE_BED);
+//        entry.put("blue", Items.BLUE_BED);
+//        entry.put("purple", Items.PURPLE_BED);
+//        entry.put("magenta", Items.MAGENTA_BED);
+//        entry.put("pink", Items.PINK_BED);
+//
+//        dyedItems.put(ConventionalItemTags.CONCRETE_POWDERS, new HashMap<>());
+//        entry = dyedItems.get(ConventionalItemTags.CONCRETE_POWDERS);
+//        entry.put("white", Items.WHITE_CONCRETE_POWDER);
+//        entry.put("light_gray", Items.LIGHT_GRAY_CONCRETE_POWDER);
+//        entry.put("gray", Items.GRAY_CONCRETE_POWDER);
+//        entry.put("black", Items.BLACK_CONCRETE_POWDER);
+//        entry.put("brown", Items.BROWN_CONCRETE_POWDER);
+//        entry.put("red", Items.RED_CONCRETE_POWDER);
+//        entry.put("orange", Items.ORANGE_CONCRETE_POWDER);
+//        entry.put("yellow", Items.YELLOW_CONCRETE_POWDER);
+//        entry.put("lime", Items.LIME_CONCRETE_POWDER);
+//        entry.put("green", Items.GREEN_CONCRETE_POWDER);
+//        entry.put("cyan", Items.CYAN_CONCRETE_POWDER);
+//        entry.put("light_blue", Items.LIGHT_BLUE_CONCRETE_POWDER);
+//        entry.put("blue", Items.BLUE_CONCRETE_POWDER);
+//        entry.put("purple", Items.PURPLE_CONCRETE_POWDER);
+//        entry.put("magenta", Items.MAGENTA_CONCRETE_POWDER);
+//        entry.put("pink", Items.PINK_CONCRETE_POWDER);
+//
+//        dyedItems.put(ConventionalItemTags.CONCRETE, new HashMap<>());
+//        entry = dyedItems.get(ConventionalItemTags.CONCRETE);
+//        entry.put("white", Items.WHITE_CONCRETE);
+//        entry.put("light_gray", Items.LIGHT_GRAY_CONCRETE);
+//        entry.put("gray", Items.GRAY_CONCRETE);
+//        entry.put("black", Items.BLACK_CONCRETE);
+//        entry.put("brown", Items.BROWN_CONCRETE);
+//        entry.put("red", Items.RED_CONCRETE);
+//        entry.put("orange", Items.ORANGE_CONCRETE);
+//        entry.put("yellow", Items.YELLOW_CONCRETE);
+//        entry.put("lime", Items.LIME_CONCRETE);
+//        entry.put("green", Items.GREEN_CONCRETE);
+//        entry.put("cyan", Items.CYAN_CONCRETE);
+//        entry.put("light_blue", Items.LIGHT_BLUE_CONCRETE);
+//        entry.put("blue", Items.BLUE_CONCRETE);
+//        entry.put("purple", Items.PURPLE_CONCRETE);
+//        entry.put("magenta", Items.MAGENTA_CONCRETE);
+//        entry.put("pink", Items.PINK_CONCRETE);
+//
+//        dyedItems.put(ConventionalItemTags.GLASS_BLOCKS, new HashMap<>());
+//        entry = dyedItems.get(ConventionalItemTags.GLASS_BLOCKS);
+//        entry.put("white", Items.WHITE_STAINED_GLASS);
+//        entry.put("light_gray", Items.LIGHT_GRAY_STAINED_GLASS);
+//        entry.put("gray", Items.GRAY_STAINED_GLASS);
+//        entry.put("black", Items.BLACK_STAINED_GLASS);
+//        entry.put("brown", Items.BROWN_STAINED_GLASS);
+//        entry.put("red", Items.RED_STAINED_GLASS);
+//        entry.put("orange", Items.ORANGE_STAINED_GLASS);
+//        entry.put("yellow", Items.YELLOW_STAINED_GLASS);
+//        entry.put("lime", Items.LIME_STAINED_GLASS);
+//        entry.put("green", Items.GREEN_STAINED_GLASS);
+//        entry.put("cyan", Items.CYAN_STAINED_GLASS);
+//        entry.put("light_blue", Items.LIGHT_BLUE_STAINED_GLASS);
+//        entry.put("blue", Items.BLUE_STAINED_GLASS);
+//        entry.put("purple", Items.PURPLE_STAINED_GLASS);
+//        entry.put("magenta", Items.MAGENTA_STAINED_GLASS);
+//        entry.put("pink", Items.PINK_STAINED_GLASS);
+//
+//        dyedItems.put(ConventionalItemTags.GLASS_PANES, new HashMap<>());
+//        entry = dyedItems.get(ConventionalItemTags.GLASS_PANES);
+//        entry.put("white", Items.WHITE_STAINED_GLASS_PANE);
+//        entry.put("light_gray", Items.LIGHT_GRAY_STAINED_GLASS_PANE);
+//        entry.put("gray", Items.GRAY_STAINED_GLASS_PANE);
+//        entry.put("black", Items.BLACK_STAINED_GLASS_PANE);
+//        entry.put("brown", Items.BROWN_STAINED_GLASS_PANE);
+//        entry.put("red", Items.RED_STAINED_GLASS_PANE);
+//        entry.put("orange", Items.ORANGE_STAINED_GLASS_PANE);
+//        entry.put("yellow", Items.YELLOW_STAINED_GLASS_PANE);
+//        entry.put("lime", Items.LIME_STAINED_GLASS_PANE);
+//        entry.put("green", Items.GREEN_STAINED_GLASS_PANE);
+//        entry.put("cyan", Items.CYAN_STAINED_GLASS_PANE);
+//        entry.put("light_blue", Items.LIGHT_BLUE_STAINED_GLASS_PANE);
+//        entry.put("blue", Items.BLUE_STAINED_GLASS_PANE);
+//        entry.put("purple", Items.PURPLE_STAINED_GLASS_PANE);
+//        entry.put("magenta", Items.MAGENTA_STAINED_GLASS_PANE);
+//        entry.put("pink", Items.PINK_STAINED_GLASS_PANE);
+//
+//        dyedItems.put(ConventionalItemTags.SHULKER_BOXES, new HashMap<>());
+//        entry = dyedItems.get(ConventionalItemTags.SHULKER_BOXES);
+//        entry.put("white", Items.WHITE_SHULKER_BOX);
+//        entry.put("light_gray", Items.LIGHT_GRAY_SHULKER_BOX);
+//        entry.put("gray", Items.GRAY_SHULKER_BOX);
+//        entry.put("black", Items.BLACK_SHULKER_BOX);
+//        entry.put("brown", Items.BROWN_SHULKER_BOX);
+//        entry.put("red", Items.RED_SHULKER_BOX);
+//        entry.put("orange", Items.ORANGE_SHULKER_BOX);
+//        entry.put("yellow", Items.YELLOW_SHULKER_BOX);
+//        entry.put("lime", Items.LIME_SHULKER_BOX);
+//        entry.put("green", Items.GREEN_SHULKER_BOX);
+//        entry.put("cyan", Items.CYAN_SHULKER_BOX);
+//        entry.put("light_blue", Items.LIGHT_BLUE_SHULKER_BOX);
+//        entry.put("blue", Items.BLUE_SHULKER_BOX);
+//        entry.put("purple", Items.PURPLE_SHULKER_BOX);
+//        entry.put("magenta", Items.MAGENTA_SHULKER_BOX);
+//        entry.put("pink", Items.PINK_SHULKER_BOX);
+//
+//        dyedItems.put(ConventionalItemTags.GLAZED_TERRACOTTAS, new HashMap<>());
+//        entry = dyedItems.get(ConventionalItemTags.GLAZED_TERRACOTTAS);
+//        entry.put("white", Items.WHITE_GLAZED_TERRACOTTA);
+//        entry.put("light_gray", Items.LIGHT_GRAY_GLAZED_TERRACOTTA);
+//        entry.put("gray", Items.GRAY_GLAZED_TERRACOTTA);
+//        entry.put("black", Items.BLACK_GLAZED_TERRACOTTA);
+//        entry.put("brown", Items.BROWN_GLAZED_TERRACOTTA);
+//        entry.put("red", Items.RED_GLAZED_TERRACOTTA);
+//        entry.put("orange", Items.ORANGE_GLAZED_TERRACOTTA);
+//        entry.put("yellow", Items.YELLOW_GLAZED_TERRACOTTA);
+//        entry.put("lime", Items.LIME_GLAZED_TERRACOTTA);
+//        entry.put("green", Items.GREEN_GLAZED_TERRACOTTA);
+//        entry.put("cyan", Items.CYAN_GLAZED_TERRACOTTA);
+//        entry.put("light_blue", Items.LIGHT_BLUE_GLAZED_TERRACOTTA);
+//        entry.put("blue", Items.BLUE_GLAZED_TERRACOTTA);
+//        entry.put("purple", Items.PURPLE_GLAZED_TERRACOTTA);
+//        entry.put("magenta", Items.MAGENTA_GLAZED_TERRACOTTA);
+//        entry.put("pink", Items.PINK_GLAZED_TERRACOTTA);
+//
+//        dyedItems.put(ItemTags.CANDLES, new HashMap<>());
+//        entry = dyedItems.get(ItemTags.CANDLES);
+//        entry.put("white", Items.WHITE_CANDLE);
+//        entry.put("light_gray", Items.LIGHT_GRAY_CANDLE);
+//        entry.put("gray", Items.GRAY_CANDLE);
+//        entry.put("black", Items.BLACK_CANDLE);
+//        entry.put("brown", Items.BROWN_CANDLE);
+//        entry.put("red", Items.RED_CANDLE);
+//        entry.put("orange", Items.ORANGE_CANDLE);
+//        entry.put("yellow", Items.YELLOW_CANDLE);
+//        entry.put("lime", Items.LIME_CANDLE);
+//        entry.put("green", Items.GREEN_CANDLE);
+//        entry.put("cyan", Items.CYAN_CANDLE);
+//        entry.put("light_blue", Items.LIGHT_BLUE_CANDLE);
+//        entry.put("blue", Items.BLUE_CANDLE);
+//        entry.put("purple", Items.PURPLE_CANDLE);
+//        entry.put("magenta", Items.MAGENTA_CANDLE);
+//        entry.put("pink", Items.PINK_CANDLE);
+//
+//        return dyedItems;
+//    }
 
     public MoobloomType getVariant() {
         return MoobloomType.get(Identifier.of(this.dataTracker.get(TYPE)));
@@ -592,7 +595,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     public void onDeath(DamageSource damageSource) {
         super.onDeath(damageSource);
         if (this.hasStatusEffect(StatusEffects.WITHER)) {
-            MoobloomEntity child = ModEntities.MOOBLOOM.create(this.getWorld(), SpawnReason.CONVERSION);
+            MoobloomEntity child = ModEntities.MOOBLOOM.get().create(this.getWorld(), SpawnReason.CONVERSION);
             if (child != null) {
                 ((ServerWorld)this.getWorld()).spawnParticles(ParticleTypes.WITCH, this.getX(), this.getBodyY(0.5), this.getZ(), 1, 0.0, 0.0, 0.0, 0.0);
                 this.discard();

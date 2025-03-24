@@ -26,7 +26,7 @@
       "io.github.trashoflevillage.manymooblooms.fabric.ManyMoobloomsFabric"
     ],
     "client": [
-      "io.github.trashoflevillage.manymooblooms.fabric.client.ExampleModFabricClient"
+      "io.github.trashoflevillage.manymooblooms.fabric.client.ManyMoobloomsFabricClient"
     ]
   },
   "mixins": [

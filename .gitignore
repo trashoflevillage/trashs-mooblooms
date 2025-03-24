@@ -1,3 +1,5 @@
 /run/
 /neoforge/run/
 /fabric/run/
+/neoforge/.gradle/architectury/
+/fabric/.gradle/architectury/

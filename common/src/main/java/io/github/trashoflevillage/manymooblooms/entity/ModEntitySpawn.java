@@ -24,22 +24,4 @@ public class ModEntitySpawn {
     public static final TagKey<Biome> PURPLE_MOOBLOOM_SPAWNABLE = TagKey.of(RegistryKeys.BIOME, Identifier.of(ManyMooblooms.MOD_ID, "purple_moobloom_spawnable"));
     public static final TagKey<Biome> MAGENTA_MOOBLOOM_SPAWNABLE = TagKey.of(RegistryKeys.BIOME, Identifier.of(ManyMooblooms.MOD_ID, "magenta_moobloom_spawnable"));
     public static final TagKey<Biome> PINK_MOOBLOOM_SPAWNABLE = TagKey.of(RegistryKeys.BIOME, Identifier.of(ManyMooblooms.MOD_ID, "pink_moobloom_spawnable"));
-
-//    public static void addEntitySpawns() {
-//        SpawnRestriction.register(
-//                ModEntities.MOOBLOOM,
-//                SpawnLocationTypes.ON_GROUND,
-//                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
-//                MoobloomEntity::canSpawn
-//        );
-//
-//        BiomeModifications.addSpawn(
-//                BiomeSelectors.tag(MOOBLOOM_SPAWNABLE),
-//                SpawnGroup.CREATURE,
-//                ModEntities.MOOBLOOM,
-//                50,
-//                2,
-//                4
-//        );
-//    }
 }

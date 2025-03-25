@@ -1,5 +1,6 @@
 package io.github.trashoflevillage.manymooblooms.fabric;
 
+import io.github.trashoflevillage.manymooblooms.fabric.entity.ModEntitySpawnFabric;
 import net.fabricmc.api.ModInitializer;
 
 import io.github.trashoflevillage.manymooblooms.ManyMooblooms;
@@ -13,5 +14,6 @@ public final class ManyMoobloomsFabric implements ModInitializer {
 
         // Run our common setup.
         ManyMooblooms.init();
+        ModEntitySpawnFabric.registerAll();
     }
 }

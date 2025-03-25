@@ -1,0 +1,12 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#manymooblooms:moobloom_spawnable",
+  "spawners": [
+    {
+      "type": "manymooblooms:moobloom",
+      "weight": 50,
+      "minCount": 2,
+      "maxCount": 4
+    }
+  ]
+}

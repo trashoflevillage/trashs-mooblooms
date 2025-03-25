@@ -9,23 +9,6 @@ import net.neoforged.fml.common.Mod;
 @Mod(value = ManyMooblooms.MOD_ID, dist = Dist.CLIENT)
 public class ManyMoobloomsNeoForgeClient {
     public ManyMoobloomsNeoForgeClient(IEventBus modBus) {
-        System.out.println("CLIENT LOADED");
-        System.out.println("CLIENT LOADED");
-        System.out.println("CLIENT LOADED");
-        System.out.println("CLIENT LOADED");
-        System.out.println("CLIENT LOADED");
-        System.out.println("CLIENT LOADED");
-        System.out.println("CLIENT LOADED");
-        System.out.println("CLIENT LOADED");
-        System.out.println("CLIENT LOADED");
-        System.out.println("CLIENT LOADED");
-        System.out.println("CLIENT LOADED");
-        System.out.println("CLIENT LOADED");
-        System.out.println("CLIENT LOADED");
-        System.out.println("CLIENT LOADED");
-        System.out.println("CLIENT LOADED");
-        System.out.println("CLIENT LOADED");
-
         ManyMoobloomsClient.init();
     }
 }

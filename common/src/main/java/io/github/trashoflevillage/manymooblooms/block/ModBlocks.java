@@ -1,4 +1,4 @@
-package io.github.trashoflevillage.manymooblooms.blocks;
+package io.github.trashoflevillage.manymooblooms.block;
 
 import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.trashoflevillage.manymooblooms.ManyMooblooms;

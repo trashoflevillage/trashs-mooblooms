@@ -2,7 +2,7 @@ package io.github.trashoflevillage.manymooblooms.entity.custom.util;
 
 
 import io.github.trashoflevillage.manymooblooms.ManyMooblooms;
-import io.github.trashoflevillage.manymooblooms.blocks.ModBlocks;
+import io.github.trashoflevillage.manymooblooms.block.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

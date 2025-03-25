@@ -1,11 +1,13 @@
 package io.github.trashoflevillage.manymooblooms.entity;
 
+import dev.architectury.registry.level.entity.EntityAttributeRegistry;
 import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.trashoflevillage.manymooblooms.ManyMooblooms;
 import io.github.trashoflevillage.manymooblooms.entity.custom.MoobloomEntity;
 import io.github.trashoflevillage.trashlib.initializers.EntityInitializer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
@@ -26,5 +28,11 @@ public class ModEntities {
             ).dimensions(0.9f, 1.4f).build(MOOBLOOM_KEY)
     );
 
-    public static void registerAlL() {}
+    public static void registerAlL() {
+        registerAttributes();
+    }
+
+    private static void registerAttributes() {
+        EntityAttributeRegistry.register(ModEntities.MOOBLOOM, CowEntity::createCowAttributes);
+    }
 }

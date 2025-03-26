@@ -33,6 +33,7 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -53,9 +54,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public class MoobloomEntity extends CowEntity implements Shearable {
-    private static final TrackedData<Boolean> IS_SHEARED;
-    private static final TrackedData<Integer> REGROW_TIMER;
-    private static final TrackedData<String> TYPE;
+    private static final TrackedData<Boolean> IS_SHEARED = DataTracker.registerData(MoobloomEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Integer> REGROW_TIMER = DataTracker.registerData(MoobloomEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private static final TrackedData<String> TYPE = DataTracker.registerData(MoobloomEntity.class, TrackedDataHandlerRegistry.STRING);
     private UUID lightningUUID;
 
     public MoobloomEntity(EntityType<? extends CowEntity> entityType, World world) {
@@ -118,9 +119,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
-        if (tryConvertToSussyStew(player, hand) ||
-                tryToDyeHandItem(player, hand) ||
-                super.interactMob(player, hand) == ActionResult.SUCCESS)
+        if (tryConvertToSussyStew(player, hand) || tryToDyeHandItem(player, hand))
             return ActionResult.SUCCESS;
         else if (itemStack.isOf(Items.SHEARS) && this.isShearable()) {
             if (this.getWorld() instanceof ServerWorld serverWorld)
@@ -137,14 +136,17 @@ public class MoobloomEntity extends CowEntity implements Shearable {
 
     private boolean tryConvertToSussyStew(PlayerEntity player, Hand hand) {
         if (this.isBaby()) return false;
+
         ItemStack itemStack = player.getStackInHand(hand);
-        if (itemStack.itemMatches(Items.MUSHROOM_STEW.getRegistryEntry())) {
-            SuspiciousStewIngredient s = SuspiciousStewIngredient.of(Item.fromBlock(getVariant().getFlowerState().getBlock()));
-            ItemStack itemStack2 = new ItemStack(Items.SUSPICIOUS_STEW);
-            itemStack2.set(DataComponentTypes.SUSPICIOUS_STEW_EFFECTS, s.getStewEffects());
-            player.setStackInHand(hand, itemStack2);
-            player.playSound(SoundEvents.ENTITY_MOOSHROOM_SUSPICIOUS_MILK, 1, 1);
-            return true;
+        if (itemStack.isOf(Items.MUSHROOM_STEW)) {
+            SuspiciousStewIngredient s = SuspiciousStewIngredient.of(getVariant().getFlowerState().getBlock().asItem());
+            if (s != null) {
+                ItemStack itemStack2 = new ItemStack(Items.SUSPICIOUS_STEW);
+                itemStack2.set(DataComponentTypes.SUSPICIOUS_STEW_EFFECTS, s.getStewEffects());
+                player.setStackInHand(hand, itemStack2);
+                player.playSound(SoundEvents.ENTITY_MOOSHROOM_SUSPICIOUS_MILK, 1, 1);
+                return true;
+            }
         }
         return false;
     }
@@ -155,7 +157,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
         ItemStack itemStack = player.getStackInHand(hand);
         ItemStack newItem = tryToDyeItemStack(itemStack);
 
-        if (newItem != null && !itemStack.equals(newItem)) {
+        if (!itemStack.equals(newItem)) {
             player.setStackInHand(hand, newItem);
             player.playSound(SoundEvents.ITEM_DYE_USE, 1, 1);
             return true;
@@ -211,7 +213,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
                 }
             }
         }
-        return null;
+        return itemStack;
     }
 
     private HashMap<TagKey<Item>, HashMap<String, Item>> getDyeableItemHashmap() {
@@ -532,12 +534,6 @@ public class MoobloomEntity extends CowEntity implements Shearable {
 
     public void setRegrowTimer(int val) {
         this.dataTracker.set(REGROW_TIMER, val);
-    }
-
-    static {
-        TYPE = DataTracker.registerData(MoobloomEntity.class, TrackedDataHandlerRegistry.STRING);
-        IS_SHEARED = DataTracker.registerData(MoobloomEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-        REGROW_TIMER = DataTracker.registerData(MoobloomEntity.class, TrackedDataHandlerRegistry.INTEGER);
     }
 
     @Override

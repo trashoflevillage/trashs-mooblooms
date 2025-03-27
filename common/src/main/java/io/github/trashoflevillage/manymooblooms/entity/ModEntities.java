@@ -13,14 +13,14 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
 public class ModEntities {
-    private static final EntityInitializer initializer = new EntityInitializer(ManyMooblooms.MOD_ID).addModIdAlias(ManyMooblooms.OLD_MOD_ID);
+    private static final EntityInitializer INITIALIZER = new EntityInitializer(ManyMooblooms.MOD_ID).addModIdAlias(ManyMooblooms.OLD_MOD_ID);
 
     public static final RegistryKey<EntityType<?>> MOOBLOOM_KEY = RegistryKey.of(
             RegistryKeys.ENTITY_TYPE,
             Identifier.of(ManyMooblooms.MOD_ID, "moobloom")
     );
 
-    public static final RegistrySupplier<EntityType<MoobloomEntity>> MOOBLOOM = initializer.register(
+    public static final RegistrySupplier<EntityType<MoobloomEntity>> MOOBLOOM = INITIALIZER.register(
             "moobloom",
             () -> EntityType.Builder.create(
                     MoobloomEntity::new,

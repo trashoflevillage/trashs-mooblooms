@@ -2,7 +2,7 @@ package io.github.trashoflevillage.manymooblooms.entity.custom;
 
 import io.github.trashoflevillage.manymooblooms.ManyMooblooms;
 import io.github.trashoflevillage.manymooblooms.entity.ModEntities;
-import io.github.trashoflevillage.manymooblooms.entity.ModEntitySpawn;
+import io.github.trashoflevillage.manymooblooms.util.ModTags;
 import io.github.trashoflevillage.manymooblooms.entity.custom.util.MoobloomType;
 import io.github.trashoflevillage.trashlib.util.ConventionalTags;
 import net.minecraft.block.SuspiciousStewIngredient;
@@ -74,7 +74,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     }
 
     public static boolean canSpawn(EntityType<MoobloomEntity> entityType, ServerWorldAccess world, SpawnReason reason, BlockPos pos, Random random) {
-        return world.getBlockState(pos.down()).isIn(BlockTags.ANIMALS_SPAWNABLE_ON/*ModTags.Blocks.MOOBLOOM_SPAWNABLE_ON*/) && ((world.getDimension().hasSkyLight() && isLightLevelValidForNaturalSpawn(world, pos)) || !world.getDimension().hasSkyLight());
+        return world.getBlockState(pos.down()).isIn(BlockTags.ANIMALS_SPAWNABLE_ON/*ModTags.Biomes.Blocks.MOOBLOOM_SPAWNABLE_ON*/) && ((world.getDimension().hasSkyLight() && isLightLevelValidForNaturalSpawn(world, pos)) || !world.getDimension().hasSkyLight());
     }
 
     private MoobloomType chooseBabyType(MoobloomEntity moobloom) {
@@ -472,22 +472,22 @@ public class MoobloomEntity extends CowEntity implements Shearable {
 
         ArrayList<String> colors = new ArrayList<>();
 
-        if (biome.isIn(ModEntitySpawn.WHITE_MOOBLOOM_SPAWNABLE)) colors.add("white");
-        if (biome.isIn(ModEntitySpawn.LIGHT_GRAY_MOOBLOOM_SPAWNABLE)) colors.add("light_gray");
-        if (biome.isIn(ModEntitySpawn.GRAY_MOOBLOOM_SPAWNABLE)) colors.add("gray");
-        if (biome.isIn(ModEntitySpawn.BLACK_MOOBLOOM_SPAWNABLE)) colors.add("black");
-        if (biome.isIn(ModEntitySpawn.BROWN_MOOBLOOM_SPAWNABLE)) colors.add("brown");
-        if (biome.isIn(ModEntitySpawn.RED_MOOBLOOM_SPAWNABLE)) colors.add("red");
-        if (biome.isIn(ModEntitySpawn.ORANGE_MOOBLOOM_SPAWNABLE)) colors.add("orange");
-        if (biome.isIn(ModEntitySpawn.YELLOW_MOOBLOOM_SPAWNABLE)) colors.add("yellow");
-        if (biome.isIn(ModEntitySpawn.LIME_MOOBLOOM_SPAWNABLE)) colors.add("lime");
-        if (biome.isIn(ModEntitySpawn.GREEN_MOOBLOOM_SPAWNABLE)) colors.add("green");
-        if (biome.isIn(ModEntitySpawn.CYAN_MOOBLOOM_SPAWNABLE)) colors.add("cyan");
-        if (biome.isIn(ModEntitySpawn.LIGHT_BLUE_MOOBLOOM_SPAWNABLE)) colors.add("light_blue");
-        if (biome.isIn(ModEntitySpawn.BLUE_MOOBLOOM_SPAWNABLE)) colors.add("blue");
-        if (biome.isIn(ModEntitySpawn.PURPLE_MOOBLOOM_SPAWNABLE)) colors.add("purple");
-        if (biome.isIn(ModEntitySpawn.MAGENTA_MOOBLOOM_SPAWNABLE)) colors.add("magenta");
-        if (biome.isIn(ModEntitySpawn.PINK_MOOBLOOM_SPAWNABLE)) colors.add("pink");
+        if (biome.isIn(ModTags.Biomes.WHITE_MOOBLOOM_SPAWNABLE)) colors.add("white");
+        if (biome.isIn(ModTags.Biomes.LIGHT_GRAY_MOOBLOOM_SPAWNABLE)) colors.add("light_gray");
+        if (biome.isIn(ModTags.Biomes.GRAY_MOOBLOOM_SPAWNABLE)) colors.add("gray");
+        if (biome.isIn(ModTags.Biomes.BLACK_MOOBLOOM_SPAWNABLE)) colors.add("black");
+        if (biome.isIn(ModTags.Biomes.BROWN_MOOBLOOM_SPAWNABLE)) colors.add("brown");
+        if (biome.isIn(ModTags.Biomes.RED_MOOBLOOM_SPAWNABLE)) colors.add("red");
+        if (biome.isIn(ModTags.Biomes.ORANGE_MOOBLOOM_SPAWNABLE)) colors.add("orange");
+        if (biome.isIn(ModTags.Biomes.YELLOW_MOOBLOOM_SPAWNABLE)) colors.add("yellow");
+        if (biome.isIn(ModTags.Biomes.LIME_MOOBLOOM_SPAWNABLE)) colors.add("lime");
+        if (biome.isIn(ModTags.Biomes.GREEN_MOOBLOOM_SPAWNABLE)) colors.add("green");
+        if (biome.isIn(ModTags.Biomes.CYAN_MOOBLOOM_SPAWNABLE)) colors.add("cyan");
+        if (biome.isIn(ModTags.Biomes.LIGHT_BLUE_MOOBLOOM_SPAWNABLE)) colors.add("light_blue");
+        if (biome.isIn(ModTags.Biomes.BLUE_MOOBLOOM_SPAWNABLE)) colors.add("blue");
+        if (biome.isIn(ModTags.Biomes.PURPLE_MOOBLOOM_SPAWNABLE)) colors.add("purple");
+        if (biome.isIn(ModTags.Biomes.MAGENTA_MOOBLOOM_SPAWNABLE)) colors.add("magenta");
+        if (biome.isIn(ModTags.Biomes.PINK_MOOBLOOM_SPAWNABLE)) colors.add("pink");
 
         if (colors.isEmpty()) colors.add("yellow");
 

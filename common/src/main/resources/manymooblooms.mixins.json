@@ -6,7 +6,10 @@
   "client": [
   ],
   "mixins": [
-    "PlayerEntityMixin"
+    "BeeEntityMixin",
+    "BeeEntityMixin$ValidateFlowerGoalMixin",
+    "PlayerEntityMixin",
+    "PollinateGoalMixin"
   ],
   "injectors": {
     "defaultRequire": 1

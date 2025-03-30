@@ -2,6 +2,7 @@ package io.github.trashoflevillage.manymooblooms.util;
 
 import io.github.trashoflevillage.manymooblooms.ManyMooblooms;
 import io.github.trashoflevillage.trashlib.initializers.TagInitializer;
+import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
@@ -9,6 +10,12 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
 
 public class ModTags {
+    public static class Blocks {
+        private static final TagInitializer<Block> INITIALIZER = new TagInitializer<>(ManyMooblooms.MOD_ID, RegistryKeys.BLOCK);
+
+        public static final TagKey<Block> MOOBLOOM_SPAWNABLE_ON = INITIALIZER.register("moobloom_spawnable_on");
+    }
+
     public static class Biomes {
         private static final TagInitializer<Biome> INITIALIZER = new TagInitializer<>(ManyMooblooms.MOD_ID, RegistryKeys.BIOME);
 

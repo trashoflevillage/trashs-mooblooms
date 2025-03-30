@@ -74,7 +74,7 @@ public class MoobloomEntity extends CowEntity implements Shearable {
     }
 
     public static boolean canSpawn(EntityType<MoobloomEntity> entityType, ServerWorldAccess world, SpawnReason reason, BlockPos pos, Random random) {
-        return world.getBlockState(pos.down()).isIn(BlockTags.ANIMALS_SPAWNABLE_ON/*ModTags.Biomes.Blocks.MOOBLOOM_SPAWNABLE_ON*/) && ((world.getDimension().hasSkyLight() && isLightLevelValidForNaturalSpawn(world, pos)) || !world.getDimension().hasSkyLight());
+        return world.getBlockState(pos.down()).isIn(ModTags.Blocks.MOOBLOOM_SPAWNABLE_ON) && ((world.getDimension().hasSkyLight() && isLightLevelValidForNaturalSpawn(world, pos)) || !world.getDimension().hasSkyLight());
     }
 
     private MoobloomType chooseBabyType(MoobloomEntity moobloom) {

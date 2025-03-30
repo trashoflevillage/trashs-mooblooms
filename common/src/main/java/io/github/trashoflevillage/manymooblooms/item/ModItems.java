@@ -12,7 +12,7 @@ public class ModItems {
     private static final ItemInitializer INITIALIZER = new ItemInitializer(ManyMooblooms.MOD_ID).addModIdAlias(ManyMooblooms.OLD_MOD_ID);
 
     public static final RegistrySupplier<Item> MOOBLOOM_SPAWN_EGG = INITIALIZER.register("moobloom_spawn_egg",
-            (s) -> new SpawnEggItem(ModEntities.MOOBLOOM.get(), s.arch$tab(ItemGroups.SPAWN_EGGS)));
+            (s) -> new SpawnEggItem(ModEntities.MOOBLOOM.get(), s.arch$tab(ItemGroups.SPAWN_EGGS)/*.arch$tab(ModItemGroups.BASE_GROUP)*/));
 
     public static void registerAll() {}
 }

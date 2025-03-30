@@ -4,6 +4,7 @@ import dev.architectury.registry.ReloadListenerRegistry;
 import dev.architectury.registry.level.entity.EntityAttributeRegistry;
 import io.github.trashoflevillage.manymooblooms.block.ModBlocks;
 import io.github.trashoflevillage.manymooblooms.entity.ModEntities;
+import io.github.trashoflevillage.manymooblooms.item.ModItemGroups;
 import io.github.trashoflevillage.manymooblooms.item.ModItems;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.resource.ResourcePackProfile;
@@ -20,6 +21,6 @@ public final class ManyMooblooms {
         ModBlocks.registerAll();
         ModItems.registerAll();
         ModEntities.registerAlL();
+        ModItemGroups.registerAll();
     }
-
 }

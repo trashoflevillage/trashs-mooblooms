@@ -37,7 +37,8 @@
     "minecraft": "~1.21.4",
     "java": ">=21",
     "architectury": ">=15.0.2",
-    "fabric-api": "*"
+    "fabric-api": "*",
+    "trashlib": ">=2.0"
   },
   "suggests": {
     "another-mod": "*"
